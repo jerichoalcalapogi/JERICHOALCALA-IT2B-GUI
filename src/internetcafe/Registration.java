@@ -18,6 +18,7 @@ public class Registration extends javax.swing.JFrame {
      */
     public Registration() {
         initComponents();
+         setResizable(false);
     }
 
     /**
@@ -31,12 +32,11 @@ public class Registration extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         contact = new javax.swing.JTextField();
         register = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -50,19 +50,22 @@ public class Registration extends javax.swing.JFrame {
         em = new javax.swing.JTextField();
         us = new javax.swing.JTextField();
         fn1 = new javax.swing.JTextField();
+        confirmpass = new javax.swing.JPasswordField();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 51, 0));
+        jPanel1.setBackground(new java.awt.Color(240, 191, 120));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "REGISTRATION FORM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Light", 1, 14))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(185, 154, 123));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(255, 0, 0))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 3, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("WELCOME TO INTERNET CAFE SYSTEM");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 630, -1));
+        jLabel4.setFont(new java.awt.Font("Yu Gothic Medium", 3, 24)); // NOI18N
+        jLabel4.setText("REGISTRATION FORM");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 320, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 80));
 
@@ -82,10 +85,6 @@ public class Registration extends javax.swing.JFrame {
         jLabel3.setText("Last name :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 100, -1));
 
-        jLabel4.setFont(new java.awt.Font("Yu Gothic Medium", 3, 24)); // NOI18N
-        jLabel4.setText("REGISTRATION FORM");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 320, -1));
-
         contact.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         contact.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         contact.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +92,7 @@ public class Registration extends javax.swing.JFrame {
                 contactActionPerformed(evt);
             }
         });
-        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 170, 30));
+        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 170, 30));
 
         register.setBackground(new java.awt.Color(102, 51, 0));
         register.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
@@ -103,7 +102,7 @@ public class Registration extends javax.swing.JFrame {
                 registerActionPerformed(evt);
             }
         });
-        jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, 90, 40));
+        jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, 90, 30));
 
         jButton2.setBackground(new java.awt.Color(102, 51, 0));
         jButton2.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
@@ -113,11 +112,11 @@ public class Registration extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 90, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 90, 30));
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 2, 18)); // NOI18N
         jLabel5.setText("Not Registered?Click here to Register!");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, 350, 40));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 460, 350, 40));
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic Medium", 2, 18)); // NOI18N
         jLabel7.setText("Username :");
@@ -137,7 +136,7 @@ public class Registration extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Yu Gothic Medium", 2, 18)); // NOI18N
         jLabel11.setText("Contact # :");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 100, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 100, -1));
 
         ln.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ln.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -175,6 +174,14 @@ public class Registration extends javax.swing.JFrame {
         });
         jPanel1.add(fn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 170, 30));
 
+        confirmpass.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        confirmpass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(confirmpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 170, 30));
+
+        jLabel12.setFont(new java.awt.Font("Yu Gothic Medium", 2, 18)); // NOI18N
+        jLabel12.setText("Confirm Pass:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 120, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,6 +196,7 @@ public class Registration extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
@@ -212,7 +220,31 @@ public class Registration extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "All field are required");
             return;
         }
+         if (!fn1.getText().matches("[a-zA-Z]+") || !ln.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "First and Last names should contain only letters.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+            fn1.setText("");
+            ln.setText("");
+            return;
+        }
          String password = new String(ps.getPassword()); // Get password as String
+         String confirmPassword = new String(confirmpass.getPassword());
+
+        if (!password.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(null, "Passwords do not match!");
+            ps.setText("");
+            confirmpass.setText("");
+            return;
+        }
+        
+        String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+        
+        if (!em.getText().matches(regex)) {
+        JOptionPane.showMessageDialog(null, "Invalid Email!");
+            em.setText("");
+           
+            return;
+    }
+
 
          if (password.length() < 8) {
         JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
@@ -226,10 +258,7 @@ public class Registration extends javax.swing.JFrame {
         return;
          
            } 
-   
-    
-    
-    
+  
             JOptionPane.showMessageDialog(null, "Registration Successful");
             fn1.setText("");
             ln.setText("");
@@ -237,7 +266,10 @@ public class Registration extends javax.swing.JFrame {
             us.setText("");
             ps.setText("");
               contact.setText("");
-            
+              confirmpass.setText("");
+             Login loginFrame = new Login(); // Create a new instance of the Login frame
+    loginFrame.setVisible(true); 
+    this.dispose();
             
     }//GEN-LAST:event_registerActionPerformed
     
@@ -294,13 +326,14 @@ public class Registration extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField confirmpass;
     private javax.swing.JTextField contact;
     private javax.swing.JTextField em;
     private javax.swing.JTextField fn1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
