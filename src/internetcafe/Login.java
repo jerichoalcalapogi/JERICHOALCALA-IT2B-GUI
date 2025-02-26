@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package internetcafe;
 
 
@@ -15,15 +11,13 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import user.userdashboard;
 
-/**
- *
- * @author ADMIN
- */
+
+ 
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+   
+     
+     
     public Login() {
         initComponents();
         setResizable(false);
@@ -75,13 +69,23 @@ public static boolean loginAcc(String usernamee, String passwordd){
         reg = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -185,7 +189,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 140, -1));
 
         reg.setBackground(new java.awt.Color(102, 102, 102));
-        reg.setFont(new java.awt.Font("Yu Gothic UI", 3, 18)); // NOI18N
+        reg.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         reg.setForeground(new java.awt.Color(203, 14, 14));
         reg.setText("Click here to register!");
         reg.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,7 +197,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
                 regMouseClicked(evt);
             }
         });
-        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, 350, 40));
+        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 340, 30));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -204,32 +208,22 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jLabel9.setText("CROSS");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 270, 50));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image-removebg-preview (2).png"))); // NOI18N
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 300, 130));
-
         jLabel15.setFont(new java.awt.Font("Niagara Solid", 1, 50)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("CYBER ARENA");
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 230, 60));
 
-        jLabel16.setFont(new java.awt.Font("Constantia", 1, 24)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Constantia", 1, 10)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("THIS ");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 230, 160));
-
-        jLabel19.setFont(new java.awt.Font("Gill Sans Ultra Bold", 1, 24)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(203, 14, 14));
-        jLabel19.setText("WAY");
-        jLabel19.setAlignmentY(1.0F);
-        jLabel19.setIconTextGap(10);
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 230, 140));
+        jLabel16.setText("Welcome to Cross Cyber Arena, your ultimate destination ");
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 280, 60));
 
         jLabel20.setFont(new java.awt.Font("Castellar", 0, 20)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("“Where Friendships Form ");
         jLabel20.setAlignmentY(1.0F);
         jLabel20.setIconTextGap(10);
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 420, 40));
+        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 420, 40));
 
         jLabel21.setBackground(new java.awt.Color(255, 255, 255));
         jLabel21.setFont(new java.awt.Font("Castellar", 0, 20)); // NOI18N
@@ -237,10 +231,54 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jLabel21.setText("and Rivals Are Born!”");
         jLabel21.setAlignmentY(1.0F);
         jLabel21.setIconTextGap(10);
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 340, 100));
+        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 340, 100));
 
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 250, 230));
+        jLabel22.setFont(new java.awt.Font("Constantia", 1, 10)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("or seamless and premium internet café membership.");
+        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 290, 70));
+
+        jLabel24.setFont(new java.awt.Font("Constantia", 1, 10)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Join Cross Cyber Arena today and take your online experience to the next level!  ");
+        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 380, 60));
+
+        jLabel19.setFont(new java.awt.Font("Gill Sans Ultra Bold", 1, 20)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(203, 14, 14));
+        jLabel19.setText("About Us");
+        jLabel19.setAlignmentY(1.0F);
+        jLabel19.setIconTextGap(10);
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 230, 100));
+
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
+        jPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 230, 210));
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
+        jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 230, 210));
+
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
+        jPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 230, 210));
+
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
+        jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 230, 210));
+
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
+        jPanel3.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 110, 210));
+
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
+        jPanel3.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 360, 230, 210));
+
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
+        jPanel3.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 230, 210));
+
+        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
+        jPanel3.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 230, 210));
+
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
+        jPanel3.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 40, 230, 210));
+
+        jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
+        jPanel3.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, -100, 230, 210));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 490));
 
@@ -268,20 +306,20 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 430, 80));
 
         reg2.setBackground(new java.awt.Color(102, 102, 102));
-        reg2.setFont(new java.awt.Font("Yu Gothic Light", 3, 17)); // NOI18N
+        reg2.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
         reg2.setText("Not Registered?");
         reg2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 reg2MouseClicked(evt);
             }
         });
-        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 350, 40));
+        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, 140, 30));
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 250, 230));
 
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image-removebg-preview (6).png"))); // NOI18N
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, -40, 610, 560));
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, -40, 550, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -336,6 +374,8 @@ public static boolean loginAcc(String usernamee, String passwordd){
 if (loginAcc(user.getText(), pasw.getText())) {
     if (!Status.equals("Active")) {
         JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin First!");
+        user.setText("");
+        pasw.setText("");
     } else {
         JOptionPane.showMessageDialog(null, "Login Successfully!");
 
@@ -349,7 +389,7 @@ if (loginAcc(user.getText(), pasw.getText())) {
             JOptionPane.showMessageDialog(null, "No account type found. Contact the Admin!");
         }
     
-        this.dispose(); // Close the login window
+        this.dispose(); 
     }
 } else {
     JOptionPane.showMessageDialog(null, "Invalid Account!");
@@ -412,15 +452,25 @@ if (loginAcc(user.getText(), pasw.getText())) {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;

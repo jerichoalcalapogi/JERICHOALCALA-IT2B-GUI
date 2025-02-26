@@ -1,22 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package admin;
 
 import internetcafe.Login;
 import java.awt.Color;
 
-/**
- *
- * @author ADMIN
- */
+
 public class admindashboardd extends javax.swing.JFrame {
 
-    /**
-     * Creates new form admindashboardd
-     */
+    
     public admindashboardd() {
         initComponents();
         setResizable(false);
