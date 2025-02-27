@@ -89,7 +89,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblMovingText = new javax.swing.JLabel();
         reg2 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -116,6 +116,11 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 300, 100));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                WindowOpen(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -290,20 +295,20 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jLabel12.setText("REGISTRATION FORM");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 210, 60));
 
-        jLabel10.setFont(new java.awt.Font("Castellar", 1, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Castellar", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("LOGIN FORM");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, -10, 310, 60));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 320, 60));
 
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Engravers MT", 0, 24)); // NOI18N
-        jLabel14.setText("ARE YOU READY?");
-        jLabel14.setAlignmentX(1.0F);
-        jLabel14.setAlignmentY(3.0F);
-        jLabel14.setIconTextGap(10);
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 300, 100));
+        lblMovingText.setBackground(new java.awt.Color(255, 255, 255));
+        lblMovingText.setFont(new java.awt.Font("Engravers MT", 0, 24)); // NOI18N
+        lblMovingText.setText("ARE YOU READY?");
+        lblMovingText.setAlignmentX(1.0F);
+        lblMovingText.setAlignmentY(3.0F);
+        lblMovingText.setIconTextGap(10);
+        jPanel2.add(lblMovingText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 300, 100));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 430, 80));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 430, 100));
 
         reg2.setBackground(new java.awt.Color(102, 102, 102));
         reg2.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
@@ -408,6 +413,44 @@ if (loginAcc(user.getText(), pasw.getText())) {
         // TODO add your handling code here:
     }//GEN-LAST:event_reg2MouseClicked
 
+    private void WindowOpen(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_WindowOpen
+  
+        final int MAX_X = 400;
+        final int MIN_X = 50;
+
+        Thread animation = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int x = 20;
+                int y = 30;  //label start positions
+                boolean checked = true;
+                while (true) {
+                    if (checked) {
+                        lblMovingText.setLocation(x, y);
+                        x += 10;
+                    } else {
+                        lblMovingText.setLocation(x, y);
+                        x -= 10;
+                    }
+                    if(x>MAX_X){
+                        checked=false;
+                        x=400; //reset the X value
+                    }
+                    if(x<MIN_X){
+                        checked= true;
+                    }
+                    try {
+                        Thread.sleep(200);
+                    } catch (Exception e) {
+
+                    }
+                }
+            }
+        });
+        animation.start();
+                          
+    }//GEN-LAST:event_WindowOpen
+
     /**
      * @param args the command line arguments
      */
@@ -449,7 +492,6 @@ if (loginAcc(user.getText(), pasw.getText())) {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
@@ -478,6 +520,7 @@ if (loginAcc(user.getText(), pasw.getText())) {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblMovingText;
     private javax.swing.JLabel loggin;
     private javax.swing.JPanel login;
     private javax.swing.JPasswordField pasw;

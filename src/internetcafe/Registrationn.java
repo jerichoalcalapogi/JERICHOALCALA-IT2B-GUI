@@ -87,7 +87,6 @@ public class Registrationn extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         regis = new javax.swing.JLabel();
@@ -279,18 +278,10 @@ public class Registrationn extends javax.swing.JFrame {
         jLabel13.setText("REGISTRATION FORM");
         jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 210, 60));
 
-        jLabel11.setFont(new java.awt.Font("Castellar", 1, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Castellar", 1, 31)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("REGISTER FORM");
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 230, 40));
-
-        jLabel30.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel30.setFont(new java.awt.Font("Engravers MT", 0, 24)); // NOI18N
-        jLabel30.setText("ARE YOU READY?");
-        jLabel30.setAlignmentX(1.0F);
-        jLabel30.setAlignmentY(3.0F);
-        jLabel30.setIconTextGap(10);
-        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 300, 100));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 320, 50));
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
@@ -542,7 +533,6 @@ public class Registrationn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
