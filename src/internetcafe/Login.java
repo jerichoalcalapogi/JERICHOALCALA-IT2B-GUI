@@ -3,6 +3,7 @@ package internetcafe;
 
 
 import admin.admindashboardd;
+import config.Session;
 import config.dbConnect;
 import java.awt.Color;
 import static java.lang.reflect.Array.set;
@@ -33,8 +34,18 @@ public static boolean loginAcc(String usernamee, String passwordd){
         String query = "SELECT * FROM tbl_user WHERE username = '" + usernamee + "' AND password = '" + passwordd+ "'";
         ResultSet resultSet = connector.getData(query);
         if(resultSet.next()){
+            
             Status = resultSet.getString("status");
              Type = resultSet.getString("type");
+             Session sess = Session.getInstance();
+             sess.setUid(resultSet.getInt("c_id"));
+             sess.setFnamee(resultSet.getString("fname"));
+             sess.setLnamee(resultSet.getString("lname"));
+             sess.setEmaill(resultSet.getString("email"));
+             sess.setUserrname(resultSet.getString("username"));
+             sess.setTpyee(resultSet.getString("type"));
+             sess.setStatuss(resultSet.getString("status"));       
+             
             return true;
         }else{
             return false;
@@ -78,7 +89,6 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jLabel19 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -92,7 +102,6 @@ public static boolean loginAcc(String usernamee, String passwordd){
         lblMovingText = new javax.swing.JLabel();
         reg2 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
 
         jPanel4.setBackground(new java.awt.Color(203, 14, 14));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -202,7 +211,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
                 regMouseClicked(evt);
             }
         });
-        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 340, 30));
+        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 340, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -256,19 +265,16 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 230, 100));
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 230, 210));
+        jPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 230, 210));
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
-        jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 230, 210));
-
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
-        jPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 230, 210));
+        jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 230, 210));
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
         jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 230, 210));
 
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
-        jPanel3.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 110, 210));
+        jPanel3.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 180, 110, 210));
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
         jPanel3.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 360, 230, 210));
@@ -280,7 +286,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jPanel3.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 230, 210));
 
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
-        jPanel3.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 40, 230, 210));
+        jPanel3.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 230, 210));
 
         jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/Screenshot_2025-02-25_210239-removebg-preview.png"))); // NOI18N
         jPanel3.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, -100, 230, 210));
@@ -322,9 +328,6 @@ public static boolean loginAcc(String usernamee, String passwordd){
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 250, 230));
-
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image-removebg-preview (6).png"))); // NOI18N
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, -40, 550, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -503,9 +506,7 @@ if (loginAcc(user.getText(), pasw.getText())) {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;

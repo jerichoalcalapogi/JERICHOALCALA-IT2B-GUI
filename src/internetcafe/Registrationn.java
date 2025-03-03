@@ -91,7 +91,6 @@ public class Registrationn extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         regis = new javax.swing.JLabel();
         reg2 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -304,7 +303,7 @@ public class Registrationn extends javax.swing.JFrame {
                 regisMouseClicked(evt);
             }
         });
-        jPanel1.add(regis, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, 350, 20));
+        jPanel1.add(regis, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 510, 350, 20));
 
         reg2.setBackground(new java.awt.Color(102, 102, 102));
         reg2.setFont(new java.awt.Font("Yu Gothic Light", 1, 16)); // NOI18N
@@ -315,9 +314,6 @@ public class Registrationn extends javax.swing.JFrame {
             }
         });
         jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 350, 40));
-
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/image-removebg-preview (6).png"))); // NOI18N
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, -30, 600, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -532,7 +528,6 @@ public class Registrationn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;

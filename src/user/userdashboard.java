@@ -1,6 +1,7 @@
 
 package user;
 
+import config.Session;
 import internetcafe.Login;
 
 
@@ -31,9 +32,11 @@ public class userdashboard extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
+        useraccss = new javax.swing.JLabel();
+        useraccss1 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
@@ -98,6 +101,11 @@ public class userdashboard extends javax.swing.JFrame {
         jFrame1.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 520));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel12.setBackground(new java.awt.Color(203, 14, 14));
@@ -107,11 +115,6 @@ public class userdashboard extends javax.swing.JFrame {
         jLabel15.setText("MEMBER!");
         jPanel12.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 310, 60));
 
-        jLabel16.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("welcome, ");
-        jPanel12.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 310, 60));
-
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview (1).png"))); // NOI18N
         jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -120,29 +123,31 @@ public class userdashboard extends javax.swing.JFrame {
         });
         jPanel12.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, 230, 230));
 
+        jLabel17.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("welcome, ");
+        jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 310, 60));
+
         getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 90));
 
         jPanel14.setBackground(new java.awt.Color(0, 0, 0));
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        useraccss.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        useraccss.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel14.add(useraccss, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 130, 60));
+
+        useraccss1.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        useraccss1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel14.add(useraccss1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 130, 60));
+
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel14.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, 230, 230));
+        jPanel14.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 230, 230));
 
         getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 200, 450));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 810, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-        );
-
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 450));
 
         pack();
@@ -163,6 +168,19 @@ public class userdashboard extends javax.swing.JFrame {
         logs.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel31MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+       Session sess = Session.getInstance();
+          useraccss1.setText(""+sess.getFnamee());
+          useraccss.setText(""+sess.getLnamee());
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -204,7 +222,7 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel5;
@@ -217,6 +235,8 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel useraccss;
+    private javax.swing.JLabel useraccss1;
     private javax.swing.JButton users;
     // End of variables declaration//GEN-END:variables
 }
