@@ -3,15 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ADMIN/Desktop/ekosh/JERICHOALCALA-IT2B-GUI/src/admin/admindashboardd.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/ekosh/JERICHOALCALA-IT2B-GUI/src/admin/adminuser.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/ekosh/JERICHOALCALA-IT2B-GUI/src/images/image-removebg-preview%20(3).png</file>
-            <file>file:/C:/Users/ADMIN/Desktop/ekosh/JERICHOALCALA-IT2B-GUI/src/images/image-removebg-preview%20(12).png</file>
-            <file>file:/C:/Users/ADMIN/Desktop/ekosh/JERICHOALCALA-IT2B-GUI/src/images/waa_1.png</file>
-            <file>file:/C:/Users/ADMIN/Desktop/ekosh/JERICHOALCALA-IT2B-GUI/src/internetcafe/Login.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/ekosh/JERICHOALCALA-IT2B-GUI/src/user/userdashboard.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/ekosh/JERICHOALCALA-IT2B-GUI/src/internetcafe/Registrationn.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/ekosh/JERICHOALCALA-IT2B-GUI/src/images/waa.png</file>
+            <file>file:/C:/Users/ADMIN/Desktop/internetcafe/JERICHOALCALA-IT2B-GUI/src/config/Session.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/internetcafe/JERICHOALCALA-IT2B-GUI/src/admin/createuser.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/internetcafe/JERICHOALCALA-IT2B-GUI/src/db/tbl_user.sql</file>
+            <file>file:/C:/Users/ADMIN/Desktop/internetcafe/JERICHOALCALA-IT2B-GUI/src/admin/admindashboardd.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/internetcafe/JERICHOALCALA-IT2B-GUI/src/admin/adminuser.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/internetcafe/JERICHOALCALA-IT2B-GUI/src/internetcafe/Registrationn.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/internetcafe/JERICHOALCALA-IT2B-GUI/src/config/dbConnect.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/internetcafe/JERICHOALCALA-IT2B-GUI/src/user/userdashboard.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/internetcafe/JERICHOALCALA-IT2B-GUI/src/internetcafe/Login.java</file>
         </group>
     </open-files>
 </project-private>

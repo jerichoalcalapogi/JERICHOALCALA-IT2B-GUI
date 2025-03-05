@@ -15,6 +15,7 @@ public class admindashboardd extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
          setLocationRelativeTo(null);
+
     }
 
     Color hover = new Color (102,102,102);
@@ -29,11 +30,12 @@ public class admindashboardd extends javax.swing.JFrame {
         canvas1 = new java.awt.Canvas();
         jLabel31 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        accname = new javax.swing.JLabel();
+        accname1 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         loginn = new javax.swing.JPanel();
         loggin = new javax.swing.JLabel();
-        accname = new javax.swing.JLabel();
-        accname1 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -52,7 +54,7 @@ public class admindashboardd extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Gill Sans Ultra Bold", 3, 36)); // NOI18N
         jLabel11.setText("ADMIN!");
-        jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 310, 60));
+        jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 310, 60));
         jPanel9.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, -1));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview (1).png"))); // NOI18N
@@ -61,12 +63,21 @@ public class admindashboardd extends javax.swing.JFrame {
                 jLabel31MouseClicked(evt);
             }
         });
-        jPanel9.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, 230, 230));
+        jPanel9.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, -70, 230, 230));
 
         jLabel14.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("welcome, ");
-        jPanel9.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 310, 60));
+        jPanel9.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 310, 60));
+
+        accname.setFont(new java.awt.Font("Bell MT", 3, 18)); // NOI18N
+        jPanel9.add(accname, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 90, 60));
+
+        accname1.setFont(new java.awt.Font("Bell MT", 3, 18)); // NOI18N
+        jPanel9.add(accname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 80, 50));
+
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
+        jPanel9.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 90, 90));
 
         getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 90));
 
@@ -97,15 +108,7 @@ public class admindashboardd extends javax.swing.JFrame {
         });
         loginn.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 20));
 
-        jPanel10.add(loginn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 120, 60));
-
-        accname.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
-        accname.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel10.add(accname, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 90, 60));
-
-        accname1.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
-        accname1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel10.add(accname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 90, 60));
+        jPanel10.add(loginn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 120, 60));
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
         jPanel10.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 210, 170));
@@ -201,6 +204,7 @@ public class admindashboardd extends javax.swing.JFrame {
     private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JPanel jPanel1;

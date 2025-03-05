@@ -11,7 +11,9 @@ public class Session {
     private String userrname;
     private String tpyee;
     private String statuss;
-    
+    private String contact;
+
+   
     private Session(){
               
     }
@@ -86,5 +88,18 @@ public class Session {
     public void setStatuss(String statuss) {
         this.statuss = statuss;
     }
+    
+      public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+    
+    
+    
+    
+    
     
 }

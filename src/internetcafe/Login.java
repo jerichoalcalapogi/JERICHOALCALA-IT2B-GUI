@@ -9,9 +9,10 @@ import java.awt.Color;
 import static java.lang.reflect.Array.set;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import user.userdashboard;
-
+import javax.swing.*;
 
  
 public class Login extends javax.swing.JFrame {
@@ -21,12 +22,20 @@ public class Login extends javax.swing.JFrame {
      
     public Login() {
         initComponents();
-        setResizable(false);
+        setResizable(false);      
    
-    }
+    
+   
+}
+
+    
+    
+
+    
     static String Status;
     static String Type;
     
+
 
 public static boolean loginAcc(String usernamee, String passwordd){
     dbConnect connector = new dbConnect();
@@ -194,7 +203,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
                 logginMouseClicked(evt);
             }
         });
-        login.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 20));
+        login.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 10, 70, 20));
 
         jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, 90, 40));
 

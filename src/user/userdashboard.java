@@ -31,13 +31,16 @@ public class userdashboard extends javax.swing.JFrame {
         users = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
+        memberr = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
-        useraccss = new javax.swing.JLabel();
+        useraccss6 = new javax.swing.JLabel();
         useraccss1 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
+        useraccss5 = new javax.swing.JLabel();
+        useraccss3 = new javax.swing.JLabel();
+        useraccss7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,9 +114,9 @@ public class userdashboard extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(203, 14, 14));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setFont(new java.awt.Font("Gill Sans Ultra Bold", 3, 36)); // NOI18N
-        jLabel15.setText("MEMBER!");
-        jPanel12.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 310, 60));
+        memberr.setFont(new java.awt.Font("Gill Sans Ultra Bold", 3, 36)); // NOI18N
+        memberr.setText("MEMBER!");
+        jPanel12.add(memberr, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 310, 70));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview (1).png"))); // NOI18N
         jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,7 +124,7 @@ public class userdashboard extends javax.swing.JFrame {
                 jLabel31MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, 230, 230));
+        jPanel12.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, -70, 230, 230));
 
         jLabel17.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,16 +136,28 @@ public class userdashboard extends javax.swing.JFrame {
         jPanel14.setBackground(new java.awt.Color(0, 0, 0));
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        useraccss.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
-        useraccss.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel14.add(useraccss, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 130, 60));
+        useraccss6.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        useraccss6.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel14.add(useraccss6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 130, 60));
 
-        useraccss1.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        useraccss1.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
         useraccss1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel14.add(useraccss1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 130, 60));
+        jPanel14.add(useraccss1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 130, 60));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel14.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 230, 230));
+        jPanel14.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 230, 180));
+
+        useraccss5.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
+        useraccss5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel14.add(useraccss5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 170, 50));
+
+        useraccss3.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        useraccss3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel14.add(useraccss3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 130, 60));
+
+        useraccss7.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        useraccss7.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel14.add(useraccss7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 130, 60));
 
         getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 200, 450));
 
@@ -172,10 +187,10 @@ public class userdashboard extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
        Session sess = Session.getInstance();
           useraccss1.setText(""+sess.getFnamee());
-          useraccss.setText(""+sess.getLnamee());
-        
-        
-        
+          useraccss6.setText(""+sess.getLnamee());
+         useraccss5.setText(""+sess.getEmaill());
+         memberr.setText(""+sess.getUserrname());
+     
         
         
         
@@ -221,7 +236,6 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel31;
@@ -235,8 +249,12 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JLabel useraccss;
+    private javax.swing.JLabel memberr;
     private javax.swing.JLabel useraccss1;
+    private javax.swing.JLabel useraccss3;
+    private javax.swing.JLabel useraccss5;
+    private javax.swing.JLabel useraccss6;
+    private javax.swing.JLabel useraccss7;
     private javax.swing.JButton users;
     // End of variables declaration//GEN-END:variables
 }

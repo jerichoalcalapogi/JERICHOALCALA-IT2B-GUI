@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -20,8 +21,39 @@ public class adminuser extends javax.swing.JFrame {
         displayData();
          setResizable(false);
             setLocationRelativeTo(null);
-            
+      
     }
+    
+    
+    public void refreshTable() {
+    try {
+        dbConnect dbc = new dbConnect();
+        String query = "SELECT * FROM tbl_user"; 
+        ResultSet rs = dbc.getData(query); 
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0); // Clear table before adding updated data
+
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getInt("c_id"),
+                rs.getString("fname"),
+                rs.getString("lname"),
+                rs.getString("email"),
+                rs.getString("username"),
+                rs.getString("type"),
+                rs.getString("status")
+            });
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error refreshing table: " + e.getMessage());
+    }
+}
+
+    
+   
+    
+    
 Color hover = new Color (102,102,102);
     Color defaultcolor = new Color (204,204,204);
  public void displayData(){
@@ -34,7 +66,7 @@ Color hover = new Color (102,102,102);
             System.out.println("Errors: "+ex.getMessage());
 
         }
-
+ 
  }
 
    
@@ -42,12 +74,13 @@ Color hover = new Color (102,102,102);
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel26 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel26 = new javax.swing.JLabel();
         currentuser = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
@@ -60,8 +93,11 @@ Color hover = new Color (102,102,102);
         add = new javax.swing.JLabel();
         cancel22 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
-        cancel33 = new javax.swing.JPanel();
-        cancel34 = new javax.swing.JPanel();
+        cancel23 = new javax.swing.JPanel();
+        add1 = new javax.swing.JLabel();
+        cancel24 = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        delete = new javax.swing.JPanel();
         cancel35 = new javax.swing.JPanel();
         jLabel46 = new javax.swing.JLabel();
         cancel36 = new javax.swing.JPanel();
@@ -98,7 +134,43 @@ Color hover = new Color (102,102,102);
         jLabel94 = new javax.swing.JLabel();
         cancel85 = new javax.swing.JPanel();
         jLabel95 = new javax.swing.JLabel();
+        edit1 = new javax.swing.JPanel();
+        cancel86 = new javax.swing.JPanel();
+        jLabel97 = new javax.swing.JLabel();
+        cancel87 = new javax.swing.JPanel();
+        jLabel98 = new javax.swing.JLabel();
+        cancel88 = new javax.swing.JPanel();
+        jLabel99 = new javax.swing.JLabel();
+        cancel89 = new javax.swing.JPanel();
+        jLabel100 = new javax.swing.JLabel();
+        cancel90 = new javax.swing.JPanel();
+        jLabel101 = new javax.swing.JLabel();
+        cancel91 = new javax.swing.JPanel();
+        jLabel102 = new javax.swing.JLabel();
+        cancel92 = new javax.swing.JPanel();
+        jLabel103 = new javax.swing.JLabel();
+        cancel93 = new javax.swing.JPanel();
+        jLabel104 = new javax.swing.JLabel();
+        cancel94 = new javax.swing.JPanel();
+        jLabel105 = new javax.swing.JLabel();
+        cancel95 = new javax.swing.JPanel();
+        jLabel106 = new javax.swing.JLabel();
+        cancel96 = new javax.swing.JPanel();
+        jLabel107 = new javax.swing.JLabel();
+        cancel97 = new javax.swing.JPanel();
+        jLabel108 = new javax.swing.JLabel();
+        cancel98 = new javax.swing.JPanel();
+        jLabel109 = new javax.swing.JLabel();
+        cancel99 = new javax.swing.JPanel();
+        jLabel110 = new javax.swing.JLabel();
+        cancel100 = new javax.swing.JPanel();
+        jLabel111 = new javax.swing.JLabel();
+        jLabel112 = new javax.swing.JLabel();
+        jLabel113 = new javax.swing.JLabel();
+        refresh = new javax.swing.JPanel();
         jLabel96 = new javax.swing.JLabel();
+
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -117,17 +189,17 @@ Color hover = new Color (102,102,102);
         jPanel10.setBackground(new java.awt.Color(0, 0, 0));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel10.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 230, 230));
-
         currentuser.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         currentuser.setForeground(new java.awt.Color(203, 14, 14));
-        jPanel10.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 210, 60));
+        jPanel10.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 210, 60));
 
         jLabel15.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Current user:");
         jPanel10.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 190, 60));
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
+        jPanel10.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 230, 230));
 
         jPanel8.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 190, 470));
 
@@ -155,7 +227,7 @@ Color hover = new Color (102,102,102);
 
         jLabel13.setFont(new java.awt.Font("Gill Sans Ultra Bold", 3, 36)); // NOI18N
         jLabel13.setText("ADMIN!");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 310, 60));
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 310, 60));
 
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview.png"))); // NOI18N
         jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,12 +235,12 @@ Color hover = new Color (102,102,102);
                 jLabel29MouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, 230, 230));
+        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, -70, 230, 230));
 
         jLabel14.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("welcome, ");
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 310, 60));
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 310, 60));
 
         jPanel8.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 90));
 
@@ -216,32 +288,63 @@ Color hover = new Color (102,102,102);
 
         cancel21.add(cancel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
 
+        cancel23.setBackground(new java.awt.Color(255, 255, 255));
+        cancel23.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancel23MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel23MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel23MouseExited(evt);
+            }
+        });
+        cancel23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        add1.setBackground(new java.awt.Color(0, 0, 0));
+        add1.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        add1.setText("add");
+        cancel23.add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, -1));
+
+        cancel24.setBackground(new java.awt.Color(255, 255, 255));
+        cancel24.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel24MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel24MouseExited(evt);
+            }
+        });
+        cancel24.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel34.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel34.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel34.setText("add");
+        cancel24.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel23.add(cancel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel21.add(cancel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 90, 40));
+
         jPanel8.add(cancel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 90, 40));
 
-        cancel33.setBackground(new java.awt.Color(255, 255, 255));
-        cancel33.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        cancel33.addMouseListener(new java.awt.event.MouseAdapter() {
+        delete.setBackground(new java.awt.Color(255, 255, 255));
+        delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancel33MouseEntered(evt);
+                deleteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancel33MouseExited(evt);
+                deleteMouseExited(evt);
             }
         });
-        cancel33.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        cancel34.setBackground(new java.awt.Color(255, 255, 255));
-        cancel34.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        cancel34.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancel34MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancel34MouseExited(evt);
-            }
-        });
-        cancel34.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        cancel33.add(cancel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 110, 40));
+        delete.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cancel35.setBackground(new java.awt.Color(255, 255, 255));
         cancel35.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
@@ -279,14 +382,14 @@ Color hover = new Color (102,102,102);
 
         cancel35.add(cancel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
 
-        cancel33.add(cancel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+        delete.add(cancel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
 
         jLabel44.setBackground(new java.awt.Color(0, 0, 0));
         jLabel44.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
         jLabel44.setText("DELETE");
-        cancel33.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
+        delete.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
 
-        jPanel8.add(cancel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 90, 40));
+        jPanel8.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 90, 40));
 
         edit.setBackground(new java.awt.Color(255, 255, 255));
         edit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
@@ -588,12 +691,341 @@ Color hover = new Color (102,102,102);
 
         edit.add(cancel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 110, 40));
 
-        jLabel96.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        jLabel96.setText("EDIT");
-        edit.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, -1));
+        edit1.setBackground(new java.awt.Color(255, 255, 255));
+        edit1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        edit1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                edit1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                edit1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                edit1MouseExited(evt);
+            }
+        });
+        edit1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cancel86.setBackground(new java.awt.Color(255, 255, 255));
+        cancel86.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel86.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel86MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel86MouseExited(evt);
+            }
+        });
+        cancel86.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel97.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel97.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel97.setText("DELETE");
+        cancel86.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, -1));
+
+        edit1.add(cancel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 110, 40));
+
+        cancel87.setBackground(new java.awt.Color(255, 255, 255));
+        cancel87.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel87.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel87MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel87MouseExited(evt);
+            }
+        });
+        cancel87.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel98.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel98.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel98.setText("add");
+        cancel87.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel88.setBackground(new java.awt.Color(255, 255, 255));
+        cancel88.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel88.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel88MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel88MouseExited(evt);
+            }
+        });
+        cancel88.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel99.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel99.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel99.setText("add");
+        cancel88.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel87.add(cancel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        edit1.add(cancel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel89.setBackground(new java.awt.Color(255, 255, 255));
+        cancel89.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel89.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel89MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel89MouseExited(evt);
+            }
+        });
+        cancel89.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel100.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel100.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel100.setText("EDIT");
+        cancel89.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel90.setBackground(new java.awt.Color(255, 255, 255));
+        cancel90.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel90.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel90MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel90MouseExited(evt);
+            }
+        });
+        cancel90.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel101.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel101.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel101.setText("add");
+        cancel90.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel89.add(cancel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel91.setBackground(new java.awt.Color(255, 255, 255));
+        cancel91.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel91.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel91MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel91MouseExited(evt);
+            }
+        });
+        cancel91.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel102.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel102.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel102.setText("add");
+        cancel91.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel92.setBackground(new java.awt.Color(255, 255, 255));
+        cancel92.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel92.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel92MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel92MouseExited(evt);
+            }
+        });
+        cancel92.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel103.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel103.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel103.setText("add");
+        cancel92.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel91.add(cancel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel89.add(cancel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        edit1.add(cancel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 110, 40));
+
+        cancel93.setBackground(new java.awt.Color(255, 255, 255));
+        cancel93.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel93.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel93MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel93MouseExited(evt);
+            }
+        });
+        cancel93.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel104.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel104.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel104.setText("add");
+        cancel93.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel94.setBackground(new java.awt.Color(255, 255, 255));
+        cancel94.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel94.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel94MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel94MouseExited(evt);
+            }
+        });
+        cancel94.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel105.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel105.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel105.setText("add");
+        cancel94.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel93.add(cancel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel95.setBackground(new java.awt.Color(255, 255, 255));
+        cancel95.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel95.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel95MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel95MouseExited(evt);
+            }
+        });
+        cancel95.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel106.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel106.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel106.setText("add");
+        cancel95.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel96.setBackground(new java.awt.Color(255, 255, 255));
+        cancel96.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel96.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel96MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel96MouseExited(evt);
+            }
+        });
+        cancel96.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel107.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel107.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel107.setText("add");
+        cancel96.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel95.add(cancel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel93.add(cancel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel97.setBackground(new java.awt.Color(255, 255, 255));
+        cancel97.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel97.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel97MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel97MouseExited(evt);
+            }
+        });
+        cancel97.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel108.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel108.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel108.setText("add");
+        cancel97.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel98.setBackground(new java.awt.Color(255, 255, 255));
+        cancel98.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel98.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel98MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel98MouseExited(evt);
+            }
+        });
+        cancel98.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel109.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel109.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel109.setText("add");
+        cancel98.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel97.add(cancel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel99.setBackground(new java.awt.Color(255, 255, 255));
+        cancel99.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel99.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel99MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel99MouseExited(evt);
+            }
+        });
+        cancel99.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel110.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel110.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel110.setText("add");
+        cancel99.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel100.setBackground(new java.awt.Color(255, 255, 255));
+        cancel100.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        cancel100.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel100MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel100MouseExited(evt);
+            }
+        });
+        cancel100.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel111.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel111.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel111.setText("add");
+        cancel100.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, -1));
+
+        cancel99.add(cancel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel97.add(cancel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 40));
+
+        cancel93.add(cancel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 110, 40));
+
+        edit1.add(cancel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 110, 40));
+
+        jLabel112.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel112.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel112.setText("EDIT");
+        edit1.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, -1));
+
+        edit.add(edit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 90, 40));
+
+        jLabel113.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel113.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel113.setText("EDIT");
+        edit.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, -1));
 
         jPanel8.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 90, 40));
+
+        refresh.setBackground(new java.awt.Color(255, 255, 255));
+        refresh.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refreshMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refreshMouseExited(evt);
+            }
+        });
+        refresh.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel96.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel96.setText("refresh");
+        refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
+
+        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 100, 40));
 
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -618,13 +1050,13 @@ Color hover = new Color (102,102,102);
        cancel21.setBackground(defaultcolor);
     }//GEN-LAST:event_cancel21MouseExited
 
-    private void cancel33MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel33MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel33MouseExited
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
+       delete.setBackground(defaultcolor);
+    }//GEN-LAST:event_deleteMouseExited
 
-    private void cancel33MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel33MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel33MouseEntered
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
+       delete.setBackground(hover);
+    }//GEN-LAST:event_deleteMouseEntered
 
     private void cancel35MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel35MouseExited
         // TODO add your handling code here:
@@ -642,13 +1074,13 @@ Color hover = new Color (102,102,102);
         // TODO add your handling code here:
     }//GEN-LAST:event_cancel36MouseEntered
 
-    private void cancel34MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel34MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel34MouseExited
+    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
+       refresh.setBackground(defaultcolor);
+    }//GEN-LAST:event_refreshMouseExited
 
-    private void cancel34MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel34MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel34MouseEntered
+    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
+       refresh.setBackground(hover);
+    }//GEN-LAST:event_refreshMouseEntered
 
     private void cancel71MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel71MouseEntered
         // TODO add your handling code here:
@@ -771,11 +1203,11 @@ Color hover = new Color (102,102,102);
     }//GEN-LAST:event_cancel78MouseExited
 
     private void editMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseEntered
-        // TODO add your handling code here:
+       edit.setBackground(hover);
     }//GEN-LAST:event_editMouseEntered
 
     private void editMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseExited
-        // TODO add your handling code here:
+         edit.setBackground(defaultcolor);
     }//GEN-LAST:event_editMouseExited
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
@@ -801,7 +1233,7 @@ Color hover = new Color (102,102,102);
     private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
         int rowIndex = table.getSelectedRow();
         if(rowIndex<0){
-       JOptionPane.showMessageDialog(null,"Please select an item!" );
+       JOptionPane.showMessageDialog(null,"Please select an item in the table!" );
        
         } else{ 
           
@@ -831,7 +1263,218 @@ Color hover = new Color (102,102,102);
 }
     }//GEN-LAST:event_editMouseClicked
     }
-   
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+
+int rowIndex = table.getSelectedRow();
+if (rowIndex < 0) {
+    JOptionPane.showMessageDialog(null, "Please select an item in the table!");
+} else {
+    int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+    if (confirm == JOptionPane.YES_OPTION) {
+        try {
+            dbConnect dbc = new dbConnect();
+            TableModel tbl = table.getModel();
+            String id = tbl.getValueAt(rowIndex, 0).toString(); 
+
+            // Execute DELETE query
+            String deleteQuery = "DELETE FROM tbl_user WHERE c_id = '" + id + "'";
+            dbc.updateData(deleteQuery); 
+
+            // Remove row from JTable
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.removeRow(rowIndex);
+
+            JOptionPane.showMessageDialog(null, "Record deleted successfully.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error deleting record: " + ex.getMessage());
+        }
+    }
+}
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_deleteMouseClicked
+
+    private void cancel86MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel86MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel86MouseEntered
+
+    private void cancel86MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel86MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel86MouseExited
+
+    private void cancel88MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel88MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel88MouseEntered
+
+    private void cancel88MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel88MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel88MouseExited
+
+    private void cancel87MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel87MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel87MouseEntered
+
+    private void cancel87MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel87MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel87MouseExited
+
+    private void cancel90MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel90MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel90MouseEntered
+
+    private void cancel90MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel90MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel90MouseExited
+
+    private void cancel92MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel92MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel92MouseEntered
+
+    private void cancel92MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel92MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel92MouseExited
+
+    private void cancel91MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel91MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel91MouseEntered
+
+    private void cancel91MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel91MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel91MouseExited
+
+    private void cancel89MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel89MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel89MouseEntered
+
+    private void cancel89MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel89MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel89MouseExited
+
+    private void cancel94MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel94MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel94MouseEntered
+
+    private void cancel94MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel94MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel94MouseExited
+
+    private void cancel96MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel96MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel96MouseEntered
+
+    private void cancel96MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel96MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel96MouseExited
+
+    private void cancel95MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel95MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel95MouseEntered
+
+    private void cancel95MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel95MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel95MouseExited
+
+    private void cancel98MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel98MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel98MouseEntered
+
+    private void cancel98MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel98MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel98MouseExited
+
+    private void cancel100MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel100MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel100MouseEntered
+
+    private void cancel100MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel100MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel100MouseExited
+
+    private void cancel99MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel99MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel99MouseEntered
+
+    private void cancel99MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel99MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel99MouseExited
+
+    private void cancel97MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel97MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel97MouseEntered
+
+    private void cancel97MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel97MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel97MouseExited
+
+    private void cancel93MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel93MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel93MouseEntered
+
+    private void cancel93MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel93MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel93MouseExited
+
+    private void edit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edit1MouseClicked
+
+    private void edit1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edit1MouseEntered
+
+    private void edit1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edit1MouseExited
+
+    private void cancel24MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel24MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel24MouseEntered
+
+    private void cancel24MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel24MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel24MouseExited
+
+    private void cancel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel23MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel23MouseClicked
+
+    private void cancel23MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel23MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel23MouseEntered
+
+    private void cancel23MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel23MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel23MouseExited
+
+    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
+      
+        refreshTable();
+        
+        
+    }//GEN-LAST:event_refreshMouseClicked
+    
+
     public static void main(String args[]) {
      
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -843,10 +1486,12 @@ Color hover = new Color (102,102,102);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add;
+    private javax.swing.JLabel add1;
+    private javax.swing.JPanel cancel100;
     private javax.swing.JPanel cancel21;
     private javax.swing.JPanel cancel22;
-    private javax.swing.JPanel cancel33;
-    private javax.swing.JPanel cancel34;
+    private javax.swing.JPanel cancel23;
+    private javax.swing.JPanel cancel24;
     private javax.swing.JPanel cancel35;
     private javax.swing.JPanel cancel36;
     private javax.swing.JPanel cancel71;
@@ -864,15 +1509,47 @@ Color hover = new Color (102,102,102);
     private javax.swing.JPanel cancel83;
     private javax.swing.JPanel cancel84;
     private javax.swing.JPanel cancel85;
+    private javax.swing.JPanel cancel86;
+    private javax.swing.JPanel cancel87;
+    private javax.swing.JPanel cancel88;
+    private javax.swing.JPanel cancel89;
+    private javax.swing.JPanel cancel90;
+    private javax.swing.JPanel cancel91;
+    private javax.swing.JPanel cancel92;
+    private javax.swing.JPanel cancel93;
+    private javax.swing.JPanel cancel94;
+    private javax.swing.JPanel cancel95;
+    private javax.swing.JPanel cancel96;
+    private javax.swing.JPanel cancel97;
+    private javax.swing.JPanel cancel98;
+    private javax.swing.JPanel cancel99;
     private javax.swing.JLabel currentuser;
+    private javax.swing.JPanel delete;
     private javax.swing.JPanel edit;
+    private javax.swing.JPanel edit1;
+    private javax.swing.JLabel jLabel100;
+    private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
+    private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel105;
+    private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
+    private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
@@ -893,11 +1570,15 @@ Color hover = new Color (102,102,102);
     private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel refresh;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

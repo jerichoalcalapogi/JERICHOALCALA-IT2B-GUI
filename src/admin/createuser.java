@@ -643,7 +643,13 @@ public class createuser extends javax.swing.JFrame {
               return;
         }
         
-        
+          String contactNumber = contact.getText();
+        if (!contactNumber.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Contact number must contain only numbers.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+            contact.setText("");
+            return;
+        }
+
         
     
         

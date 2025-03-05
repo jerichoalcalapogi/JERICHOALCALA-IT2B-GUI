@@ -389,6 +389,7 @@ public class Registrationn extends javax.swing.JFrame {
         if (password.length() < 8) {
             JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
             ps.setText("");
+            confirmpass.setText("");
             return;
         }
 
