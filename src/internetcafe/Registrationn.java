@@ -6,7 +6,9 @@
 package internetcafe;
 
 import config.dbConnect;
+import config.passwordHasher;
 import java.awt.Color;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -403,9 +405,12 @@ public class Registrationn extends javax.swing.JFrame {
 
       
         dbConnect dbc = new dbConnect();
+        try{
+    String pass = passwordHasher.hashPassword(ps.getText());
+        
         int result = dbc.insertData("INSERT INTO tbl_user (fname, lname, email, username, password, contactnum, type, status) " +
             "VALUES ('" + fn1.getText() + "', '" + ln.getText() + "', '" + em.getText() + "', '" +
-            us.getText() + "', '" + password + "', '" +
+            us.getText() + "', '" + pass + "', '" +
             contact.getText() + "', '" + type.getSelectedItem() + "','Pending')");
 
         if (result > 0) { 
@@ -417,7 +422,9 @@ public class Registrationn extends javax.swing.JFrame {
             loginFrame.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Registration Failed! Try Again.");
-
+        }
+        }catch(NoSuchAlgorithmException ex){
+    System.out.println(""+ex);
     }//GEN-LAST:event_registerActionPerformed
     }
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked

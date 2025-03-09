@@ -3,6 +3,7 @@ package user;
 
 import config.Session;
 import internetcafe.Login;
+import java.awt.Color;
 
 
 public class userdashboard extends javax.swing.JFrame {
@@ -13,7 +14,9 @@ public class userdashboard extends javax.swing.JFrame {
          setResizable(false);
         setLocationRelativeTo(null);
     }
-
+Color hover = new Color (102,102,102);
+    Color defaultcolor = new Color (204,204,204);
+    
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -30,6 +33,7 @@ public class userdashboard extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         users = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         memberr = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -37,11 +41,14 @@ public class userdashboard extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         useraccss6 = new javax.swing.JLabel();
         useraccss1 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
         useraccss5 = new javax.swing.JLabel();
         useraccss3 = new javax.swing.JLabel();
         useraccss7 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -103,6 +110,10 @@ public class userdashboard extends javax.swing.JFrame {
 
         jFrame1.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 520));
 
+        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel8.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        jLabel8.setText("CANCEL");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -116,7 +127,7 @@ public class userdashboard extends javax.swing.JFrame {
 
         memberr.setFont(new java.awt.Font("Gill Sans Ultra Bold", 3, 36)); // NOI18N
         memberr.setText("MEMBER!");
-        jPanel12.add(memberr, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 310, 70));
+        jPanel12.add(memberr, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 310, 80));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview (1).png"))); // NOI18N
         jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,14 +149,11 @@ public class userdashboard extends javax.swing.JFrame {
 
         useraccss6.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
         useraccss6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel14.add(useraccss6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 130, 60));
+        jPanel14.add(useraccss6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 130, 60));
 
         useraccss1.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
         useraccss1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel14.add(useraccss1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 130, 60));
-
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel14.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 230, 180));
 
         useraccss5.setFont(new java.awt.Font("Bell MT", 1, 12)); // NOI18N
         useraccss5.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,11 +167,38 @@ public class userdashboard extends javax.swing.JFrame {
         useraccss7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel14.add(useraccss7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 130, 60));
 
-        getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 200, 450));
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
+        jPanel14.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 230, 180));
+
+        getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 200, 430));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 450));
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/image_no_bg_256-removebg-preview.png"))); // NOI18N
+        jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel28MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 230, 180));
+
+        jLabel9.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel9.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        jLabel9.setText("ACCOUNT");
+        jLabel9.setEnabled(false);
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 120, 30));
+
+        jSeparator1.setForeground(new java.awt.Color(203, 14, 14));
+        jSeparator1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 200, 50));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -178,12 +213,6 @@ public class userdashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usersActionPerformed
 
-    private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
-        Login logs = new Login();
-        logs.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel31MouseClicked
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
        Session sess = Session.getInstance();
           useraccss1.setText(""+sess.getFnamee());
@@ -196,6 +225,22 @@ public class userdashboard extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_formWindowActivated
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
+      accountdetailss acs = new  accountdetailss();
+      acs.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel28MouseClicked
+
+    private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
+        Login logs = new Login();
+        logs.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel31MouseClicked
 
     /**
      * @param args the command line arguments
@@ -237,9 +282,12 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
@@ -249,6 +297,7 @@ public class userdashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel memberr;
     private javax.swing.JLabel useraccss1;
     private javax.swing.JLabel useraccss3;

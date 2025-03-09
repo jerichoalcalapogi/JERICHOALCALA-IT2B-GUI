@@ -5,8 +5,10 @@ package internetcafe;
 import admin.admindashboardd;
 import config.Session;
 import config.dbConnect;
+import config.passwordHasher;
 import java.awt.Color;
 import static java.lang.reflect.Array.set;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -38,13 +40,19 @@ public class Login extends javax.swing.JFrame {
 
 
 public static boolean loginAcc(String usernamee, String passwordd){
-    dbConnect connector = new dbConnect();
+   dbConnect connector = new dbConnect();
     try{
-        String query = "SELECT * FROM tbl_user WHERE username = '" + usernamee + "' AND password = '" + passwordd+ "'";
+        String query = "SELECT * FROM tbl_user WHERE username = '" + usernamee + "' ";
         ResultSet resultSet = connector.getData(query);
         if(resultSet.next()){
             
-            Status = resultSet.getString("status");
+            
+          
+            String hashedPass = resultSet.getString("password");
+            String rehashedPass = passwordHasher.hashPassword(passwordd);
+            if(hashedPass.equals(rehashedPass)){
+            
+             Status = resultSet.getString("status");
              Type = resultSet.getString("type");
              Session sess = Session.getInstance();
              sess.setUid(resultSet.getInt("c_id"));
@@ -52,18 +60,20 @@ public static boolean loginAcc(String usernamee, String passwordd){
              sess.setLnamee(resultSet.getString("lname"));
              sess.setEmaill(resultSet.getString("email"));
              sess.setUserrname(resultSet.getString("username"));
+             sess. setContact(resultSet.getInt("contactnum"));
              sess.setTpyee(resultSet.getString("type"));
-             sess.setStatuss(resultSet.getString("status"));       
-             
-            return true;
+             sess.setStatuss(resultSet.getString("status"));        
+            return true;           
+            } else{               
+            return false;
+            }         
         }else{
             return false;
         }
-    }catch (SQLException ex) {
+    }catch (SQLException | NoSuchAlgorithmException ex) {
         return false;
     }
 }
-
  
     
    Color hover = new Color (102,102,102);

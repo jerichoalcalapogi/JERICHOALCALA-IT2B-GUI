@@ -18,8 +18,8 @@ public class admindashboardd extends javax.swing.JFrame {
 
     }
 
-    Color hover = new Color (102,102,102);
-    Color defaultcolor = new Color (204,204,204);
+    Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (0,0,0);
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -34,9 +34,9 @@ public class admindashboardd extends javax.swing.JFrame {
         accname1 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        loginn = new javax.swing.JPanel();
-        loggin = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
+        userr = new javax.swing.JPanel();
+        loggin = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
 
@@ -49,7 +49,7 @@ public class admindashboardd extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel9.setBackground(new java.awt.Color(203, 14, 14));
+        jPanel9.setBackground(new java.awt.Color(226, 21, 21));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Gill Sans Ultra Bold", 3, 36)); // NOI18N
@@ -71,9 +71,11 @@ public class admindashboardd extends javax.swing.JFrame {
         jPanel9.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 310, 60));
 
         accname.setFont(new java.awt.Font("Bell MT", 3, 18)); // NOI18N
+        accname.setForeground(new java.awt.Color(255, 255, 255));
         jPanel9.add(accname, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 90, 60));
 
         accname1.setFont(new java.awt.Font("Bell MT", 3, 18)); // NOI18N
+        accname1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel9.add(accname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 80, 50));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
@@ -84,34 +86,40 @@ public class admindashboardd extends javax.swing.JFrame {
         jPanel10.setBackground(new java.awt.Color(0, 0, 0));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loginn.setBackground(new java.awt.Color(255, 255, 255));
-        loginn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 14, 14), 5));
-        loginn.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
+        jPanel10.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 210, 170));
+
+        userr.setBackground(new java.awt.Color(0, 0, 0));
+        userr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loginnMouseClicked(evt);
+                userrMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                loginnMouseEntered(evt);
+                userrMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                loginnMouseExited(evt);
+                userrMouseExited(evt);
             }
         });
-        loginn.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        userr.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         loggin.setFont(new java.awt.Font("Castellar", 1, 24)); // NOI18N
+        loggin.setForeground(new java.awt.Color(255, 255, 255));
         loggin.setText("Users");
         loggin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logginMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logginMouseExited(evt);
+            }
         });
-        loginn.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 20));
+        userr.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 20, 90, 20));
 
-        jPanel10.add(loginn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 120, 60));
-
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel10.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 210, 170));
+        jPanel10.add(userr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 190, 60));
 
         getContentPane().add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 200, 450));
 
@@ -133,19 +141,19 @@ public class admindashboardd extends javax.swing.JFrame {
         
     }//GEN-LAST:event_logginMouseClicked
 
-    private void loginnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginnMouseClicked
+    private void userrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userrMouseClicked
   adminuser user = new adminuser();
         user.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_loginnMouseClicked
+    }//GEN-LAST:event_userrMouseClicked
 
-    private void loginnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginnMouseEntered
-        loginn.setBackground(hover);
-    }//GEN-LAST:event_loginnMouseEntered
+    private void userrMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userrMouseEntered
+        userr.setBackground(hover);       
+    }//GEN-LAST:event_userrMouseEntered
 
-    private void loginnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginnMouseExited
-        loginn.setBackground(defaultcolor);
-    }//GEN-LAST:event_loginnMouseExited
+    private void userrMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userrMouseExited
+        userr.setBackground(defaultcolor); 
+    }//GEN-LAST:event_userrMouseExited
 
     private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
         Login logg = new Login();
@@ -164,8 +172,18 @@ public class admindashboardd extends javax.swing.JFrame {
        accname.setText(""+sess.getFnamee());
           accname1.setText(""+sess.getLnamee());
     }//GEN-LAST:event_formWindowActivated
+    
     }
-   
+    private void logginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseEntered
+         userr.setBackground(hover); 
+    }//GEN-LAST:event_logginMouseEntered
+
+    private void logginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseExited
+       userr.setBackground(defaultcolor); 
+    }//GEN-LAST:event_logginMouseExited
+    
+    
+  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -196,7 +214,7 @@ public class admindashboardd extends javax.swing.JFrame {
                 new admindashboardd().setVisible(true);
             }
         });
-    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accname;
@@ -212,6 +230,6 @@ public class admindashboardd extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel loggin;
-    private javax.swing.JPanel loginn;
+    private javax.swing.JPanel userr;
     // End of variables declaration//GEN-END:variables
 }

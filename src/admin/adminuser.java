@@ -189,7 +189,7 @@ Color hover = new Color (102,102,102);
         jPanel10.setBackground(new java.awt.Color(0, 0, 0));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        currentuser.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
+        currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         currentuser.setForeground(new java.awt.Color(203, 14, 14));
         jPanel10.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 210, 60));
 

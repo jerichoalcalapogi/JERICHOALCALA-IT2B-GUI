@@ -6,11 +6,13 @@
 package admin;
 
 import config.dbConnect;
+import config.passwordHasher;
 import internetcafe.Login;
 import internetcafe.Registrationn;
 import static internetcafe.Registrationn.emaill;
 import static internetcafe.Registrationn.userrname;
 import java.awt.Color;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -480,21 +482,27 @@ public class createuser extends javax.swing.JFrame {
             return;
         }
 
-        dbConnect dbc = new dbConnect();
+         dbConnect dbc = new dbConnect();
+        try{
+    String pass = passwordHasher.hashPassword(ps.getText());
+        
         int result = dbc.insertData("INSERT INTO tbl_user (fname, lname, email, username, password, contactnum, type, status) " +
             "VALUES ('" + fn1.getText() + "', '" + ln.getText() + "', '" + em.getText() + "', '" +
-            us.getText() + "', '" + password + "', '" +
-            contact.getText() + "', '" + typee.getSelectedItem() + "','"+userstatus.getSelectedItem()+"')");
+            us.getText() + "', '" + pass + "', '" +
+            contact.getText() + "', '" + typee.getSelectedItem() + "','Pending')");
 
-        if (result > 0) {
+        if (result > 0) { 
             JOptionPane.showMessageDialog(null, "Successfully Registered");
 
+           
             this.dispose();
-           adminuser ad = new adminuser();
-            ad.setVisible(true);
-            this.dispose();
+            Login loginFrame = new Login();
+            loginFrame.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Registration Failed! Try Again.");
+        }
+        }catch(NoSuchAlgorithmException ex){
+    System.out.println(""+ex);
     }//GEN-LAST:event_unActionPerformed
     }
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
@@ -655,20 +663,23 @@ public class createuser extends javax.swing.JFrame {
         
         
         dbConnect dbc = new dbConnect();
-   
+    try{
+    String pass = passwordHasher.hashPassword(ps.getText());
+
    dbc.updateData("UPDATE tbl_user SET  fname='"+fn1.getText()+"',lname='"+ln.getText()+"',"
            + "email = '"+em.getText()+"',username = '"+us.getText()+"',password= "
-           + " '"+ps.getText()+"',contactnum = '"+contact.getText()+"',type = "
+           + " '"+pass+"',contactnum = '"+contact.getText()+"',type = "
            + "'"+typee.getSelectedItem()+"',status ='"+userstatus.getSelectedItem()+"' WHERE c_id='"+useridd.getText()+"'");
        JOptionPane.showMessageDialog(null, "Updated Successfully!");
        adminuser ads = new adminuser();
        ads.setVisible(true);
        this.dispose();
+       
+         }catch(NoSuchAlgorithmException ex){
+    System.out.println(""+ex);
     }//GEN-LAST:event_updateeActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    }
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -11,7 +11,7 @@ public class Session {
     private String userrname;
     private String tpyee;
     private String statuss;
-    private String contact;
+    private int contact;
 
    
     private Session(){
@@ -89,11 +89,11 @@ public class Session {
         this.statuss = statuss;
     }
     
-      public String getContact() {
+      public int getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
+    public void setContact(int contact) {
         this.contact = contact;
     }
     
