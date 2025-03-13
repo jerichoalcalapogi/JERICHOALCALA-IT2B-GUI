@@ -34,8 +34,8 @@ public class accountdetailss extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         memberr = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
         idisplay = new java.awt.Label();
+        jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         fn1 = new javax.swing.JTextField();
@@ -144,20 +144,20 @@ public class accountdetailss extends javax.swing.JFrame {
         jLabel17.setText("ACCOUNT");
         jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 310, 70));
 
+        idisplay.setFont(new java.awt.Font("Bell MT", 1, 30)); // NOI18N
+        idisplay.setForeground(new java.awt.Color(255, 255, 255));
+        idisplay.setText("label1");
+        jPanel12.add(idisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, 70));
+
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview.png"))); // NOI18N
         jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel29MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, -70, 250, 230));
+        jPanel12.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, -70, 90, 230));
 
-        idisplay.setFont(new java.awt.Font("Bell MT", 1, 30)); // NOI18N
-        idisplay.setForeground(new java.awt.Color(255, 255, 255));
-        idisplay.setText("label1");
-        jPanel12.add(idisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, 70));
-
-        getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 90));
+        getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 90));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -270,9 +270,9 @@ public class accountdetailss extends javax.swing.JFrame {
         jPanel14.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 170, 30));
         jPanel14.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 312, 140, 30));
 
-        jPanel2.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 220, 430));
+        jPanel2.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 220, 400));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 450));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 820, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

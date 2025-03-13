@@ -21,8 +21,10 @@ public class changepass extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-   Color hover = new Color (102,102,102);
-    Color defaultcolor = new Color (204,204,204);
+  Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (255,255,255);
+
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -231,7 +233,7 @@ public class changepass extends javax.swing.JFrame {
         ps2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
         jPanel2.add(ps2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 170, 30));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 490, 510));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 480, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -338,11 +340,11 @@ public class changepass extends javax.swing.JFrame {
     }//GEN-LAST:event_cancel1MouseClicked
 
     private void cancel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel1MouseEntered
-        // TODO add your handling code here:
+      cancel1.setBackground(hover);
     }//GEN-LAST:event_cancel1MouseEntered
 
     private void cancel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel1MouseExited
-        // TODO add your handling code here:
+       cancel1.setBackground(defaultcolor);
     }//GEN-LAST:event_cancel1MouseExited
 
     private void cancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel1ActionPerformed

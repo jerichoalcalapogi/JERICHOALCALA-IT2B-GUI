@@ -32,7 +32,7 @@ public class adminuser extends javax.swing.JFrame {
         ResultSet rs = dbc.getData(query); 
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.setRowCount(0); // Clear table before adding updated data
+        model.setRowCount(0); 
 
         while (rs.next()) {
             model.addRow(new Object[]{
@@ -54,8 +54,8 @@ public class adminuser extends javax.swing.JFrame {
    
     
     
-Color hover = new Color (102,102,102);
-    Color defaultcolor = new Color (204,204,204);
+Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (255,255,255);
  public void displayData(){
         try{
             dbConnect dbc = new dbConnect();
@@ -235,7 +235,7 @@ Color hover = new Color (102,102,102);
                 jLabel29MouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, -70, 230, 230));
+        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, 230, 230));
 
         jLabel14.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));

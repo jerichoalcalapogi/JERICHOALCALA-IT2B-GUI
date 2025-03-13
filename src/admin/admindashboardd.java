@@ -18,7 +18,7 @@ public class admindashboardd extends javax.swing.JFrame {
 
     }
 
-    Color hover = new Color (203,14,14);
+    Color hover = new Color (200,32,32);
     Color defaultcolor = new Color (0,0,0);
     
     @SuppressWarnings("unchecked")
@@ -49,7 +49,7 @@ public class admindashboardd extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel9.setBackground(new java.awt.Color(226, 21, 21));
+        jPanel9.setBackground(new java.awt.Color(200, 32, 32));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Gill Sans Ultra Bold", 3, 36)); // NOI18N
@@ -58,12 +58,13 @@ public class admindashboardd extends javax.swing.JFrame {
         jPanel9.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, -1));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview (1).png"))); // NOI18N
+        jLabel31.setMinimumSize(new java.awt.Dimension(50, 100));
         jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel31MouseClicked(evt);
             }
         });
-        jPanel9.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, -70, 230, 230));
+        jPanel9.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, -60, 230, 230));
 
         jLabel14.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,17 +72,15 @@ public class admindashboardd extends javax.swing.JFrame {
         jPanel9.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 310, 60));
 
         accname.setFont(new java.awt.Font("Bell MT", 3, 18)); // NOI18N
-        accname.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel9.add(accname, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 90, 60));
+        jPanel9.add(accname, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 90, 60));
 
         accname1.setFont(new java.awt.Font("Bell MT", 3, 18)); // NOI18N
-        accname1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel9.add(accname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 80, 50));
+        jPanel9.add(accname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 50));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
-        jPanel9.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 90, 90));
+        jPanel9.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 90, 120));
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 90));
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 100));
 
         jPanel10.setBackground(new java.awt.Color(0, 0, 0));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

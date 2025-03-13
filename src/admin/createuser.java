@@ -30,8 +30,9 @@ public class createuser extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
           setLocationRelativeTo(null);
-           Color hover = new Color (102,102,102);
-    Color defaultcolor = new Color (204,204,204);
+         Color hover = new Color (200,32,32);
+    Color defaultcolor = new Color (0,0,0);
+
        
     }
   public boolean duplicateCheck(){
@@ -658,9 +659,6 @@ public class createuser extends javax.swing.JFrame {
             return;
         }
 
-        
-    
-        
         
         dbConnect dbc = new dbConnect();
     try{
