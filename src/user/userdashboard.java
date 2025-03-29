@@ -4,6 +4,7 @@ package user;
 import config.Session;
 import internetcafe.Login;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 
 public class userdashboard extends javax.swing.JFrame {
@@ -214,12 +215,7 @@ Color hover = new Color (102,102,102);
     }//GEN-LAST:event_usersActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-       Session sess = Session.getInstance();
-          useraccss1.setText(""+sess.getFnamee());
-          useraccss6.setText(""+sess.getLnamee());
-         useraccss5.setText(""+sess.getEmaill());
-         memberr.setText(""+sess.getUserrname());
-     
+       
         
         
         
@@ -231,15 +227,22 @@ Color hover = new Color (102,102,102);
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
-      accountdetailss acs = new  accountdetailss();
-      acs.setVisible(true);
+    
+  
+        
+      editusers edt = new  editusers(); 
+      edt.updatee.setEnabled(true);
+      edt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel28MouseClicked
 
     private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
-        Login logs = new Login();
-        logs.setVisible(true);
-        this.dispose();
+          int response = JOptionPane.showConfirmDialog(null, "Do you want to log out?", "Logout Confirmation", JOptionPane.YES_NO_OPTION);
+if (response == JOptionPane.YES_OPTION) {
+    Login logg = new Login();
+    logg.setVisible(true);
+    this.dispose();
+}
     }//GEN-LAST:event_jLabel31MouseClicked
 
     /**

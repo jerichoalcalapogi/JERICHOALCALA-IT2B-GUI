@@ -348,8 +348,8 @@ public class changepass extends javax.swing.JFrame {
     }//GEN-LAST:event_cancel1MouseExited
 
     private void cancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel1ActionPerformed
-      accountdetailss acs = new accountdetailss();
-      acs.setVisible(true);
+      editusers edd = new editusers();
+      edd.setVisible(true);
       this.dispose();
         
         
