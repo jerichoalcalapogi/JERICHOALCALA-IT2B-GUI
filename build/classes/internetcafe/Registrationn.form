@@ -79,7 +79,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true" thickness="5">
-                  <Color PropertyName="color" blue="20" green="20" red="c8" type="rgb"/>
+                  <Color PropertyName="color" blue="e" green="e" red="cb" type="rgb"/>
                 </LineBorder>
               </Border>
             </Property>
@@ -107,7 +107,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder roundedCorners="true" thickness="5">
-                  <Color PropertyName="color" blue="20" green="20" red="c8" type="rgb"/>
+                  <Color PropertyName="color" blue="e" green="e" red="cb" type="rgb"/>
                 </LineBorder>
               </Border>
             </Property>

@@ -55,7 +55,7 @@ public class Registrationn extends javax.swing.JFrame {
              }
     }
    
-    Color hover = new Color (203,14,14);
+  Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (255,255,255);
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -107,7 +107,7 @@ public class Registrationn extends javax.swing.JFrame {
         register.setBackground(new java.awt.Color(255, 255, 255));
         register.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         register.setText("REGISTER");
-        register.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        register.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
         register.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 registerMouseEntered(evt);
@@ -126,7 +126,7 @@ public class Registrationn extends javax.swing.JFrame {
         cancel.setBackground(new java.awt.Color(255, 255, 255));
         cancel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         cancel.setText("CANCEL");
-        cancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        cancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancelMouseClicked(evt);

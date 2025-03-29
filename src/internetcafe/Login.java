@@ -2,7 +2,8 @@
 package internetcafe;
 
 
-import admin.admindashboardd;
+
+import admin.Admindashboard;
 import config.Session;
 import config.dbConnect;
 import config.passwordHasher;
@@ -65,7 +66,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
              sess.setLnamee(resultSet.getString("lname"));
              sess.setEmaill(resultSet.getString("email"));
              sess.setUserrname(resultSet.getString("username"));
-             sess. setContact(resultSet.getInt("contactnum"));
+             sess. setContact(resultSet.getString("contactnum"));
              sess.setTpyee(resultSet.getString("type"));
              sess.setStatuss(resultSet.getString("status"));        
             return true;           
@@ -113,6 +114,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jPanel4.setBackground(new java.awt.Color(203, 14, 14));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -221,7 +223,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
                 regMouseClicked(evt);
             }
         });
-        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 340, 30));
+        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 340, 70));
 
         jPanel2.setBackground(new java.awt.Color(200, 32, 32));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -272,6 +274,10 @@ public static boolean loginAcc(String usernamee, String passwordd){
 
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-eye-50.png"))); // NOI18N
         jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 110, 180));
+
+        jLabel1.setFont(new java.awt.Font("Constantia", 0, 12)); // NOI18N
+        jLabel1.setText("© 2025 Cross Cyber Arena. All rights reserved.");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, 280, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -325,8 +331,8 @@ if (loginAcc(user.getText(), pasw.getText())) {
         JOptionPane.showMessageDialog(null, "Login Successfully!");
 
         if (Type.equals("Admin")) {
-            admindashboardd ads = new admindashboardd();
-            ads.setVisible(true);
+            Admindashboard adss = new Admindashboard();
+            adss.setVisible(true);
         } else if (Type.equals("Member")) {
             userdashboard usdd = new userdashboard();
             usdd.setVisible(true);
@@ -442,6 +448,7 @@ if (loginAcc(user.getText(), pasw.getText())) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel hide;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

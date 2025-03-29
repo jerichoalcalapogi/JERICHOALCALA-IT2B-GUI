@@ -1211,9 +1211,9 @@ Color hover = new Color (203,14,14);
     }//GEN-LAST:event_editMouseExited
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
-          admindashboardd add = new admindashboardd();
-        add.setVisible(true);
-        this.dispose();     
+            Admindashboard add = new Admindashboard();            
+            add.setVisible(true);
+            this.dispose();
     }//GEN-LAST:event_jLabel29MouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -1225,8 +1225,8 @@ Color hover = new Color (203,14,14);
     }//GEN-LAST:event_formWindowActivated
 
     private void cancel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel21MouseClicked
-       createuser crt = new   createuser();
-       crt.setVisible(true);
+       adduser add = new adduser();
+       add.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_cancel21MouseClicked
 
@@ -1253,7 +1253,7 @@ Color hover = new Color (203,14,14);
         crtt.contact.setText("" + rs.getString("contactnum"));
         crtt.typee.setSelectedItem("" + rs.getString("type"));
         crtt.userstatus.setSelectedItem("" + rs.getString("status"));
-        crtt.un.setEnabled(false);
+       
          crtt.updatee.setEnabled(true);
         crtt.setVisible(true);
         this.dispose();
