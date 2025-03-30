@@ -36,21 +36,15 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);      
     }
     
-    
-   
 
-
-  
-    
     static String Status;
     static String Type;
     
 
-
 public static boolean loginAcc(String usernamee, String passwordd){
     dbConnect connector = new dbConnect();
         try {
-            String query = "SELECT * FROM tbl_user WHERE username = ?"; // Use prepared statement
+            String query = "SELECT * FROM tbl_user WHERE username = ?"; 
             java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(query); // Use getConnection()
             pst.setString(1, usernamee);
             ResultSet resultSet = pst.executeQuery();
@@ -71,8 +65,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
                     sess.setTpyee(resultSet.getString("type"));
                     sess.setStatuss(resultSet.getString("status"));
 
-                  // Log the login
-
+             
                     return true;
                 } else {
                     return false;
@@ -86,15 +79,15 @@ public static boolean loginAcc(String usernamee, String passwordd){
         }
     }
 
-   // Helper method to log the login
-// Helper method to log the login
+   
+
 private static void logLogin(int userId, dbConnect connector) {
     String sql = "INSERT INTO tbl_log (c_id, log_event, log_description, log_timestamp) VALUES (?, ?, ?, ?)";
     try {
-        java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(sql); // Use getConnection()
+        java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(sql); 
         pst.setInt(1, userId);
         pst.setString(2, "LOGIN");
-        pst.setString(3, "User logged in successfully");
+        pst.setString(3, "Logged in successfully");
         pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
 
         int rowsInserted = pst.executeUpdate();

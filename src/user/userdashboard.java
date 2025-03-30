@@ -35,7 +35,7 @@ Color hover = new Color (102,102,102);
             java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(sql);
             pst.setInt(1, userId);
             pst.setString(2, "LOGOUT"); 
-            pst.setString(3, "User logged out successfully");
+            pst.setString(3, "Logged out successfully");
             pst.setTimestamp(4, new Timestamp(new Date().getTime()));
 
             int rowsInserted = pst.executeUpdate();

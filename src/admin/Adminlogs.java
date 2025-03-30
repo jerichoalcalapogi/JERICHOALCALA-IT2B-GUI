@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -23,54 +24,105 @@ public class Adminlogs extends javax.swing.JFrame {
         initComponents();
         displayData();
          setResizable(false);
-            setLocationRelativeTo(null);
-      
+         setLocationRelativeTo(null);    
+         tablelogs.setRowHeight(30);
+     
     }
     
     
-    public void refreshTable() {
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public void refreshTablee() {
     try {
         dbConnect dbc = new dbConnect();
-        String query = "SELECT * FROM tbl_user"; 
-        ResultSet rs = dbc.getData(query); 
+      
+        String query = "SELECT log_id, c_id, log_event, log_description, log_timestamp FROM tbl_log";
+        ResultSet rs = dbc.getData(query);
 
+        
         DefaultTableModel model = (DefaultTableModel) tablelogs.getModel();
         model.setRowCount(0); 
-
+       
         while (rs.next()) {
             model.addRow(new Object[]{
+                rs.getInt("log_id"),
                 rs.getInt("c_id"),
-                rs.getString("fname"),
-                rs.getString("lname"),
-                rs.getString("email"),
-                rs.getString("username"),
-                rs.getString("type"),
-                rs.getString("status")
+                rs.getString("log_event"),
+                rs.getString("log_description"),
+                rs.getTimestamp("log_timestamp") 
             });
         }
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error refreshing table: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Error refreshing logs table: " + e.getMessage());
     }
+
 }
 
+      public void displayData(){
+         try {
+        dbConnect dbc = new dbConnect();
+        String sql = "SELECT l.log_id, l.c_id, l.log_event, l.log_description, l.log_timestamp " +
+                     "FROM tbl_user u, tbl_log l " +
+                     "WHERE u.c_id = l.c_id";
+        ResultSet rs = dbc.getData(sql);
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("log_id");
+        model.addColumn("c_id");
+        model.addColumn("log_event");
+        model.addColumn("log_description");
+        model.addColumn("log_timestamp");
+
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getInt("log_id"),
+                rs.getInt("c_id"),
+                rs.getString("log_event"),
+                rs.getString("log_description"),
+                rs.getTimestamp("log_timestamp")
+            });
+        }
+
+        tablelogs.setModel(model);
+        rs.close();
+    } catch (SQLException ex) {
+        System.out.println("Errors: " + ex.getMessage());
+    }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
    
     
     
 Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (255,255,255);
- public void displayData(){
-        try{
-            dbConnect dbc = new dbConnect();
-            ResultSet rs = dbc.getData("SELECT  c_id,fname,lname,email,username,type,status FROM tbl_user");
-            tablelogs.setModel(DbUtils.resultSetToTableModel(rs));
-             rs.close();
-        }catch(SQLException ex){
-            System.out.println("Errors: "+ex.getMessage());
 
-        }
- 
- }
 
    
     @SuppressWarnings("unchecked")
@@ -128,7 +180,6 @@ Color hover = new Color (203,14,14);
 
         jPanel8.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 190, 470));
 
-        tablelogs.setBackground(new java.awt.Color(203, 14, 14));
         tablelogs.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         tablelogs.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tablelogs.setModel(new javax.swing.table.DefaultTableModel(
@@ -227,7 +278,7 @@ Color hover = new Color (203,14,14);
     
     private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
       
-        refreshTable();
+        refreshTablee();
         
         
     }//GEN-LAST:event_refreshMouseClicked
