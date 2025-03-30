@@ -205,7 +205,6 @@ Color hover = new Color (203,14,14);
 
         table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         table.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        table.setForeground(new java.awt.Color(203, 14, 14));
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

@@ -135,6 +135,8 @@ private static void logLogin(int userId, dbConnect connector) {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        reg3 = new javax.swing.JLabel();
+        reg4 = new javax.swing.JLabel();
 
         jPanel4.setBackground(new java.awt.Color(203, 14, 14));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -228,7 +230,7 @@ private static void logLogin(int userId, dbConnect connector) {
         });
         login.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 70, 20));
 
-        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 200, 40));
+        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 200, 40));
 
         jLabel5.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
         jLabel5.setText("Password:");
@@ -274,14 +276,15 @@ private static void logLogin(int userId, dbConnect connector) {
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 380, 90));
 
         reg2.setBackground(new java.awt.Color(102, 102, 102));
-        reg2.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
-        reg2.setText("Not Registered?");
+        reg2.setFont(new java.awt.Font("Yu Gothic Light", 3, 16)); // NOI18N
+        reg2.setForeground(new java.awt.Color(200, 32, 32));
+        reg2.setText("Click here");
         reg2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 reg2MouseClicked(evt);
             }
         });
-        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 150, 50));
+        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 260, 150, 50));
 
         jSeparator1.setForeground(new java.awt.Color(200, 32, 32));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 180, 0));
@@ -298,6 +301,26 @@ private static void logLogin(int userId, dbConnect connector) {
         jLabel1.setFont(new java.awt.Font("Constantia", 0, 12)); // NOI18N
         jLabel1.setText("© 2025 Cross Cyber Arena. All rights reserved.");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, 280, 50));
+
+        reg3.setBackground(new java.awt.Color(102, 102, 102));
+        reg3.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
+        reg3.setText("Not Registered?");
+        reg3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reg3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(reg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 150, 50));
+
+        reg4.setBackground(new java.awt.Color(102, 102, 102));
+        reg4.setFont(new java.awt.Font("Yu Gothic Light", 2, 16)); // NOI18N
+        reg4.setText("Forgot password?");
+        reg4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reg4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(reg4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 150, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -387,7 +410,19 @@ private static void logLogin(int userId, dbConnect connector) {
     }//GEN-LAST:event_loginMouseClicked
 
     private void reg2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg2MouseClicked
-        // TODO add your handling code here:
+       
+        forgotpassword forgot = new  forgotpassword();
+        forgot.setVisible(true);
+        this.dispose();
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_reg2MouseClicked
 
     private void WindowOpen(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_WindowOpen
@@ -442,6 +477,14 @@ private static void logLogin(int userId, dbConnect connector) {
          pasw.setEchoChar('*');
     }//GEN-LAST:event_hideMouseReleased
 
+    private void reg3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reg3MouseClicked
+
+    private void reg4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reg4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -495,6 +538,8 @@ private static void logLogin(int userId, dbConnect connector) {
     private javax.swing.JPasswordField pasw;
     private javax.swing.JLabel reg;
     private javax.swing.JLabel reg2;
+    private javax.swing.JLabel reg3;
+    private javax.swing.JLabel reg4;
     private javax.swing.JLabel show;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
