@@ -16,8 +16,10 @@ import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
 import static java.lang.reflect.Array.set;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import user.userdashboard;
@@ -46,41 +48,66 @@ public class Login extends javax.swing.JFrame {
 
 
 public static boolean loginAcc(String usernamee, String passwordd){
-   dbConnect connector = new dbConnect();
-    try{
-        String query = "SELECT * FROM tbl_user WHERE username = '" + usernamee + "' ";
-        ResultSet resultSet = connector.getData(query);
-        if(resultSet.next()){
+    dbConnect connector = new dbConnect();
+        try {
+            String query = "SELECT * FROM tbl_user WHERE username = ?"; // Use prepared statement
+            java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(query); // Use getConnection()
+            pst.setString(1, usernamee);
+            ResultSet resultSet = pst.executeQuery();
             
-            
-          
-            String hashedPass = resultSet.getString("password");
-            String rehashedPass = passwordHasher.hashPassword(passwordd);
-            if(hashedPass.equals(rehashedPass)){
-            
-             Status = resultSet.getString("status");
-             Type = resultSet.getString("type");
-             Session sess = Session.getInstance();
-             sess.setUid(resultSet.getInt("c_id"));
-             sess.setFnamee(resultSet.getString("fname"));
-             sess.setLnamee(resultSet.getString("lname"));
-             sess.setEmaill(resultSet.getString("email"));
-             sess.setUserrname(resultSet.getString("username"));
-             sess. setContact(resultSet.getString("contactnum"));
-             sess.setTpyee(resultSet.getString("type"));
-             sess.setStatuss(resultSet.getString("status"));        
-            return true;           
-            } else{               
-            return false;
-            }         
-        }else{
+            if (resultSet.next()) {
+                String hashedPass = resultSet.getString("password");
+                String rehashedPass = passwordHasher.hashPassword(passwordd);
+                if (hashedPass.equals(rehashedPass)) {
+                    Status = resultSet.getString("status");
+                    Type = resultSet.getString("type");
+                    Session sess = Session.getInstance();
+                    sess.setUid(resultSet.getInt("c_id"));
+                    sess.setFnamee(resultSet.getString("fname"));
+                    sess.setLnamee(resultSet.getString("lname"));
+                    sess.setEmaill(resultSet.getString("email"));
+                    sess.setUserrname(resultSet.getString("username"));
+                    sess.setContact(resultSet.getString("contactnum"));
+                    sess.setTpyee(resultSet.getString("type"));
+                    sess.setStatuss(resultSet.getString("status"));
+
+                  // Log the login
+
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } catch (SQLException | NoSuchAlgorithmException ex) {
+            ex.printStackTrace();
             return false;
         }
-    }catch (SQLException | NoSuchAlgorithmException ex) {
-        return false;
+    }
+
+   // Helper method to log the login
+// Helper method to log the login
+private static void logLogin(int userId, dbConnect connector) {
+    String sql = "INSERT INTO tbl_log (c_id, log_event, log_description, log_timestamp) VALUES (?, ?, ?, ?)";
+    try {
+        java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(sql); // Use getConnection()
+        pst.setInt(1, userId);
+        pst.setString(2, "LOGIN");
+        pst.setString(3, "User logged in successfully");
+        pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+
+        int rowsInserted = pst.executeUpdate();
+        if (rowsInserted > 0) {
+            System.out.println("Login log created successfully.");
+        } else {
+            System.out.println("Failed to create login log.");
+        }
+        pst.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
 }
- 
     
   Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (200,32,32);
@@ -316,42 +343,53 @@ public static boolean loginAcc(String usernamee, String passwordd){
     }//GEN-LAST:event_loginMouseExited
 
     private void logginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseClicked
-  if (user.getText().isEmpty() || pasw.getText().isEmpty()) {
-    JOptionPane.showMessageDialog(null, "All fields are required");
-    return;
-}  
-  
+   if (user.getText().isEmpty() || pasw.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields are required");
+            return;
+        }
 
-if (loginAcc(user.getText(), pasw.getText())) {
-    if (!Status.equals("Active")) {
-        JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin First!");
-        user.setText("");
-        pasw.setText("");
-    } else {
-        JOptionPane.showMessageDialog(null, "Login Successfully!");
+        if (loginAcc(user.getText(), pasw.getText())) {
+            if (!Status.equals("Active")) {
+                JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin First!");
+                user.setText("");
+                pasw.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Login Successfully!");
+ logLogin(Session.getInstance().getUid(), new dbConnect());
+                if (Type.equals("Admin")) {
+                    Admindashboard adss = new Admindashboard();
+                    adss.setVisible(true);
+                } else if (Type.equals("Member")) {
+                    userdashboard usdd = new userdashboard();
+                    usdd.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No account type found. Contact the Admin!");
+                }
 
-        if (Type.equals("Admin")) {
-            Admindashboard adss = new Admindashboard();
-            adss.setVisible(true);
-        } else if (Type.equals("Member")) {
-            userdashboard usdd = new userdashboard();
-            usdd.setVisible(true);
+                this.dispose();
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "No account type found. Contact the Admin!");
+            JOptionPane.showMessageDialog(null, "Invalid Account!");
+            user.setText("");
+            pasw.setText("");
+            user.requestFocus();
         }
     
-        this.dispose(); 
-    }
-} else {
-    JOptionPane.showMessageDialog(null, "Invalid Account!");
-    user.setText("");
-    pasw.setText("");
-    user.requestFocus();
-}
+
     }//GEN-LAST:event_logginMouseClicked
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
        
     }//GEN-LAST:event_loginMouseClicked
 
@@ -414,12 +452,7 @@ if (loginAcc(user.getText(), pasw.getText())) {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -436,9 +469,7 @@ if (loginAcc(user.getText(), pasw.getText())) {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);

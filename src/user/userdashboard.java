@@ -2,8 +2,12 @@
 package user;
 
 import config.Session;
+import config.dbConnect;
 import internetcafe.Login;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 
@@ -19,6 +23,61 @@ Color hover = new Color (102,102,102);
     Color defaultcolor = new Color (204,204,204);
     
    
+    
+    private void logLogout() {
+   dbConnect connector = new dbConnect();
+    Session sess = Session.getInstance();
+    int userId = sess.getUid();
+
+    if (userId != -1) {
+        String sql = "INSERT INTO tbl_log (c_id, log_event, log_description, log_timestamp) VALUES (?, ?, ?, ?)";
+        try {
+            java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(sql);
+            pst.setInt(1, userId);
+            pst.setString(2, "LOGOUT"); 
+            pst.setString(3, "User logged out successfully");
+            pst.setTimestamp(4, new Timestamp(new Date().getTime()));
+
+            int rowsInserted = pst.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Logout log created successfully.");
+            } else {
+                System.out.println("Failed to create logout log.");
+            }
+            pst.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } else {
+        System.out.println("Failed to get User ID from session for logout log.");
+    }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,6 +98,9 @@ Color hover = new Color (102,102,102);
         memberr = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        accname = new javax.swing.JLabel();
+        accname1 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         useraccss6 = new javax.swing.JLabel();
         useraccss1 = new javax.swing.JLabel();
@@ -141,7 +203,16 @@ Color hover = new Color (102,102,102);
         jLabel17.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("welcome, ");
-        jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 310, 60));
+        jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 310, 60));
+
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
+        jPanel12.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 90, 120));
+
+        accname.setFont(new java.awt.Font("Bell MT", 3, 18)); // NOI18N
+        jPanel12.add(accname, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 90, 60));
+
+        accname1.setFont(new java.awt.Font("Bell MT", 3, 18)); // NOI18N
+        jPanel12.add(accname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 50));
 
         getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 90));
 
@@ -215,11 +286,19 @@ Color hover = new Color (102,102,102);
     }//GEN-LAST:event_usersActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-       
+ Session sess = Session.getInstance();
+       if (sess.getUid() == 0) {
+    JOptionPane.showMessageDialog(null, "No account, You must Login First!");
+    Login lff= new Login();
+    lff.setVisible(true);
+    this.dispose();
+}else{  
+       accname.setText(""+sess.getFnamee());
+          accname1.setText(""+sess.getLnamee());       
         
         
         
-        
+       } 
     }//GEN-LAST:event_formWindowActivated
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
@@ -237,11 +316,20 @@ Color hover = new Color (102,102,102);
     }//GEN-LAST:event_jLabel28MouseClicked
 
     private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
-          int response = JOptionPane.showConfirmDialog(null, "Do you want to log out?", "Logout Confirmation", JOptionPane.YES_NO_OPTION);
-if (response == JOptionPane.YES_OPTION) {
-    Login logg = new Login();
-    logg.setVisible(true);
-    this.dispose();
+         int response = JOptionPane.showConfirmDialog(null, "Do you want to log out?", "Logout Confirmation", JOptionPane.YES_NO_OPTION);
+    if (response == JOptionPane.YES_OPTION) {
+        // Log the logout
+        logLogout();
+
+        // Clear the session (important!)
+        Session sess = Session.getInstance();
+        sess.clearSession(); // Add a clearSession() method to your Session class
+
+        Login logg = new Login();
+        logg.setVisible(true);
+        this.dispose();
+    
+
 }
     }//GEN-LAST:event_jLabel31MouseClicked
 
@@ -281,12 +369,15 @@ if (response == JOptionPane.YES_OPTION) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel accname;
+    private javax.swing.JLabel accname1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;

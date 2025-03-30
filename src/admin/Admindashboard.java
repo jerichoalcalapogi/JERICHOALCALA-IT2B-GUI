@@ -1,12 +1,14 @@
 
 package admin;
-
+import java.sql.SQLException;
 import config.Session;
+import config.dbConnect;
 import internetcafe.Login;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import static sun.security.jgss.GSSUtil.login;
-
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class Admindashboard extends javax.swing.JFrame {
 
@@ -18,6 +20,42 @@ public class Admindashboard extends javax.swing.JFrame {
 
     }
 
+    
+    
+    private void logLogout() {
+   dbConnect connector = new dbConnect();
+    Session sess = Session.getInstance();
+    int userId = sess.getUid();
+
+    if (userId != -1) {
+        String sql = "INSERT INTO tbl_log (c_id, log_event, log_description, log_timestamp) VALUES (?, ?, ?, ?)";
+        try {
+            java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(sql);
+            pst.setInt(1, userId);
+            pst.setString(2, "LOGOUT"); // Correct log event
+            pst.setString(3, "User logged out successfully");
+            pst.setTimestamp(4, new Timestamp(new Date().getTime()));
+
+            int rowsInserted = pst.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Logout log created successfully.");
+            } else {
+                System.out.println("Failed to create logout log.");
+            }
+            pst.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } else {
+        System.out.println("Failed to get User ID from session for logout log.");
+    }
+}
+    
+    
+    
+ 
+    
+    
     Color hover = new Color (200,32,32);
     Color defaultcolor = new Color (0,0,0);
     
@@ -28,11 +66,11 @@ public class Admindashboard extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         canvas1 = new java.awt.Canvas();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
         accname = new javax.swing.JLabel();
         accname1 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -57,19 +95,14 @@ public class Admindashboard extends javax.swing.JFrame {
         jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 310, 60));
         jPanel9.add(canvas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, -1));
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview (1).png"))); // NOI18N
-        jLabel31.setMinimumSize(new java.awt.Dimension(50, 100));
-        jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview (1).png"))); // NOI18N
+        logout.setMinimumSize(new java.awt.Dimension(50, 100));
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel31MouseClicked(evt);
+                logoutMouseClicked(evt);
             }
         });
-        jPanel9.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, -60, 230, 230));
-
-        jLabel14.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("welcome, ");
-        jPanel9.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 310, 60));
+        jPanel9.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, -60, 230, 230));
 
         accname.setFont(new java.awt.Font("Bell MT", 3, 18)); // NOI18N
         jPanel9.add(accname, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 90, 60));
@@ -79,6 +112,11 @@ public class Admindashboard extends javax.swing.JFrame {
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
         jPanel9.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 90, 120));
+
+        jLabel16.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("welcome, ");
+        jPanel9.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 310, 60));
 
         getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 100));
 
@@ -142,14 +180,24 @@ public class Admindashboard extends javax.swing.JFrame {
         this.dispose();     
     }//GEN-LAST:event_jLabel34MouseClicked
 
-    private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+  
        int response = JOptionPane.showConfirmDialog(null, "Do you want to log out?", "Logout Confirmation", JOptionPane.YES_NO_OPTION);
-if (response == JOptionPane.YES_OPTION) {
-    Login logg = new Login();
-    logg.setVisible(true);
-    this.dispose();
-}
-    }//GEN-LAST:event_jLabel31MouseClicked
+    if (response == JOptionPane.YES_OPTION) {
+        // Log the logout
+        logLogout();
+
+        // Clear the session (important!)
+        Session sess = Session.getInstance();
+        sess.clearSession(); // Add a clearSession() method to your Session class
+
+        Login logg = new Login();
+        logg.setVisible(true);
+        this.dispose();
+    }
+
+
+    }//GEN-LAST:event_logoutMouseClicked
     
     
   
@@ -193,15 +241,15 @@ if (response == JOptionPane.YES_OPTION) {
     private javax.swing.JLabel accname1;
     private java.awt.Canvas canvas1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logout;
     // End of variables declaration//GEN-END:variables
 }

@@ -97,9 +97,29 @@ public class Session {
         this.contact = contact;
     }
     
-    
-    
-    
-    
-    
+     public void clearSession() {
+        uid = -1; // Or any default value indicating no user
+        fnamee = null;
+        lnamee = null;
+        emaill = null;
+        userrname = null;
+        contact = null;
+        tpyee = null;
+        statuss = null;
+    }
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+

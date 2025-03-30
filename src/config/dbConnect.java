@@ -59,11 +59,13 @@ public class dbConnect {
     }catch(SQLException ex){
         System.out.println("Connection Error: " + ex);
     }
+    
+        }
+    public Connection getConnection() {
+        return connect;
 }
-
-    public Object getConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-        
 }
+ 
+   
+ 
+
