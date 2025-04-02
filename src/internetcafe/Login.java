@@ -179,6 +179,11 @@ private static void logLogin(int userId, dbConnect connector) {
 
         show.setForeground(new java.awt.Color(153, 102, 0));
         show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-eye-50.png"))); // NOI18N
+        show.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showMouseClicked(evt);
+            }
+        });
         jPanel1.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, 70, 120));
 
         user.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
@@ -230,7 +235,7 @@ private static void logLogin(int userId, dbConnect connector) {
         });
         login.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 70, 20));
 
-        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 200, 40));
+        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, 200, 40));
 
         jLabel5.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
         jLabel5.setText("Password:");
@@ -484,6 +489,10 @@ private static void logLogin(int userId, dbConnect connector) {
     private void reg4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg4MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_reg4MouseClicked
+
+    private void showMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showMouseClicked
 
     /**
      * @param args the command line arguments

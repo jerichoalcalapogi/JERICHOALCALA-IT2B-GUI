@@ -294,7 +294,7 @@ public class Registrationn extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Castellar", 1, 31)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("REGISTration FORM");
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 420, 50));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 420, 50));
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
@@ -427,6 +427,10 @@ public class Registrationn extends javax.swing.JFrame {
             confirmpass.setText("");
             return;
         }
+        
+        
+        
+
 
         
         String contactNumber = contact.getText();
@@ -465,6 +469,7 @@ try {
                 this.dispose();
                 Login loginFrame = new Login();
                 loginFrame.setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Security Question Registration Failed!");
             }

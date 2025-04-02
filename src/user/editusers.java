@@ -25,13 +25,21 @@ public class editusers extends javax.swing.JFrame {
           setLocationRelativeTo(null);
          Color hover = new Color (200,32,32);
     Color defaultcolor = new Color (0,0,0);
+    
+    
+    
+    
+    
+    
+    
+    
 
        
     }
   public boolean duplicateCheck(){
     dbConnect dbc = new dbConnect();
     try {
-        String query = "SELECT * FROM tbl_user WHERE username = '" + us.getText() + "' OR email = '" + em.getText() + "'";
+        String query = "SELECT * FROM tbl_user WHERE username = '" + us2.getText() + "' OR email = '" + em.getText() + "'";
         ResultSet resultSet = dbc.getData(query);
          
         if(resultSet.next()){
@@ -44,9 +52,9 @@ public class editusers extends javax.swing.JFrame {
             
                 }  
             userrname=resultSet.getString("username");
-            if( userrname.equals(us.getText())){
+            if( userrname.equals(us2.getText())){
             JOptionPane.showMessageDialog(null, "Username is already used!");
-                  us.setText("");
+                  us2.setText("");
             }
         return true;
         }else{
@@ -65,7 +73,7 @@ public class editusers extends javax.swing.JFrame {
    public boolean UpdateCheck(){
     dbConnect dbc = new dbConnect();
     try {
-        String query = "SELECT * FROM tbl_user WHERE (username = '" + us.getText() + "' OR email = '" + em.getText() + "') AND c_id != '"+useriddd.getText()+"'";
+        String query = "SELECT * FROM tbl_user WHERE (username = '" + us2.getText() + "' OR email = '" + em.getText() + "') AND c_id != '"+useriddd.getText()+"'";
         ResultSet resultSet = dbc.getData(query);
          
         if(resultSet.next()){
@@ -78,9 +86,9 @@ public class editusers extends javax.swing.JFrame {
             
                 }  
             userrname=resultSet.getString("username");
-            if( userrname.equals(us.getText())){
+            if( userrname.equals(us2.getText())){
             JOptionPane.showMessageDialog(null, "Username is already used!");
-                  us.setText("");
+                  us2.setText("");
             }
         return true;
         }else{
@@ -106,7 +114,7 @@ public class editusers extends javax.swing.JFrame {
         contact = new javax.swing.JTextField();
         ln = new javax.swing.JTextField();
         em = new javax.swing.JTextField();
-        us = new javax.swing.JTextField();
+        us2 = new javax.swing.JTextField();
         fn1 = new javax.swing.JTextField();
         typee = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -126,7 +134,7 @@ public class editusers extends javax.swing.JFrame {
         useriddd = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         delete = new javax.swing.JButton();
-        updatee = new javax.swing.JButton();
+        updateee = new javax.swing.JButton();
         jLabel36 = new javax.swing.JLabel();
         reg2 = new javax.swing.JLabel();
         reg = new javax.swing.JLabel();
@@ -171,15 +179,15 @@ public class editusers extends javax.swing.JFrame {
         });
         jPanel1.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 170, 30));
 
-        us.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        us.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        us.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        us.addActionListener(new java.awt.event.ActionListener() {
+        us2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        us2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        us2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        us2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usActionPerformed(evt);
+                us2ActionPerformed(evt);
             }
         });
-        jPanel1.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 250, 170, 30));
+        jPanel1.add(us2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 250, 170, 30));
 
         fn1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         fn1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -203,11 +211,11 @@ public class editusers extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel4.setText("Last name:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 140, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 140, 30));
 
         jLabel16.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel16.setText("Username:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 130, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 130, 30));
 
         jLabel17.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel17.setText("USER STATUS:");
@@ -215,7 +223,7 @@ public class editusers extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel18.setText("Email:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 110, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 110, 30));
 
         jLabel19.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel19.setText("First name:");
@@ -272,7 +280,7 @@ public class editusers extends javax.swing.JFrame {
 
         jLabel23.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel23.setText("Type:");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 210, 40));
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 210, 40));
 
         useriddd.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         useriddd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -311,28 +319,28 @@ public class editusers extends javax.swing.JFrame {
         });
         jPanel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 100, 40));
 
-        updatee.setBackground(new java.awt.Color(255, 255, 255));
-        updatee.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        updatee.setText("UPDATE");
-        updatee.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        updatee.setEnabled(false);
-        updatee.addMouseListener(new java.awt.event.MouseAdapter() {
+        updateee.setBackground(new java.awt.Color(255, 255, 255));
+        updateee.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        updateee.setText("UPDATE");
+        updateee.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        updateee.setEnabled(false);
+        updateee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                updateeMouseClicked(evt);
+                updateeeMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                updateeMouseEntered(evt);
+                updateeeMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                updateeMouseExited(evt);
+                updateeeMouseExited(evt);
             }
         });
-        updatee.addActionListener(new java.awt.event.ActionListener() {
+        updateee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateeActionPerformed(evt);
+                updateeeActionPerformed(evt);
             }
         });
-        jPanel1.add(updatee, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 450, 100, 40));
+        jPanel1.add(updateee, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 450, 100, 40));
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
@@ -388,9 +396,9 @@ public class editusers extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emActionPerformed
 
-    private void usActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usActionPerformed
+    private void us2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_us2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usActionPerformed
+    }//GEN-LAST:event_us2ActionPerformed
 
     private void fn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fn1ActionPerformed
         // TODO add your handling code here:
@@ -412,7 +420,7 @@ public class editusers extends javax.swing.JFrame {
         fn1.setText("");
         ln.setText("");
         em.setText("");
-        us.setText("");
+        us2.setText("");
       
         contact.setText("");
         typee.setSelectedIndex(0);
@@ -433,23 +441,23 @@ public class editusers extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void updateeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseClicked
+    private void updateeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeeMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_updateeMouseClicked
+    }//GEN-LAST:event_updateeeMouseClicked
 
-    private void updateeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseEntered
+    private void updateeeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeeMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_updateeMouseEntered
+    }//GEN-LAST:event_updateeeMouseEntered
 
-    private void updateeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseExited
+    private void updateeeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeeMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_updateeMouseExited
+    }//GEN-LAST:event_updateeeMouseExited
 
-    private void updateeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateeActionPerformed
+    private void updateeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateeeActionPerformed
      if (fn1.getText().isEmpty()
             || ln.getText().isEmpty()
             || em.getText().isEmpty()
-            || us.getText().isEmpty()
+            || us2.getText().isEmpty()
            
             || contact.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "All fields are required");
@@ -484,16 +492,15 @@ public class editusers extends javax.swing.JFrame {
   
 
    dbc.updateData("UPDATE tbl_user SET  fname='"+fn1.getText()+"',lname='"+ln.getText()+"',"
-           + "email = '"+em.getText()+"',username = '"+us.getText()+"',contactnum = '"+contact.getText()+"',type = "
+           + "email = '"+em.getText()+"',username = '"+us2.getText()+"',contactnum = '"+contact.getText()+"',type = "
            + "'"+typee.getSelectedItem()+"',status ='"+userstatus.getSelectedItem()+"' WHERE c_id='"+useriddd.getText()+"'");
        JOptionPane.showMessageDialog(null, "Updated Successfully!");
+       
       userdashboard ads = new userdashboard();
        ads.setVisible(true);
        this.dispose();
-       
-       
-   
-    }//GEN-LAST:event_updateeActionPerformed
+  
+    }//GEN-LAST:event_updateeeActionPerformed
 
     private void jLabel37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseClicked
  userdashboard userss = new userdashboard();
@@ -512,23 +519,10 @@ public class editusers extends javax.swing.JFrame {
     }//GEN-LAST:event_regMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-      Session sess = Session.getInstance();
-       idisplay.setText("" + sess.getUid()); 
-      useriddd.setText(""+sess.getUid());
-          fn1.setText(""+sess.getFnamee());
-           ln.setText(""+sess.getLnamee());
-         em.setText(""+sess.getEmaill());
-        us.setText(""+sess.getUserrname());
-     contact.setText(""+sess.getContact());
-        
-        
-        
-        
-        
-        
-        
-        
-        
+     
+     
+   
+
     }//GEN-LAST:event_formWindowActivated
   
     public static void main(String args[]) {
@@ -591,8 +585,8 @@ public class editusers extends javax.swing.JFrame {
     private javax.swing.JLabel reg;
     private javax.swing.JLabel reg2;
     public javax.swing.JComboBox<String> typee;
-    public javax.swing.JButton updatee;
-    public javax.swing.JTextField us;
+    public javax.swing.JButton updateee;
+    public javax.swing.JTextField us2;
     public javax.swing.JTextField useriddd;
     public javax.swing.JComboBox<String> userstatus;
     // End of variables declaration//GEN-END:variables

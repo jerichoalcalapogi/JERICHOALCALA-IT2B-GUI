@@ -304,8 +304,8 @@ public class changepass extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Password Successfully Updated!");
 
-        Login lg = new Login();
-            lg.setVisible(true);
+        userdashboard userdash = new userdashboard();
+            userdash.setVisible(true);
             this.dispose();
            
         } else {

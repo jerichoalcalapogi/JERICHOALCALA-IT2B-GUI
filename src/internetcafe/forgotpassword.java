@@ -37,16 +37,6 @@ public class forgotpassword extends javax.swing.JFrame {
     }
     
 
-   
-    
-
-
-  
-
-
-   
-
-
     
   Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (200,32,32);
@@ -72,6 +62,7 @@ public class forgotpassword extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel31 = new javax.swing.JLabel();
@@ -163,16 +154,16 @@ public class forgotpassword extends javax.swing.JFrame {
         });
         login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loggin.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin.setFont(new java.awt.Font("Centaur", 1, 14)); // NOI18N
         loggin.setText("Search");
         loggin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logginMouseClicked(evt);
             }
         });
-        login.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        login.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, 30));
 
-        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 140, 70, 40));
+        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 60, 30));
 
         userrrr.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         userrrr.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -205,6 +196,14 @@ public class forgotpassword extends javax.swing.JFrame {
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hacker-64.png"))); // NOI18N
         jPanel2.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 70, 100));
+
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview.png"))); // NOI18N
+        jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel29MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, 230, 230));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 100));
 
@@ -240,6 +239,7 @@ public class forgotpassword extends javax.swing.JFrame {
         secccc.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         secccc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         secccc.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        secccc.setEnabled(false);
         secccc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seccccActionPerformed(evt);
@@ -285,7 +285,17 @@ public class forgotpassword extends javax.swing.JFrame {
     }//GEN-LAST:event_WindowOpen
 
     private void logginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseClicked
-          String username = userrrr.getText();
+          if (userrrr.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Enter the username");
+        return;
+    }
+        
+       
+   
+          
+       
+    String username = userrrr.getText();
+          
 
     dbConnect dbc = new dbConnect();
     try {
@@ -298,7 +308,7 @@ public class forgotpassword extends javax.swing.JFrame {
         if (userIdResult != null && userIdResult.next()) {
             int userId = userIdResult.getInt("c_id");
 
-            // 2. Use the retrieved user ID to fetch the security question from tbl_forgotpass
+          
             ResultSet securityQuestionResult = dbc.getData(
                     "SELECT fp_question FROM tbl_forgotpass WHERE c_id = ?",
                     userId
@@ -312,6 +322,7 @@ public class forgotpassword extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Username not found.");
+            userrrr.setText("");
         }
     } catch (SQLException ex) {
         System.err.println("Database error: " + ex);
@@ -346,6 +357,17 @@ public class forgotpassword extends javax.swing.JFrame {
     }//GEN-LAST:event_seccccActionPerformed
 
     private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked
+   
+    
+          if ( answerrr.getText().isEmpty() || newpasss.getText().isEmpty() || confirmpasss.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "All fields are required");
+       answerrr.setText("");
+        newpasss.setText("");
+        confirmpasss.setText("");
+    
+        return; 
+    }
+        
    
         
           String username = userrrr.getText();
@@ -389,20 +411,36 @@ public class forgotpassword extends javax.swing.JFrame {
                                 hashedNewPassword, userId
                         );
 
+                        
+        String passwordd = new String(newpasss.getPassword());
+        String confirmPasswordd = new String(confirmpasss.getPassword());
+                        
+                 if (passwordd.length() < 8) {
+            JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
+            newpasss.setText("");
+            confirmpasss.setText("");
+            return;
+        }
+   
+                        
+                        
                         if (updateResult > 0) {
                             JOptionPane.showMessageDialog(this, "Password changed successfully!");
-                        
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Failed to change password.");
-                            Login loginForm = new Login();
+                         Login loginForm = new Login();
                             loginForm.setVisible(true);
                             this.dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Failed to change password.");
+                           
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "New password and confirm password do not match.");
+                        newpasss.setText("");
+                        confirmpasss.setText("");
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Incorrect answer.");
+                   answerrr.setText("");
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Security question answer not found.");
@@ -447,6 +485,12 @@ public class forgotpassword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SubmitMouseExited
 
+    private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
+       Login loginFrame = new Login();
+                loginFrame.setVisible(true);
+                this.dispose();
+    }//GEN-LAST:event_jLabel29MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -487,6 +531,7 @@ public class forgotpassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel5;

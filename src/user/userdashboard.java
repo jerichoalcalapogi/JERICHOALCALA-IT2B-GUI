@@ -306,13 +306,21 @@ Color hover = new Color (102,102,102);
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
+ 
     
-  
-        
-      editusers edt = new  editusers(); 
-      edt.updatee.setEnabled(true);
-      edt.setVisible(true);
-        this.dispose();
+       editusers edt = new editusers();
+    Session sess = Session.getInstance();
+
+    edt.useriddd.setText("" + sess.getUid());
+    edt.fn1.setText("" + sess.getFnamee());
+    edt.ln.setText("" + sess.getLnamee());
+    edt.em.setText("" + sess.getEmaill());
+    edt.us2.setText("" + sess.getUserrname());
+    edt.contact.setText("" + sess.getContact());
+    edt.updateee.setEnabled(true);  
+    
+    edt.setVisible(true); 
+    this.dispose();   
     }//GEN-LAST:event_jLabel28MouseClicked
 
     private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
