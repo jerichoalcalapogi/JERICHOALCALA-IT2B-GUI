@@ -5,13 +5,17 @@
  */
 package admin;
 
+import config.Session;
 import internetcafe.*;
 import config.dbConnect;
 import config.passwordHasher;
 import java.awt.Color;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -23,8 +27,30 @@ public class adduser extends javax.swing.JFrame {
           setResizable(false);
           setLocationRelativeTo(null);
            this.dispose();
-    }     
+      
+    } 
+    
+  private void recordTransactionLog(int userId, String event, String description) {
+    try {
+        dbConnect dbc = new dbConnect();
+        String query = "INSERT INTO tbl_log (c_id, log_event, log_description, log_timestamp) VALUES (?, ?, ?, NOW())";
+        PreparedStatement pstmt = dbc.getConnection().prepareStatement(query);
+        pstmt.setInt(1, userId);  // Now uses adminId, which should be the admin's ID
+        pstmt.setString(2, event);
+        pstmt.setString(3, description);
+        pstmt.executeUpdate();
+        pstmt.close();
+        dbc.closeConnection();
+        System.out.println("Transaction log recorded: " + event + ", " + description);
+    } catch (SQLException e) {
+        System.err.println("Error recording transaction log: " + e.getMessage());
+        // Consider more robust error handling here, such as logging to a file or displaying an error message to the user
+    }
+}
 
+
+
+   
    public static String emaill, userrname;
          public boolean duplicateCheck(){
     dbConnect dbc = new dbConnect();
@@ -62,6 +88,7 @@ public class adduser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel23 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         contact = new javax.swing.JTextField();
         registerr = new javax.swing.JButton();
@@ -86,9 +113,23 @@ public class adduser extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        currentuser2 = new javax.swing.JLabel();
+        currentuser = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        ques = new javax.swing.JComboBox<>();
+        jLabel25 = new javax.swing.JLabel();
+        ans = new javax.swing.JPasswordField();
+
+        jLabel23.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
+        jLabel23.setText("Answer:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -120,7 +161,7 @@ public class adduser extends javax.swing.JFrame {
                 registerrActionPerformed(evt);
             }
         });
-        jPanel1.add(registerr, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 430, 110, 40));
+        jPanel1.add(registerr, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 510, 110, 40));
 
         cancel.setBackground(new java.awt.Color(255, 255, 255));
         cancel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
@@ -142,7 +183,7 @@ public class adduser extends javax.swing.JFrame {
                 cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 110, 40));
+        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, 110, 40));
 
         ps.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ps.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -252,32 +293,64 @@ public class adduser extends javax.swing.JFrame {
                 jLabel11MouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 100, 60));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 100, 60));
 
         jLabel37.setBackground(new java.awt.Color(255, 255, 255));
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hacker-64.png"))); // NOI18N
-        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -10, 70, 100));
+        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 70, 100));
 
         jLabel12.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("REGISTER FORM");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 320, 50));
+        jLabel12.setText("Add member form");
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 320, 50));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 430, 80));
+        currentuser2.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
+        currentuser2.setForeground(new java.awt.Color(255, 255, 255));
+        currentuser2.setText("Current user:");
+        jPanel5.add(currentuser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 190, 60));
+
+        currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        currentuser.setForeground(new java.awt.Color(203, 14, 14));
+        jPanel5.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 210, 50));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1010, 80));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/ekosh (1).jpg"))); // NOI18N
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 500));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 490, 540));
+
+        jLabel24.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
+        jLabel24.setText("QUESTION:");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 200, 40));
+
+        ques.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
+        ques.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What was your mother's maiden name?", "What city were you born in?", "What is your favorite pet's name?", "What was the name of your first school?\"", "What is your favorite book?", " ", " ", " ", " " }));
+        ques.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        ques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ques, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, 350, 30));
+
+        jLabel25.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
+        jLabel25.setText("Answer:");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 460, 210, 40));
+
+        ans.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        ans.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ans.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        jPanel1.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 460, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 897, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -297,7 +370,7 @@ public class adduser extends javax.swing.JFrame {
 
     private void registerrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerrActionPerformed
 
-        if (fn1.getText().isEmpty()
+          if (fn1.getText().isEmpty()
             || ln.getText().isEmpty()
             || em.getText().isEmpty()
             || us.getText().isEmpty()
@@ -346,7 +419,7 @@ public class adduser extends javax.swing.JFrame {
             confirmpass.setText("");
             return;
         }
-
+        
         
         String contactNumber = contact.getText();
         if (!contactNumber.matches("\\d+")) {
@@ -354,31 +427,68 @@ public class adduser extends javax.swing.JFrame {
             contact.setText("");
             return;
         }
+ 
+     dbConnect dbc = new dbConnect(); // Initialize dbConnect once
+    int generatedUserId = 0; // Changed name to generatedUserId for clarity
+    try {
+        // ... (Password hashing and user insertion code)
+        String pass = passwordHasher.hashPassword(ps.getText());
+        String answer = passwordHasher.hashPassword(ans.getText());
+        String username = us.getText();
+        String selectedQuestion = ques.getSelectedItem().toString();
 
-      
-        dbConnect dbc = new dbConnect();
-        try{
-    String pass = passwordHasher.hashPassword(ps.getText());
-        
-        int result = dbc.insertData("INSERT INTO tbl_user (fname, lname, email, username, password, contactnum, type, status) " +
-            "VALUES ('" + fn1.getText() + "', '" + ln.getText() + "', '" + em.getText() + "', '" +
-            us.getText() + "', '" + pass + "', '" +
-            contact.getText() + "', '" + type.getSelectedItem() + "','Pending')");
+        int resultUser = dbc.insertData(
+                "INSERT INTO tbl_user (fname, lname, email, username, password, contactnum, type, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                fn1.getText(), ln.getText(), em.getText(), username, pass, contact.getText(), type.getSelectedItem(), "Pending"
+        );
 
-        if (result > 0) { 
-            JOptionPane.showMessageDialog(null, "Successfully Registered");
+        if (resultUser > 0) {
+            ResultSet generatedKeys = dbc.getData("SELECT LAST_INSERT_ID()");  // Use LAST_INSERT_ID()
+            if (generatedKeys != null && generatedKeys.next()) {
+                generatedUserId = generatedKeys.getInt(1);
+                String event = "User Added";
+                String description = "User '" + fn1.getText() + " " + ln.getText() + "' with username '" + us.getText() + "' was added.";
+                //removed currentuser2
+                recordTransactionLog(generatedUserId, event, description);
 
-           
-            this.dispose();
-            Login loginFrame = new Login();
-            loginFrame.setVisible(true);
+                int resultForgot = dbc.insertData(
+                        "INSERT INTO tbl_forgotpass (c_id, fp_question, fp_answer) VALUES (?, ?, ?)",
+                        generatedUserId, selectedQuestion, answer
+                );
+
+                if (resultForgot > 0) {
+                    JOptionPane.showMessageDialog(null, "Successfully Registered");
+                    this.dispose();
+                    Login loginFrame = new Login();
+                    loginFrame.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Security Question Registration Failed!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to retrieve user ID!");
+            }
+            if (generatedKeys != null) {
+                generatedKeys.close();
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Registration Failed! Try Again.");
+            JOptionPane.showMessageDialog(null, "User Registration Failed! Try Again.");
         }
-        }catch(NoSuchAlgorithmException ex){
-    System.out.println(""+ex);
-    }//GEN-LAST:event_registerrActionPerformed
+    } catch (NoSuchAlgorithmException ex) {
+        System.err.println("Hashing error: " + ex);
+        JOptionPane.showMessageDialog(null, "Hashing error occurred.", "Error", JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException ex) {
+        System.err.println("Database error: " + ex);
+        JOptionPane.showMessageDialog(null, "Database error occurred.", "Error", JOptionPane.ERROR_MESSAGE);
+    } finally {
+        if (dbc != null) {
+            dbc.closeConnection();
+            
+            
     }
+      
+    }//GEN-LAST:event_registerrActionPerformed
+}
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
         fn1.setText("");
         ln.setText("");
@@ -433,6 +543,16 @@ public class adduser extends javax.swing.JFrame {
              this.dispose();
     }//GEN-LAST:event_jLabel11MouseClicked
 
+    private void quesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quesActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+       Session sess = Session.getInstance();
+        
+        currentuser2.setText(""+sess.getUid());
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -470,9 +590,12 @@ public class adduser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField ans;
     private javax.swing.JButton cancel;
     private javax.swing.JPasswordField confirmpass;
     private javax.swing.JTextField contact;
+    private javax.swing.JLabel currentuser;
+    private javax.swing.JLabel currentuser2;
     private javax.swing.JTextField em;
     private javax.swing.JTextField fn1;
     private javax.swing.JLabel jLabel11;
@@ -485,6 +608,9 @@ public class adduser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
@@ -492,6 +618,7 @@ public class adduser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField ln;
     private javax.swing.JPasswordField ps;
+    private javax.swing.JComboBox<String> ques;
     private javax.swing.JButton registerr;
     private javax.swing.JComboBox<String> type;
     private javax.swing.JTextField us;

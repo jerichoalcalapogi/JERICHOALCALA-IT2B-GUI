@@ -308,7 +308,7 @@ Color hover = new Color (102,102,102);
     private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
  
     
-       editusers edt = new editusers();
+    editusers edt = new editusers();
     Session sess = Session.getInstance();
 
     edt.useriddd.setText("" + sess.getUid());
@@ -317,10 +317,31 @@ Color hover = new Color (102,102,102);
     edt.em.setText("" + sess.getEmaill());
     edt.us2.setText("" + sess.getUserrname());
     edt.contact.setText("" + sess.getContact());
-    edt.updateee.setEnabled(true);  
+
+    String imagePath = sess.getUimage(); 
+
+    if (imagePath != null && !imagePath.isEmpty()) {
+        
+        edt.image.setIcon(edt.ResizeImage(imagePath, null, edt.image));
+        edt.path = imagePath;
+        edt.oldpath = imagePath;
+        edt.destination = imagePath;
+        edt.remove.setEnabled(true); 
+    } else {
+       
+        edt.image.setIcon(null); 
+        edt.path = "";
+        edt.oldpath = "";
+        edt.destination = "";
+        edt.remove.setEnabled(false); 
+    }
+
+    edt.updateee.setEnabled(true);
+
+    edt.setVisible(true);
+    this.dispose();
+    edt.select.setEnabled(true);
     
-    edt.setVisible(true); 
-    this.dispose();   
     }//GEN-LAST:event_jLabel28MouseClicked
 
     private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked

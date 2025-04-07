@@ -12,6 +12,7 @@ public class Session {
     private String tpyee;
     private String statuss;
     private String contact;
+    private String uimage;
 
    
     private Session(){
@@ -107,6 +108,14 @@ public class Session {
         tpyee = null;
         statuss = null;
     }
+
+  public String getUimage() {
+    return uimage; // IMPLEMENTED GETTER
+}
+    
+  public void setUimage(String uimage) {
+    this.uimage = uimage;
+}
 }
     
     

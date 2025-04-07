@@ -10,9 +10,21 @@ import internetcafe.Registrationn;
 import static internetcafe.Registrationn.emaill;
 import static internetcafe.Registrationn.userrname;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
@@ -26,16 +38,94 @@ public class editusers extends javax.swing.JFrame {
          Color hover = new Color (200,32,32);
     Color defaultcolor = new Color (0,0,0);
     
-    
-    
-    
-    
-    
-    
-    
-
+   
        
     }
+     public String destination = "";
+    File selectedFile;
+    public String oldpath;
+    public String path;
+    
+    public int FileExistenceChecker(String path) {
+    File file = new File(path);
+    String fileName = file.getName();
+
+    Path filePath = Paths.get("src/userimage", fileName);
+    boolean fileExists = Files.exists(filePath);
+
+    if (fileExists) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+    
+      public void imageUpdater(String existingFilePath, String newFilePath){
+        File existingFile = new File(existingFilePath);
+        if (existingFile.exists()) {
+            String parentDirectory = existingFile.getParent();
+            File newFile = new File(newFilePath);
+            String newFileName = newFile.getName();
+            File updatedFile = new File(parentDirectory, newFileName);
+            existingFile.delete();
+            try {
+                Files.copy(newFile.toPath(), updatedFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Image updated successfully.");
+            } catch (IOException e) {
+                System.out.println("Error occurred while updating the image: "+e);
+            }
+        } else {
+            try{
+                Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }catch(IOException e){
+                System.out.println("Error on update!");
+            }
+        }
+   }
+    
+
+    public static int getHeightFromWidth(String imagePath, int desiredWidth) {
+        try {
+            // Read the image file
+            File imageFile = new File(imagePath);
+            BufferedImage image = ImageIO.read(imageFile);
+            
+            // Get the original width and height of the image
+            int originalWidth = image.getWidth();
+            int originalHeight = image.getHeight();
+            
+            // Calculate the new height based on the desired width and the aspect ratio
+            int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
+            
+            return newHeight;
+        } catch (IOException ex) {
+            System.out.println("No image found!");
+        }
+        
+        return -1;
+    }
+    
+    
+    public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+    
+   
+    
+    
+    
   public boolean duplicateCheck(){
     dbConnect dbc = new dbConnect();
     try {
@@ -138,6 +228,10 @@ public class editusers extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         reg2 = new javax.swing.JLabel();
         reg = new javax.swing.JLabel();
+        imagesss = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
+        remove = new javax.swing.JButton();
+        select = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -249,7 +343,7 @@ public class editusers extends javax.swing.JFrame {
                 jLabel37MouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, -20, 80, 120));
+        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, -20, 80, 120));
 
         idisplay.setBackground(new java.awt.Color(203, 14, 14));
         idisplay.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
@@ -261,12 +355,12 @@ public class editusers extends javax.swing.JFrame {
         jLabel14.setText("CURRENT USER:");
         jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -20, 310, 60));
 
-        jLabel15.setFont(new java.awt.Font("Castellar", 1, 17)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Castellar", 1, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("PERSONAL INFORMATION");
-        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 320, 50));
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 410, 50));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 390, 80));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 720, 80));
 
         userstatus.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
         userstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Pending", " ", " ", " " }));
@@ -345,7 +439,7 @@ public class editusers extends javax.swing.JFrame {
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/resized_image_490x61000.png"))); // NOI18N
-        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 480, 570));
+        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 490, 570));
 
         reg2.setBackground(new java.awt.Color(102, 102, 102));
         reg2.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
@@ -368,12 +462,61 @@ public class editusers extends javax.swing.JFrame {
         });
         jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 310, 90));
 
+        imagesss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imagesss.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 188));
+
+        jPanel1.add(imagesss, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 90, 200, 210));
+
+        remove.setBackground(new java.awt.Color(255, 255, 255));
+        remove.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        remove.setText("remove");
+        remove.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        remove.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                removeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                removeMouseExited(evt);
+            }
+        });
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 310, 100, 30));
+
+        select.setBackground(new java.awt.Color(255, 255, 255));
+        select.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        select.setText("select");
+        select.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        select.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                selectMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                selectMouseExited(evt);
+            }
+        });
+        select.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectActionPerformed(evt);
+            }
+        });
+        jPanel1.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 310, 100, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 879, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -488,18 +631,43 @@ public class editusers extends javax.swing.JFrame {
 
         
         dbConnect dbc = new dbConnect();
-   
+    dbc.updateData("UPDATE tbl_user SET fname='" + fn1.getText() + "', lname='" + ln.getText() + "', "
+            + "email='" + em.getText() + "', username='" + us2.getText() + "', contactnum='" + contact.getText() + "', type='"
+            + typee.getSelectedItem() + "', status='" + userstatus.getSelectedItem() + "', "
+            + "u_image='" + destination + "' "
+            + "WHERE c_id='" + useriddd.getText() + "'");
+    
+if(destination.isEmpty()){
+    File existingFile = new File(oldpath);
+    if(existingFile.exists()){
+        existingFile.delete();
+    }
+}else{
+    if(!(oldpath.equals(path))){
+        imageUpdater(oldpath, path);
+    }
+}
   
+    if (selectedFile != null) {
+        try {
+            Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            JOptionPane.showMessageDialog(null, "Updated Successfully!");
 
-   dbc.updateData("UPDATE tbl_user SET  fname='"+fn1.getText()+"',lname='"+ln.getText()+"',"
-           + "email = '"+em.getText()+"',username = '"+us2.getText()+"',contactnum = '"+contact.getText()+"',type = "
-           + "'"+typee.getSelectedItem()+"',status ='"+userstatus.getSelectedItem()+"' WHERE c_id='"+useriddd.getText()+"'");
-       JOptionPane.showMessageDialog(null, "Updated Successfully!");
+            userdashboard ads = new userdashboard();
+            ads.setVisible(true);
+            this.dispose();
+        } catch (IOException ex) {
+            System.out.println("Insert Image Error: " + ex);
+            JOptionPane.showMessageDialog(null, "Error updating image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Updated Successfully!");
+        userdashboard ads = new userdashboard();
+        ads.setVisible(true);
+        this.dispose();
+    }
+
        
-      userdashboard ads = new userdashboard();
-       ads.setVisible(true);
-       this.dispose();
-  
     }//GEN-LAST:event_updateeeActionPerformed
 
     private void jLabel37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseClicked
@@ -524,6 +692,74 @@ public class editusers extends javax.swing.JFrame {
    
 
     }//GEN-LAST:event_formWindowActivated
+
+    private void removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeMouseClicked
+
+    private void removeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeMouseEntered
+
+    private void removeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeMouseExited
+
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+      
+remove.setEnabled(false);
+select.setEnabled(true);
+image.setIcon(null);
+destination = "";
+path = "";
+
+  
+        
+    }//GEN-LAST:event_removeActionPerformed
+
+    private void selectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectMouseClicked
+
+    private void selectMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectMouseEntered
+
+    private void selectMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectMouseExited
+
+    private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
+      
+        
+          JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        selectedFile = fileChooser.getSelectedFile();
+                        destination = "src/userimage/" + selectedFile.getName();
+                        path  = selectedFile.getAbsolutePath();
+                        
+                        
+                        if(FileExistenceChecker(path) == 1){
+                          JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
+                            destination = "";
+                            path="";
+                        }else{
+                            image.setIcon(ResizeImage(path, null, image));
+                          select.setEnabled(false);
+                          remove.setEnabled(true);
+                            
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("File Error!");
+                    }
+                }
+        
+        
+  
+        
+    }//GEN-LAST:event_selectActionPerformed
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -566,6 +802,8 @@ public class editusers extends javax.swing.JFrame {
     public javax.swing.JTextField em;
     public javax.swing.JTextField fn1;
     private javax.swing.JLabel idisplay;
+    public javax.swing.JLabel image;
+    private javax.swing.JPanel imagesss;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -584,6 +822,8 @@ public class editusers extends javax.swing.JFrame {
     public javax.swing.JTextField ln;
     private javax.swing.JLabel reg;
     private javax.swing.JLabel reg2;
+    public javax.swing.JButton remove;
+    public javax.swing.JButton select;
     public javax.swing.JComboBox<String> typee;
     public javax.swing.JButton updateee;
     public javax.swing.JTextField us2;

@@ -64,6 +64,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
                     sess.setContact(resultSet.getString("contactnum"));
                     sess.setTpyee(resultSet.getString("type"));
                     sess.setStatuss(resultSet.getString("status"));
+                    sess.setUimage(resultSet.getString("u_image"));
 
              
                     return true;
@@ -134,7 +135,6 @@ private static void logLogin(int userId, dbConnect connector) {
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         reg3 = new javax.swing.JLabel();
         reg4 = new javax.swing.JLabel();
 
@@ -235,7 +235,7 @@ private static void logLogin(int userId, dbConnect connector) {
         });
         login.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 70, 20));
 
-        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, 200, 40));
+        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, 200, 40));
 
         jLabel5.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
         jLabel5.setText("Password:");
@@ -250,7 +250,7 @@ private static void logLogin(int userId, dbConnect connector) {
                 regMouseClicked(evt);
             }
         });
-        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 340, 70));
+        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 340, 70));
 
         jPanel2.setBackground(new java.awt.Color(200, 32, 32));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -278,7 +278,7 @@ private static void logLogin(int userId, dbConnect connector) {
         jLabel25.setFont(new java.awt.Font("Constantia", 1, 10)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Join Cross Cyber Arena today and take your online experience to the next level!  ");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 380, 90));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 380, 90));
 
         reg2.setBackground(new java.awt.Color(102, 102, 102));
         reg2.setFont(new java.awt.Font("Yu Gothic Light", 3, 16)); // NOI18N
@@ -303,10 +303,6 @@ private static void logLogin(int userId, dbConnect connector) {
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-eye-50.png"))); // NOI18N
         jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 110, 180));
 
-        jLabel1.setFont(new java.awt.Font("Constantia", 0, 12)); // NOI18N
-        jLabel1.setText("© 2025 Cross Cyber Arena. All rights reserved.");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, 280, 50));
-
         reg3.setBackground(new java.awt.Color(102, 102, 102));
         reg3.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
         reg3.setText("Not Registered?");
@@ -315,7 +311,7 @@ private static void logLogin(int userId, dbConnect connector) {
                 reg3MouseClicked(evt);
             }
         });
-        jPanel1.add(reg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 150, 50));
+        jPanel1.add(reg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 150, 50));
 
         reg4.setBackground(new java.awt.Color(102, 102, 102));
         reg4.setFont(new java.awt.Font("Yu Gothic Light", 2, 16)); // NOI18N
@@ -524,7 +520,6 @@ private static void logLogin(int userId, dbConnect connector) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel hide;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
