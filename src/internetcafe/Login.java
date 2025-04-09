@@ -45,7 +45,7 @@ public static boolean loginAcc(String usernamee, String passwordd){
     dbConnect connector = new dbConnect();
         try {
             String query = "SELECT * FROM tbl_user WHERE username = ?"; 
-            java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(query); // Use getConnection()
+            java.sql.PreparedStatement pst = connector.getConnection().prepareStatement(query); 
             pst.setString(1, usernamee);
             ResultSet resultSet = pst.executeQuery();
             
@@ -397,17 +397,6 @@ private static void logLogin(int userId, dbConnect connector) {
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
     }//GEN-LAST:event_loginMouseClicked
 
     private void reg2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg2MouseClicked
@@ -415,13 +404,7 @@ private static void logLogin(int userId, dbConnect connector) {
         forgotpassword forgot = new  forgotpassword();
         forgot.setVisible(true);
         this.dispose();
-        
-        
-        
-        
-        
-        
-        
+    
         
         
     }//GEN-LAST:event_reg2MouseClicked

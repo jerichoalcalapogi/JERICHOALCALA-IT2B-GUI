@@ -5,8 +5,11 @@ import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabe
 import config.Session;
 import config.dbConnect;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -50,6 +53,77 @@ public class adminuser extends javax.swing.JFrame {
     }
 }
 
+    
+     private void recordTransactionLog(int userId, String event, String description) {
+    try {
+        dbConnect dbc = new dbConnect();
+        String query = "INSERT INTO tbl_log (c_id, log_event, log_description, log_timestamp) VALUES (?, ?, ?, NOW())";
+        PreparedStatement pstmt = dbc.getConnection().prepareStatement(query);
+        pstmt.setInt(1, userId);  
+        pstmt.setString(2, event);
+        pstmt.setString(3, description);
+        pstmt.executeUpdate();
+        pstmt.close();
+        dbc.closeConnection();
+        System.out.println("Transaction log recorded: " + event + ", " + description);
+    } catch (SQLException e) {
+        System.err.println("Error recording transaction log: " + e.getMessage());
+        // Consider more robust error handling here, such as logging to a file or displaying an error message to the user
+    }
+}
+    
+    
+    
+    public void logEvent(int userId, String username, String action) 
+    {
+        dbConnect dbc = new dbConnect();
+        Connection con = dbc.getConnection();
+        PreparedStatement pstmt = null;
+      Timestamp time = new Timestamp(new java.util.Date().getTime());
+
+        try {
+            String sql = "INSERT INTO tbl_log (c_id, username, log_timestamp, log_description) "
+                    + "VALUES ('" + userId + "', '" + username + "', '" + time + "', '" + action + "')";
+            pstmt = con.prepareStatement(sql);
+
+            /*            pstmt.setInt(1, userId);
+            pstmt.setString(2, username);
+            pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
+            pstmt.setString(4, userType);*/
+            pstmt.executeUpdate();
+            System.out.println("Login log recorded successfully.");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error recording log: " + e.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage());
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
    
     
@@ -1264,52 +1338,60 @@ Color hover = new Color (203,14,14);
     }
     private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
 
-int rowIndex = table.getSelectedRow();
-if (rowIndex < 0) {
-    JOptionPane.showMessageDialog(null, "Please select an item in the table!");
-} else {
+   int rowIndex = table.getSelectedRow();
+    if (rowIndex < 0) {
+        JOptionPane.showMessageDialog(null, "Please select an item in the table!");
+        return;
+    }
+
     int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
     if (confirm == JOptionPane.YES_OPTION) {
+        dbConnect dbc = new dbConnect();
+        TableModel tbl = table.getModel();
+        String userIdToDelete = tbl.getValueAt(rowIndex, 0).toString();
+        String usernameToDelete = ""; // Initialize to store the username
+
         try {
-            dbConnect dbc = new dbConnect();
-            TableModel tbl = table.getModel();
-            String id = tbl.getValueAt(rowIndex, 0).toString(); 
+         
+            ResultSet rs = dbc.getData("SELECT username FROM tbl_user WHERE c_id = '" + userIdToDelete + "'");
+            if (rs.next()) {
+                usernameToDelete = rs.getString("username");
+            }
+            if (rs != null) rs.close();
 
-            // Execute DELETE query
-            String deleteQuery = "DELETE FROM tbl_user WHERE c_id = '" + id + "'";
-            dbc.updateData(deleteQuery); 
 
-            // Remove row from JTable
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.removeRow(rowIndex);
+            String deleteQuery = "DELETE FROM tbl_user WHERE c_id = ?";
+            PreparedStatement pstmt = dbc.getConnection().prepareStatement(deleteQuery);
+            pstmt.setString(1, userIdToDelete);
+            int affectedRows = pstmt.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Record deleted successfully.");
-        } catch (Exception ex) {
+            if (affectedRows > 0) {
+                // Remove row from JTable
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.removeRow(rowIndex);
+
+                // Record transaction log
+                Session sess = Session.getInstance();
+                int currentUserId = sess.getUid(); // Assuming you have the current user's ID in the session
+                String event = "User Deleted";
+                String description = " Deleted account ID " + userIdToDelete; 
+                recordTransactionLog(currentUserId, event, description);
+
+                JOptionPane.showMessageDialog(null, "Record deleted successfully.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to delete record.");
+            }
+
+            if (pstmt != null) pstmt.close();
+
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error deleting record: " + ex.getMessage());
+            ex.printStackTrace(); // It's good practice to print the stack trace for debugging
+        } finally {
+            dbc.closeConnection();
         }
-    }
-}
-
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        } 
         
         
     }//GEN-LAST:event_deleteMouseClicked

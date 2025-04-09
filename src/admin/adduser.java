@@ -12,12 +12,15 @@ import config.passwordHasher;
 import java.awt.Color;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 
 public class adduser extends javax.swing.JFrame {
 
@@ -30,12 +33,12 @@ public class adduser extends javax.swing.JFrame {
       
     } 
     
-  private void recordTransactionLog(int userId, String event, String description) {
+ private void recordTransactionLog(int userId, String event, String description) {
     try {
         dbConnect dbc = new dbConnect();
         String query = "INSERT INTO tbl_log (c_id, log_event, log_description, log_timestamp) VALUES (?, ?, ?, NOW())";
         PreparedStatement pstmt = dbc.getConnection().prepareStatement(query);
-        pstmt.setInt(1, userId);  // Now uses adminId, which should be the admin's ID
+        pstmt.setInt(1, userId);  
         pstmt.setString(2, event);
         pstmt.setString(3, description);
         pstmt.executeUpdate();
@@ -47,8 +50,42 @@ public class adduser extends javax.swing.JFrame {
         // Consider more robust error handling here, such as logging to a file or displaying an error message to the user
     }
 }
+ public void logEvent(int userId, String username, String action) 
+    {
+        dbConnect dbc = new dbConnect();
+        Connection con = dbc.getConnection();
+        PreparedStatement pstmt = null;
+      Timestamp time = new Timestamp(new java.util.Date().getTime());
 
+        try {
+            String sql = "INSERT INTO tbl_log (c_id, username, log_timestamp, log_description) "
+                    + "VALUES ('" + userId + "', '" + username + "', '" + time + "', '" + action + "')";
+            pstmt = con.prepareStatement(sql);
 
+            /*            pstmt.setInt(1, userId);
+            pstmt.setString(2, username);
+            pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
+            pstmt.setString(4, userType);*/
+            pstmt.executeUpdate();
+            System.out.println("Login log recorded successfully.");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error recording log: " + e.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage());
+            }
+        }
+    }
+
+ 
+ 
 
    
    public static String emaill, userrname;
@@ -370,86 +407,110 @@ public class adduser extends javax.swing.JFrame {
 
     private void registerrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerrActionPerformed
 
-          if (fn1.getText().isEmpty()
+         Session sess = Session.getInstance();
+    dbConnect connector = new dbConnect();
+    int LID = 0;
+
+
+     if (fn1.getText().isEmpty()
             || ln.getText().isEmpty()
             || em.getText().isEmpty()
             || us.getText().isEmpty()
             || ps.getText().isEmpty()
             || contact.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "All fields are required");
+        JOptionPane.showMessageDialog(null, "All fields are required");
+        return;
+    }
+
+
+    if (!fn1.getText().matches("[a-zA-Z]+") || !ln.getText().matches("[a-zA-Z]+")) {
+        JOptionPane.showMessageDialog(this, "First and Last names should contain only letters.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+        fn1.setText("");
+        ln.setText("");
+        return;
+    }
+        if(duplicateCheck()){
+
+            System.out.println("Duplicate Exists");
             return;
         }
 
-   
-        if (!fn1.getText().matches("[a-zA-Z]+") || !ln.getText().matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(this, "First and Last names should contain only letters.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
-            fn1.setText("");
-            ln.setText("");
-            return;
-        }
-           if(duplicateCheck()){
-               
-               System.out.println("Duplicate Exists");
-               return;
-           }
-         
-        String password = new String(ps.getPassword());
-        String confirmPassword = new String(confirmpass.getPassword());
+    String password = new String(ps.getPassword());
+    String confirmPassword = new String(confirmpass.getPassword());
 
-      
-        if (!password.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(null, "Passwords do not match!");
-            ps.setText("");
-            confirmpass.setText("");
-            return;
-        }
 
-        
-        String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
-        if (!em.getText().matches(regex)) {
-            JOptionPane.showMessageDialog(null, "Invalid Email!");
-            em.setText("");
-            return;
-        }
+    if (!password.equals(confirmPassword)) {
+        JOptionPane.showMessageDialog(null, "Passwords do not match!");
+        ps.setText("");
+        confirmpass.setText("");
+        return;
+    }
 
-       
-        if (password.length() < 8) {
-            JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
-            ps.setText("");
-            confirmpass.setText("");
-            return;
-        }
-        
-        
-        String contactNumber = contact.getText();
-        if (!contactNumber.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Contact number must contain only numbers.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
-            contact.setText("");
-            return;
-        }
- 
-     dbConnect dbc = new dbConnect(); // Initialize dbConnect once
-    int generatedUserId = 0; // Changed name to generatedUserId for clarity
+
+    String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+    if (!em.getText().matches(regex)) {
+        JOptionPane.showMessageDialog(null, "Invalid Email!");
+        em.setText("");
+        return;
+    }
+
+
+    if (password.length() < 8) {
+        JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
+        ps.setText("");
+        confirmpass.setText("");
+        return;
+    }
+
+
+    String contactNumber = contact.getText();
+    if (!contactNumber.matches("\\d+")) {
+        JOptionPane.showMessageDialog(null, "Contact number must contain only numbers.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+        contact.setText("");
+        return;
+    }
+
+   dbConnect dbc = new dbConnect();
+    int generatedUserId = 0;
     try {
-        // ... (Password hashing and user insertion code)
+
         String pass = passwordHasher.hashPassword(ps.getText());
         String answer = passwordHasher.hashPassword(ans.getText());
         String username = us.getText();
         String selectedQuestion = ques.getSelectedItem().toString();
+        int userId = 0;
+        String uname2 = null;
 
         int resultUser = dbc.insertData(
-                "INSERT INTO tbl_user (fname, lname, email, username, password, contactnum, type, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                fn1.getText(), ln.getText(), em.getText(), username, pass, contact.getText(), type.getSelectedItem(), "Pending"
+                "INSERT INTO tbl_user (fname, lname, email, username, password, contactnum, type, status,u_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)",
+                fn1.getText(), ln.getText(), em.getText(), username, pass, contact.getText(), type.getSelectedItem(), "Pending", "null"
         );
 
         if (resultUser > 0) {
-            ResultSet generatedKeys = dbc.getData("SELECT LAST_INSERT_ID()");  // Use LAST_INSERT_ID()
+            ResultSet generatedKeys = dbc.getData("SELECT LAST_INSERT_ID()");
             if (generatedKeys != null && generatedKeys.next()) {
                 generatedUserId = generatedKeys.getInt(1);
+
+
+                try {
+                    String query2 = "SELECT c_id FROM tbl_user WHERE c_id = '"+sess.getUid()+"' ";
+                    PreparedStatement pstmt = connector.getConnection().prepareStatement(query2);
+
+                    ResultSet resultSet = pstmt.executeQuery();
+
+                    if (resultSet.next()) {
+                        userId = resultSet.getInt("c_id");
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("SQL Exception: " + ex);
+                    JOptionPane.showMessageDialog(null, "Error retrieving user information: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+
                 String event = "User Added";
-                String description = "User '" + fn1.getText() + " " + ln.getText() + "' with username '" + us.getText() + "' was added.";
-                //removed currentuser2
-                recordTransactionLog(generatedUserId, event, description);
+                String description = "Added account ID " + generatedUserId + ""; 
+         
+                recordTransactionLog(userId, event, description);
 
                 int resultForgot = dbc.insertData(
                         "INSERT INTO tbl_forgotpass (c_id, fp_question, fp_answer) VALUES (?, ?, ?)",
@@ -483,9 +544,11 @@ public class adduser extends javax.swing.JFrame {
     } finally {
         if (dbc != null) {
             dbc.closeConnection();
+
+
+  
             
-            
-    }
+        }
       
     }//GEN-LAST:event_registerrActionPerformed
 }

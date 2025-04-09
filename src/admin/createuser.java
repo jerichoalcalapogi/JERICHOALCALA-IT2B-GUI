@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package admin;
 
+import config.Session;
 import config.dbConnect;
 import config.passwordHasher;
 import internetcafe.Login;
@@ -13,19 +10,17 @@ import static internetcafe.Registrationn.emaill;
 import static internetcafe.Registrationn.userrname;
 import java.awt.Color;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ADMIN
- */
+
 public class createuser extends javax.swing.JFrame {
 
-    /**
-     * Creates new form createuser
-     */
+   
     public createuser() {
         initComponents();
         setResizable(false);
@@ -35,6 +30,61 @@ public class createuser extends javax.swing.JFrame {
 
        
     }
+    
+    
+    private void recordTransactionLog(int userId, String event, String description) {
+    try {
+        dbConnect dbc = new dbConnect();
+        String query = "INSERT INTO tbl_log (c_id, log_event, log_description, log_timestamp) VALUES (?, ?, ?, NOW())";
+        PreparedStatement pstmt = dbc.getConnection().prepareStatement(query);
+        pstmt.setInt(1, userId);  
+        pstmt.setString(2, event);
+        pstmt.setString(3, description);
+        pstmt.executeUpdate();
+        pstmt.close();
+        dbc.closeConnection();
+        System.out.println("Transaction log recorded: " + event + ", " + description);
+    } catch (SQLException e) {
+        System.err.println("Error recording transaction log: " + e.getMessage());
+        // Consider more robust error handling here, such as logging to a file or displaying an error message to the user
+    }
+}
+    
+    public void logEvent(int userId, String username, String action) 
+    {
+        dbConnect dbc = new dbConnect();
+        Connection con = dbc.getConnection();
+        PreparedStatement pstmt = null;
+      Timestamp time = new Timestamp(new java.util.Date().getTime());
+
+        try {
+            String sql = "INSERT INTO tbl_log (c_id, username, log_timestamp, log_description) "
+                    + "VALUES ('" + userId + "', '" + username + "', '" + time + "', '" + action + "')";
+            pstmt = con.prepareStatement(sql);
+
+            /*            pstmt.setInt(1, userId);
+            pstmt.setString(2, username);
+            pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
+            pstmt.setString(4, userType);*/
+            pstmt.executeUpdate();
+            System.out.println("Login log recorded successfully.");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error recording log: " + e.getMessage());
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage());
+            }
+        }
+    }
+    
+    
   public boolean duplicateCheck(){
     dbConnect dbc = new dbConnect();
     try {
@@ -442,76 +492,126 @@ public class createuser extends javax.swing.JFrame {
     }//GEN-LAST:event_updateeMouseExited
 
     private void updateeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateeActionPerformed
-     if (fn1.getText().isEmpty()
+      Session sess = Session.getInstance();
+    dbConnect connector = new dbConnect();
+    int LID = 0;
+
+
+    if (fn1.getText().isEmpty()
             || ln.getText().isEmpty()
             || em.getText().isEmpty()
             || us.getText().isEmpty()
             || ps.getText().isEmpty()
             || contact.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "All fields are required");
-            return;
-        }
-  
-        if (!fn1.getText().matches("[a-zA-Z]+") || !ln.getText().matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(this, "First and Last names should contain only letters.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
-            fn1.setText("");
-            ln.setText("");
-            return;
-        }
-        if(UpdateCheck()){
+        JOptionPane.showMessageDialog(null, "All fields are required");
+        return;
+    }
 
-            System.out.println("Duplicate Exists");
-            return;
+    if (!fn1.getText().matches("[a-zA-Z]+") || !ln.getText().matches("[a-zA-Z]+")) {
+        JOptionPane.showMessageDialog(this, "First and Last names should contain only letters.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+        fn1.setText("");
+        ln.setText("");
+        return;
+    }
+    if(UpdateCheck()){
 
-        }
-        
-         String password = new String(ps.getPassword());
-        String confirmPassword = new String(confirmpass.getPassword());
+        System.out.println("Duplicate Exists");
+        return;
 
-      
-        if (!password.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(null, "Passwords do not match!");
-            ps.setText("");
-            confirmpass.setText("");
-            return;
-        }
-         if (password.length() < 8) {
-            JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
-            ps.setText("");
+    }
+
+    String password = new String(ps.getPassword());
+    String confirmPassword = new String(confirmpass.getPassword());
+
+
+    if (!password.equals(confirmPassword)) {
+        JOptionPane.showMessageDialog(null, "Passwords do not match!");
+        ps.setText("");
+        confirmpass.setText("");
+        return;
+    }
+    if (password.length() < 8) {
+        JOptionPane.showMessageDialog(null, "Password should have at least 8 characters");
+        ps.setText("");
+
+
+        ps.setText("");
+        confirmpass.setText("");
+         return;
+    }
+
+     String contactNumber = contact.getText();
+    if (!contactNumber.matches("\\d+")) {
+        JOptionPane.showMessageDialog(null, "Contact number must contain only numbers.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+        contact.setText("");
+        return;
+    }
+
+
+   dbConnect dbc = new dbConnect();
+    int generatedUserId = 0;
+   int userId = 0;
+
+
+    int resultUser = dbc.insertData("UPDATE tbl_user SET  fname='"+fn1.getText()+"',lname='"+ln.getText()+"',"
+            + "email = '"+em.getText()+"',username = '"+us.getText()+"',contactnum = '"+contact.getText()+"',type = "
+            + "'"+typee.getSelectedItem()+"',status ='"+userstatus.getSelectedItem()+"' WHERE c_id='"+useridd.getText()+"'");
+
+    if (resultUser > 0) {
+        ResultSet generatedKeys = null;
+        try {
+            generatedKeys = dbc.getData("SELECT LAST_INSERT_ID()");
+            if (generatedKeys != null && generatedKeys.next()) {
+                generatedUserId = generatedKeys.getInt(1);
+            }
+
+            try {
+                String query2 = "SELECT c_id FROM tbl_user WHERE c_id = '"+sess.getUid()+"' ";
+                PreparedStatement pstmt = connector.getConnection().prepareStatement(query2);
+                ResultSet resultSet = pstmt.executeQuery();
+                if (resultSet.next()) {
+                    userId = resultSet.getInt("c_id");
+                }
+                if (pstmt != null) pstmt.close();
+                if (resultSet != null) resultSet.close();
+            } catch (SQLException ex) {
+                System.out.println("SQL Exception (selecting user ID): " + ex);
+                JOptionPane.showMessageDialog(null, "Error retrieving user information: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String event = "User Edited";
+            String description = "Edited account ID " + useridd.getText() + ""; 
             
-             ps.setText("");
-            confirmpass.setText("");
-              return;
-        }
-        
-          String contactNumber = contact.getText();
-        if (!contactNumber.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Contact number must contain only numbers.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
-            contact.setText("");
-            return;
-        }
+            recordTransactionLog(userId, event, description);
 
-        
-        dbConnect dbc = new dbConnect();
-   
-  
+            JOptionPane.showMessageDialog(null, "Updated Successfully!");
+            adminuser ads = new adminuser();
+            ads.setVisible(true);
+            this.dispose();
 
-   dbc.updateData("UPDATE tbl_user SET  fname='"+fn1.getText()+"',lname='"+ln.getText()+"',"
-           + "email = '"+em.getText()+"',username = '"+us.getText()+"',contactnum = '"+contact.getText()+"',type = "
-           + "'"+typee.getSelectedItem()+"',status ='"+userstatus.getSelectedItem()+"' WHERE c_id='"+useridd.getText()+"'");
-       JOptionPane.showMessageDialog(null, "Updated Successfully!");
-       adminuser ads = new adminuser();
-       ads.setVisible(true);
-       this.dispose();
-       
-       
-   
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception (getting last insert ID): " + ex);
+            JOptionPane.showMessageDialog(null, "Error retrieving last inserted ID: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+         
+        } finally {
+            try {
+                if (generatedKeys != null) generatedKeys.close();
+            } catch (SQLException ex) {
+                System.out.println("Error closing ResultSet: " + ex);
+            }
+        }
+    
+
+    }      
     }//GEN-LAST:event_updateeActionPerformed
-
+    
+            
     private void jLabel37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseClicked
   adminuser admins = new adminuser();
         admins.setVisible(true);
         this.dispose();      
+    
     }//GEN-LAST:event_jLabel37MouseClicked
   
     public static void main(String args[]) {
