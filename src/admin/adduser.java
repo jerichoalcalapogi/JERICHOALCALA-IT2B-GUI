@@ -198,7 +198,7 @@ public class adduser extends javax.swing.JFrame {
                 registerrActionPerformed(evt);
             }
         });
-        jPanel1.add(registerr, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 510, 110, 40));
+        jPanel1.add(registerr, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, 110, 40));
 
         cancel.setBackground(new java.awt.Color(255, 255, 255));
         cancel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
@@ -220,7 +220,7 @@ public class adduser extends javax.swing.JFrame {
                 cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, 110, 40));
+        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 510, 110, 40));
 
         ps.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ps.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -284,35 +284,35 @@ public class adduser extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel4.setText("Last name:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 140, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 140, 30));
 
         jLabel16.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel16.setText("Username:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 130, 30));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 130, 30));
 
         jLabel17.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel17.setText("Type:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 210, 40));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 210, 40));
 
         jLabel18.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel18.setText("Email:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 110, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 110, 30));
 
         jLabel19.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel19.setText("First name:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 140, 30));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 140, 30));
 
         jLabel20.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel20.setText("Password:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 130, 30));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 130, 30));
 
         jLabel21.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel21.setText("CONFIRM PASS:");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 180, 40));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 180, 40));
 
         jLabel22.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel22.setText("Contact #:");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 210, 40));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 210, 40));
 
         jPanel5.setBackground(new java.awt.Color(200, 32, 32));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -330,17 +330,17 @@ public class adduser extends javax.swing.JFrame {
                 jLabel11MouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 100, 60));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 90, 60));
 
         jLabel37.setBackground(new java.awt.Color(255, 255, 255));
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hacker-64.png"))); // NOI18N
-        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 70, 100));
+        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, -10, 70, 100));
 
-        jLabel12.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Castellar", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Add member form");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 320, 50));
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 320, 50));
 
         currentuser2.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
         currentuser2.setForeground(new java.awt.Color(255, 255, 255));
@@ -354,11 +354,11 @@ public class adduser extends javax.swing.JFrame {
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1010, 80));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/ekosh (1).jpg"))); // NOI18N
-        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 490, 540));
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 490, 540));
 
         jLabel24.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel24.setText("QUESTION:");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 200, 40));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 210, 50));
 
         ques.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
         ques.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What was your mother's maiden name?", "What city were you born in?", "What is your favorite pet's name?", "What was the name of your first school?\"", "What is your favorite book?", " ", " ", " ", " " }));
@@ -383,19 +383,17 @@ public class adduser extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contactActionPerformed
 
     private void registerrMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerrMouseEntered
         registerr.setBackground(hover);
@@ -606,15 +604,19 @@ public class adduser extends javax.swing.JFrame {
              this.dispose();
     }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void quesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quesActionPerformed
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
        Session sess = Session.getInstance();
         
         currentuser2.setText(""+sess.getUid());
     }//GEN-LAST:event_formWindowActivated
+
+    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contactActionPerformed
+
+    private void quesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quesActionPerformed
 
     /**
      * @param args the command line arguments

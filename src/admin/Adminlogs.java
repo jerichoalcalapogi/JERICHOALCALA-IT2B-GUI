@@ -4,6 +4,7 @@ package admin;
 import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import config.Session;
 import config.dbConnect;
+import internetcafe.Login;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -168,12 +169,12 @@ Color hover = new Color (203,14,14);
 
         currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         currentuser.setForeground(new java.awt.Color(203, 14, 14));
-        jPanel10.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 210, 60));
+        jPanel10.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 210, 60));
 
         jLabel15.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Current user:");
-        jPanel10.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 190, 60));
+        jPanel10.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 190, 60));
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
         jPanel10.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 230, 230));
@@ -201,9 +202,10 @@ Color hover = new Color (203,14,14);
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 630, -1));
 
-        jLabel13.setFont(new java.awt.Font("Gill Sans Ultra Bold", 3, 36)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("TO LOGS");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 310, 60));
+        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 310, 60));
 
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview.png"))); // NOI18N
         jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,8 +217,8 @@ Color hover = new Color (203,14,14);
 
         jLabel14.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("welcome, ");
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 310, 60));
+        jLabel14.setText("welcome ");
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 310, 60));
 
         jPanel8.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 90));
 
@@ -273,6 +275,19 @@ Color hover = new Color (203,14,14);
         
         currentuser.setText(""+sess.getUid());
     
+      
+       if (sess.getUid() == 0) {
+    JOptionPane.showMessageDialog(null, "No account, You must Login First!");
+    Login lff= new Login();
+    lff.setVisible(true);
+    this.dispose();
+
+        
+        
+         
+        
+        
+       }   
         
     }//GEN-LAST:event_formWindowActivated
     

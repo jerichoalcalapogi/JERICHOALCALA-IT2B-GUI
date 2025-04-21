@@ -206,10 +206,8 @@ public class editusers extends javax.swing.JFrame {
         em = new javax.swing.JTextField();
         us2 = new javax.swing.JTextField();
         fn1 = new javax.swing.JTextField();
-        typee = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -217,15 +215,12 @@ public class editusers extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         idisplay = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        currentt = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        userstatus = new javax.swing.JComboBox<>();
-        jLabel23 = new javax.swing.JLabel();
         useriddd = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         delete = new javax.swing.JButton();
         updateee = new javax.swing.JButton();
-        jLabel36 = new javax.swing.JLabel();
         reg2 = new javax.swing.JLabel();
         reg = new javax.swing.JLabel();
         imagesss = new javax.swing.JPanel();
@@ -251,7 +246,7 @@ public class editusers extends javax.swing.JFrame {
                 contactActionPerformed(evt);
             }
         });
-        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 170, 30));
+        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 170, 30));
 
         ln.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ln.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -261,7 +256,7 @@ public class editusers extends javax.swing.JFrame {
                 lnActionPerformed(evt);
             }
         });
-        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 170, 30));
+        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 170, 30));
 
         em.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         em.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -271,7 +266,7 @@ public class editusers extends javax.swing.JFrame {
                 emActionPerformed(evt);
             }
         });
-        jPanel1.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 170, 30));
+        jPanel1.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 170, 30));
 
         us2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         us2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -281,7 +276,7 @@ public class editusers extends javax.swing.JFrame {
                 us2ActionPerformed(evt);
             }
         });
-        jPanel1.add(us2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 250, 170, 30));
+        jPanel1.add(us2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 170, 30));
 
         fn1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         fn1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -291,41 +286,27 @@ public class editusers extends javax.swing.JFrame {
                 fn1ActionPerformed(evt);
             }
         });
-        jPanel1.add(fn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 130, 170, 30));
-
-        typee.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
-        typee.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Member", "Admin", "Owner", " ", " " }));
-        typee.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        typee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                typeeActionPerformed(evt);
-            }
-        });
-        jPanel1.add(typee, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, 170, 30));
+        jPanel1.add(fn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 170, 30));
 
         jLabel4.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel4.setText("Last name:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 140, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 140, 30));
 
         jLabel16.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel16.setText("Username:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 130, 30));
-
-        jLabel17.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
-        jLabel17.setText("USER STATUS:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 210, 40));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 130, 30));
 
         jLabel18.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel18.setText("Email:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 110, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 110, 30));
 
         jLabel19.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel19.setText("First name:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 140, 30));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 140, 30));
 
         jLabel22.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel22.setText("Contact #:");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, 210, 40));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 210, 40));
 
         jPanel5.setBackground(new java.awt.Color(203, 14, 14));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -343,38 +324,24 @@ public class editusers extends javax.swing.JFrame {
                 jLabel37MouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, -20, 80, 120));
+        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, -10, 80, 120));
 
         idisplay.setBackground(new java.awt.Color(203, 14, 14));
         idisplay.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
         idisplay.setText("0");
-        jPanel5.add(idisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -20, 70, 60));
+        jPanel5.add(idisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, -20, 70, 60));
 
-        jLabel14.setFont(new java.awt.Font("Castellar", 1, 10)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("CURRENT USER:");
-        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -20, 310, 60));
+        currentt.setFont(new java.awt.Font("Castellar", 1, 10)); // NOI18N
+        currentt.setForeground(new java.awt.Color(255, 255, 255));
+        currentt.setText("CURRENT USER:");
+        jPanel5.add(currentt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -20, 310, 60));
 
         jLabel15.setFont(new java.awt.Font("Castellar", 1, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("PERSONAL INFORMATION");
-        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 410, 50));
+        jPanel5.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 410, 50));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 720, 80));
-
-        userstatus.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
-        userstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Pending", " ", " ", " " }));
-        userstatus.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        userstatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userstatusActionPerformed(evt);
-            }
-        });
-        jPanel1.add(userstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, 170, 30));
-
-        jLabel23.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
-        jLabel23.setText("Type:");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, 210, 40));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 90));
 
         useriddd.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         useriddd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -385,11 +352,11 @@ public class editusers extends javax.swing.JFrame {
                 useridddActionPerformed(evt);
             }
         });
-        jPanel1.add(useriddd, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, 170, 30));
+        jPanel1.add(useriddd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 170, 30));
 
         jLabel24.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel24.setText("user id:");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 140, 30));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 140, 30));
 
         delete.setBackground(new java.awt.Color(255, 255, 255));
         delete.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
@@ -411,7 +378,7 @@ public class editusers extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        jPanel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 100, 40));
+        jPanel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 100, 40));
 
         updateee.setBackground(new java.awt.Color(255, 255, 255));
         updateee.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
@@ -434,12 +401,7 @@ public class editusers extends javax.swing.JFrame {
                 updateeeActionPerformed(evt);
             }
         });
-        jPanel1.add(updateee, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 450, 100, 40));
-
-        jLabel36.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/resized_image_490x61000.png"))); // NOI18N
-        jPanel1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 490, 570));
+        jPanel1.add(updateee, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 100, 40));
 
         reg2.setBackground(new java.awt.Color(102, 102, 102));
         reg2.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
@@ -449,7 +411,7 @@ public class editusers extends javax.swing.JFrame {
                 reg2MouseClicked(evt);
             }
         });
-        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 230, 50));
+        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 230, 30));
 
         reg.setBackground(new java.awt.Color(102, 102, 102));
         reg.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
@@ -460,12 +422,12 @@ public class editusers extends javax.swing.JFrame {
                 regMouseClicked(evt);
             }
         });
-        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 310, 90));
+        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 310, 50));
 
         imagesss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         imagesss.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 188));
 
-        jPanel1.add(imagesss, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 90, 200, 210));
+        jPanel1.add(imagesss, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 200, 210));
 
         remove.setBackground(new java.awt.Color(255, 255, 255));
         remove.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
@@ -487,7 +449,7 @@ public class editusers extends javax.swing.JFrame {
                 removeActionPerformed(evt);
             }
         });
-        jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 310, 100, 30));
+        jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, 100, 30));
 
         select.setBackground(new java.awt.Color(255, 255, 255));
         select.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
@@ -509,19 +471,17 @@ public class editusers extends javax.swing.JFrame {
                 selectActionPerformed(evt);
             }
         });
-        jPanel1.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 310, 100, 30));
+        jPanel1.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
         );
 
         pack();
@@ -547,14 +507,6 @@ public class editusers extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fn1ActionPerformed
 
-    private void typeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_typeeActionPerformed
-
-    private void userstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userstatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userstatusActionPerformed
-
     private void useridddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useridddActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_useridddActionPerformed
@@ -566,8 +518,7 @@ public class editusers extends javax.swing.JFrame {
         us2.setText("");
       
         contact.setText("");
-        typee.setSelectedIndex(0);
-        userstatus.setSelectedIndex(0);
+      
         fn1.requestFocus();
         
     }//GEN-LAST:event_deleteMouseClicked
@@ -632,10 +583,9 @@ public class editusers extends javax.swing.JFrame {
         
         dbConnect dbc = new dbConnect();
     dbc.updateData("UPDATE tbl_user SET fname='" + fn1.getText() + "', lname='" + ln.getText() + "', "
-            + "email='" + em.getText() + "', username='" + us2.getText() + "', contactnum='" + contact.getText() + "', type='"
-            + typee.getSelectedItem() + "', status='" + userstatus.getSelectedItem() + "', "
-            + "u_image='" + destination + "' "
-            + "WHERE c_id='" + useriddd.getText() + "'");
+        + "email='" + em.getText() + "', username='" + us2.getText() + "', contactnum='" + contact.getText() + "', " // Added a comma here
+        + "u_image='" + destination + "' "
+        + "WHERE c_id='" + useriddd.getText() + "'");
     
 if(destination.isEmpty()){
     File existingFile = new File(oldpath);
@@ -687,8 +637,15 @@ if(destination.isEmpty()){
     }//GEN-LAST:event_regMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-     
-     
+Session sess = Session.getInstance();
+   idisplay.setText(""+sess.getUid());
+       if (sess.getUid() == 0) {
+      
+    JOptionPane.showMessageDialog(null, "No account, You must Login First!");
+    Login lff= new Login();
+    lff.setVisible(true);
+    this.dispose();     
+       }
    
 
     }//GEN-LAST:event_formWindowActivated
@@ -798,6 +755,7 @@ path = "";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField contact;
+    private javax.swing.JLabel currentt;
     private javax.swing.JButton delete;
     public javax.swing.JTextField em;
     public javax.swing.JTextField fn1;
@@ -805,16 +763,12 @@ path = "";
     public javax.swing.JLabel image;
     private javax.swing.JPanel imagesss;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -824,11 +778,9 @@ path = "";
     private javax.swing.JLabel reg2;
     public javax.swing.JButton remove;
     public javax.swing.JButton select;
-    public javax.swing.JComboBox<String> typee;
     public javax.swing.JButton updateee;
     public javax.swing.JTextField us2;
     public javax.swing.JTextField useriddd;
-    public javax.swing.JComboBox<String> userstatus;
     // End of variables declaration//GEN-END:variables
 
     void setVisble(boolean b) {

@@ -294,12 +294,12 @@ public class Registrationn extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Castellar", 1, 31)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("REGISTration FORM");
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 420, 50));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 420, 50));
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hacker-64.png"))); // NOI18N
-        jPanel5.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, -10, 70, 100));
+        jPanel5.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, -10, 70, 100));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 80));
 

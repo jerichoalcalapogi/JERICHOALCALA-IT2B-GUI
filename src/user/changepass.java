@@ -233,7 +233,7 @@ public class changepass extends javax.swing.JFrame {
         ps2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
         jPanel2.add(ps2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 170, 30));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 480, 470));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 480, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -249,10 +249,16 @@ public class changepass extends javax.swing.JFrame {
     }//GEN-LAST:event_usersActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-       Session sess = Session.getInstance();
-         
+      Session sess = Session.getInstance();
+       if (sess.getUid() == 0) {
+    JOptionPane.showMessageDialog(null, "No account, You must Login First!");
+    Login lff= new Login();
+    lff.setVisible(true);
+    this.dispose();
     
         
+    
+       }  
     }//GEN-LAST:event_formWindowActivated
 
     private void memberrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberrMouseClicked

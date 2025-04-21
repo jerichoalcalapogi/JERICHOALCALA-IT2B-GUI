@@ -108,25 +108,7 @@ public class adminuser extends javax.swing.JFrame {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
-    
+
     
 Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (255,255,255);
@@ -265,7 +247,7 @@ Color hover = new Color (203,14,14);
 
         currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         currentuser.setForeground(new java.awt.Color(203, 14, 14));
-        jPanel10.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 210, 60));
+        jPanel10.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 210, 60));
 
         jLabel15.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));

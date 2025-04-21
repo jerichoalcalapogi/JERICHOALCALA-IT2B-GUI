@@ -25,11 +25,17 @@ public class createuser extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
           setLocationRelativeTo(null);
-         Color hover = new Color (200,32,32);
-    Color defaultcolor = new Color (0,0,0);
-
+       
        
     }
+   
+    
+    
+    
+    
+    
+    
+    
     
     
     private void recordTransactionLog(int userId, String event, String description) {
@@ -153,8 +159,8 @@ public class createuser extends javax.swing.JFrame {
   
  
     
-      Color hover = new Color (102,102,102);
-    Color defaultcolor = new Color (204,204,204);
+     Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (255,255,255);
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -468,11 +474,11 @@ public class createuser extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteMouseClicked
 
     private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
-        // TODO add your handling code here:
+       delete.setBackground(hover);
     }//GEN-LAST:event_deleteMouseEntered
 
     private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
-        // TODO add your handling code here:
+       delete.setBackground(defaultcolor);
     }//GEN-LAST:event_deleteMouseExited
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
@@ -484,11 +490,11 @@ public class createuser extends javax.swing.JFrame {
     }//GEN-LAST:event_updateeMouseClicked
 
     private void updateeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseEntered
-        // TODO add your handling code here:
+      updatee.setBackground(hover);
     }//GEN-LAST:event_updateeMouseEntered
 
     private void updateeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseExited
-        // TODO add your handling code here:
+        updatee.setBackground(defaultcolor);
     }//GEN-LAST:event_updateeMouseExited
 
     private void updateeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateeActionPerformed
