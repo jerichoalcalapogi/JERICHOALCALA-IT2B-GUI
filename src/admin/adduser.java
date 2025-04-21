@@ -151,7 +151,7 @@ public class adduser extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         currentuser2 = new javax.swing.JLabel();
-        currentuser = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         ques = new javax.swing.JComboBox<>();
@@ -184,7 +184,8 @@ public class adduser extends javax.swing.JFrame {
         registerr.setBackground(new java.awt.Color(255, 255, 255));
         registerr.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         registerr.setText("ADD");
-        registerr.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        registerr.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registerr.setBorderPainted(false);
         registerr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 registerrMouseEntered(evt);
@@ -198,12 +199,13 @@ public class adduser extends javax.swing.JFrame {
                 registerrActionPerformed(evt);
             }
         });
-        jPanel1.add(registerr, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, 110, 40));
+        jPanel1.add(registerr, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 110, 40));
 
         cancel.setBackground(new java.awt.Color(255, 255, 255));
         cancel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         cancel.setText("CLEAR");
-        cancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        cancel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cancel.setBorderPainted(false);
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancelMouseClicked(evt);
@@ -220,7 +222,7 @@ public class adduser extends javax.swing.JFrame {
                 cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 510, 110, 40));
+        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 510, 110, 40));
 
         ps.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ps.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -330,26 +332,27 @@ public class adduser extends javax.swing.JFrame {
                 jLabel11MouseClicked(evt);
             }
         });
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 90, 60));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 90, 60));
 
         jLabel37.setBackground(new java.awt.Color(255, 255, 255));
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hacker-64.png"))); // NOI18N
         jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, -10, 70, 100));
 
-        jLabel12.setFont(new java.awt.Font("Castellar", 1, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Add member form");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 320, 50));
+        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel12.setFont(new java.awt.Font("Castellar", 1, 10)); // NOI18N
+        jLabel12.setText("Current user:");
+        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 110, 50));
 
-        currentuser2.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
+        currentuser2.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
         currentuser2.setForeground(new java.awt.Color(255, 255, 255));
-        currentuser2.setText("Current user:");
-        jPanel5.add(currentuser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 190, 60));
+        currentuser2.setText("0");
+        jPanel5.add(currentuser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, -10, 50, 50));
 
-        currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
-        currentuser.setForeground(new java.awt.Color(203, 14, 14));
-        jPanel5.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 210, 50));
+        jLabel14.setFont(new java.awt.Font("Castellar", 1, 36)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText(" member form");
+        jPanel5.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 350, 50));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1010, 80));
 
@@ -368,7 +371,7 @@ public class adduser extends javax.swing.JFrame {
                 quesActionPerformed(evt);
             }
         });
-        jPanel1.add(ques, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, 350, 30));
+        jPanel1.add(ques, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 350, 30));
 
         jLabel25.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel25.setText("Answer:");
@@ -377,7 +380,7 @@ public class adduser extends javax.swing.JFrame {
         ans.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ans.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ans.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        jPanel1.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 460, 170, 30));
+        jPanel1.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 460, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -659,13 +662,13 @@ public class adduser extends javax.swing.JFrame {
     private javax.swing.JButton cancel;
     private javax.swing.JPasswordField confirmpass;
     private javax.swing.JTextField contact;
-    private javax.swing.JLabel currentuser;
     private javax.swing.JLabel currentuser2;
     private javax.swing.JTextField em;
     private javax.swing.JTextField fn1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;

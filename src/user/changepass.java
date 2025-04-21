@@ -42,7 +42,6 @@ public class changepass extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         currentuser = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        memberr = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -129,19 +128,10 @@ public class changepass extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(203, 14, 14));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        memberr.setFont(new java.awt.Font("Gill Sans Ultra Bold", 3, 20)); // NOI18N
-        memberr.setText("PASSWORD");
-        memberr.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                memberrMouseClicked(evt);
-            }
-        });
-        jPanel12.add(memberr, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 210, 70));
-
-        jLabel17.setFont(new java.awt.Font("Castellar", 3, 20)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Castellar", 1, 20)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("CHANGE");
-        jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 160, 70));
+        jLabel17.setText("CHANGE PASSWORD FORM");
+        jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 320, 70));
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
@@ -260,10 +250,6 @@ public class changepass extends javax.swing.JFrame {
     
        }  
     }//GEN-LAST:event_formWindowActivated
-
-    private void memberrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberrMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_memberrMouseClicked
 
     private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
                           
@@ -431,7 +417,6 @@ public class changepass extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JLabel memberr;
     public javax.swing.JPasswordField ps1;
     public javax.swing.JPasswordField ps2;
     public javax.swing.JPasswordField ps3;

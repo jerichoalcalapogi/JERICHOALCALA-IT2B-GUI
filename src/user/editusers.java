@@ -352,7 +352,7 @@ public class editusers extends javax.swing.JFrame {
                 useridddActionPerformed(evt);
             }
         });
-        jPanel1.add(useriddd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 170, 30));
+        jPanel1.add(useriddd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 170, 40));
 
         jLabel24.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel24.setText("user id:");

@@ -107,11 +107,13 @@ Color hover = new Color (102,102,102);
         useraccss5 = new javax.swing.JLabel();
         useraccss3 = new javax.swing.JLabel();
         useraccss7 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel32 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -239,10 +241,7 @@ Color hover = new Color (102,102,102);
         useraccss7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel14.add(useraccss7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 130, 60));
 
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel14.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 230, 180));
-
-        getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 200, 430));
+        getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 90, 150, 430));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -253,7 +252,7 @@ Color hover = new Color (102,102,102);
                 jLabel28MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 230, 180));
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 230, 190));
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
@@ -264,11 +263,34 @@ Color hover = new Color (102,102,102);
                 jLabel9MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 120, 30));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 120, 30));
 
         jSeparator1.setForeground(new java.awt.Color(203, 14, 14));
         jSeparator1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 200, 50));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 200, 10));
+
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/image-removebg-preview (1).png"))); // NOI18N
+        jLabel32.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel32MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 160, 130));
+
+        jSeparator2.setForeground(new java.awt.Color(203, 14, 14));
+        jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, 200, 20));
+
+        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel10.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        jLabel10.setText("SUBSCRIPTION");
+        jLabel10.setEnabled(false);
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 170, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 430));
 
@@ -362,6 +384,18 @@ Color hover = new Color (102,102,102);
 }
     }//GEN-LAST:event_jLabel31MouseClicked
 
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseClicked
+          transactionform tss = new  transactionform();
+        tss.setVisible(true);
+        this.dispose();
+    
+
+    }//GEN-LAST:event_jLabel32MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -401,13 +435,14 @@ Color hover = new Color (102,102,102);
     private javax.swing.JLabel accname;
     private javax.swing.JLabel accname1;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -421,6 +456,7 @@ Color hover = new Color (102,102,102);
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel memberr;
     private javax.swing.JLabel useraccss1;
     private javax.swing.JLabel useraccss3;

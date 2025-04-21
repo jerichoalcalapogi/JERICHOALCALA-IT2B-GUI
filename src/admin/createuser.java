@@ -196,6 +196,11 @@ public class createuser extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -366,7 +371,8 @@ public class createuser extends javax.swing.JFrame {
         delete.setBackground(new java.awt.Color(255, 255, 255));
         delete.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         delete.setText("CLEAR");
-        delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        delete.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        delete.setBorderPainted(false);
         delete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteMouseClicked(evt);
@@ -388,7 +394,8 @@ public class createuser extends javax.swing.JFrame {
         updatee.setBackground(new java.awt.Color(255, 255, 255));
         updatee.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         updatee.setText("UPDATE");
-        updatee.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        updatee.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        updatee.setBorderPainted(false);
         updatee.setEnabled(false);
         updatee.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -619,6 +626,17 @@ public class createuser extends javax.swing.JFrame {
         this.dispose();      
     
     }//GEN-LAST:event_jLabel37MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+          Session sess = Session.getInstance();
+    
+       if (sess.getUid() == 0) {
+    JOptionPane.showMessageDialog(null, "No account, You must Login First!");
+    Login lff= new Login();
+    lff.setVisible(true);
+    this.dispose();
+       }
+    }//GEN-LAST:event_formWindowActivated
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

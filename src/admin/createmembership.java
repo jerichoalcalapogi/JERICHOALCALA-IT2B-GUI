@@ -20,6 +20,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -38,9 +39,7 @@ public class createmembership extends javax.swing.JFrame {
     } 
     boolean checkadd=true;
     
-    
-    
-    
+   
     
  private void recordTransactionLog(int userId, String event, String description) {
     try {
@@ -132,6 +131,8 @@ public class createmembership extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         memtable = new javax.swing.JTable();
+        updatee = new javax.swing.JButton();
+        deletee = new javax.swing.JButton();
 
         jLabel23.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel23.setText("Answer:");
@@ -149,7 +150,8 @@ public class createmembership extends javax.swing.JFrame {
         add.setBackground(new java.awt.Color(255, 255, 255));
         add.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         add.setText("ADD");
-        add.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        add.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        add.setBorderPainted(false);
         add.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addMouseClicked(evt);
@@ -171,7 +173,8 @@ public class createmembership extends javax.swing.JFrame {
         cancel.setBackground(new java.awt.Color(255, 255, 255));
         cancel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         cancel.setText("CLEAR");
-        cancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        cancel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cancel.setBorderPainted(false);
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancelMouseClicked(evt);
@@ -188,7 +191,7 @@ public class createmembership extends javax.swing.JFrame {
                 cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 110, 40));
+        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 110, 40));
 
         mprice.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         mprice.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -198,7 +201,7 @@ public class createmembership extends javax.swing.JFrame {
                 mpriceActionPerformed(evt);
             }
         });
-        jPanel1.add(mprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 290, 170, 30));
+        jPanel1.add(mprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 170, 30));
 
         mid.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         mid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -209,29 +212,29 @@ public class createmembership extends javax.swing.JFrame {
                 midActionPerformed(evt);
             }
         });
-        jPanel1.add(mid, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 170, 30));
+        jPanel1.add(mid, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, 170, 30));
 
         mtype.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
-        mtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "VIP1", "VIP2", "VIP3", " ", " " }));
+        mtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Premium", "Elite", "VIP1", "VIP2", "VIP3", " ", " ", " ", " " }));
         mtype.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
         mtype.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mtypeActionPerformed(evt);
             }
         });
-        jPanel1.add(mtype, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 240, 170, 30));
+        jPanel1.add(mtype, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 170, 30));
 
         jLabel17.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel17.setText("STATUS:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 210, 40));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 210, 40));
 
         jLabel18.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel18.setText("PRICE:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 110, 30));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 110, 30));
 
         jLabel19.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel19.setText("MEmbership id:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 190, 30));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 190, 30));
 
         jPanel5.setBackground(new java.awt.Color(200, 32, 32));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -280,11 +283,11 @@ public class createmembership extends javax.swing.JFrame {
                 mstatusActionPerformed(evt);
             }
         });
-        jPanel1.add(mstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, 170, 30));
+        jPanel1.add(mstatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, 170, 30));
 
         jLabel20.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel20.setText("Type:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 210, 40));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 210, 40));
 
         memtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -302,6 +305,52 @@ public class createmembership extends javax.swing.JFrame {
         jScrollPane2.setViewportView(memtable);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 350, 380));
+
+        updatee.setBackground(new java.awt.Color(255, 255, 255));
+        updatee.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        updatee.setText("UPDATE");
+        updatee.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        updatee.setBorderPainted(false);
+        updatee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                updateeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                updateeMouseExited(evt);
+            }
+        });
+        updatee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(updatee, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 110, 40));
+
+        deletee.setBackground(new java.awt.Color(255, 255, 255));
+        deletee.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        deletee.setText("DELETE");
+        deletee.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        deletee.setBorderPainted(false);
+        deletee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteeMouseExited(evt);
+            }
+        });
+        deletee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(deletee, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -328,7 +377,7 @@ public class createmembership extends javax.swing.JFrame {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
     
     
-      
+   
     }//GEN-LAST:event_addActionPerformed
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
@@ -338,8 +387,7 @@ public class createmembership extends javax.swing.JFrame {
         mprice.setText("");
         mstatus.setSelectedItem(0);
          add.setEnabled(true);
-       
-
+  
     }//GEN-LAST:event_cancelMouseClicked
 
     private void cancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseEntered
@@ -375,8 +423,24 @@ public class createmembership extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-       Session sess = Session.getInstance();
+          Session sess = Session.getInstance();
         
+        currentuser.setText(""+sess.getUid());
+    
+      
+       if (sess.getUid() == 0) {
+    JOptionPane.showMessageDialog(null, "No account, You must Login First!");
+    Login lff= new Login();
+    lff.setVisible(true);
+    this.dispose();
+       
+       
+       
+       
+       
+       }
+       
+       
         currentuser2.setText(""+sess.getUid());
     }//GEN-LAST:event_formWindowActivated
 
@@ -434,13 +498,109 @@ dbc.insertData("INSERT INTO tbl_membership (m_type, m_price, m_status, m_image) 
 } else {
     JOptionPane.showMessageDialog( null,"Clear the field first");
 }
-        
-        
+   
+    }//GEN-LAST:event_addMouseClicked
+
+    private void updateeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseClicked
+    
+        if(mid.getText().isEmpty()){
+        JOptionPane.showMessageDialog(null, "Please select an item first");
+    }else{
+              if ( mprice.getText().isEmpty() ) {
+        JOptionPane.showMessageDialog(null, "All fields are required");
+        return;
+        }
+       dbConnect dbc = new dbConnect();
+      
+dbc.updateData("UPDATE tbl_membership SET m_type = '"+mtype.getSelectedItem()+"', m_price = '"+mprice.getText()+"',"
+        + " m_status = '"+mstatus.getSelectedItem()+"' WHERE m_id = '"+mid.getText()+"'");
+JOptionPane.showMessageDialog(null, "Updated Successfully!");
+        displayData();
+        checkadd=true;
+         mprice.setText("");
+       
+        } 
+      
+    }//GEN-LAST:event_updateeMouseClicked
+
+    private void updateeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateeMouseEntered
+
+    private void updateeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateeMouseExited
+
+    private void updateeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateeActionPerformed
+
+    private void deleteeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteeMouseClicked
+
+    private void deleteeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteeMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteeMouseEntered
+
+    private void deleteeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteeMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteeMouseExited
+
+    private void deleteeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteeActionPerformed
+       
+        int rowIndex = memtable.getSelectedRow();
+if (rowIndex < 0) {
+    JOptionPane.showMessageDialog(null, "Please select an item in the table!");
+    return;
+}
+
+int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+if (confirm == JOptionPane.YES_OPTION) {
+    dbConnect dbc = new dbConnect();
+    TableModel tbl = memtable.getModel();
+   
+    String recordIdToDelete = tbl.getValueAt(rowIndex, 0).toString(); 
+
+    try {
+        String deleteQuery = "DELETE FROM tbl_membership WHERE m_id = ?"; 
+        PreparedStatement pstmt = dbc.getConnection().prepareStatement(deleteQuery);
+        pstmt.setString(1, recordIdToDelete);
+        int affectedRows = pstmt.executeUpdate();
+
+        if (affectedRows > 0) {
+           
+            DefaultTableModel model = (DefaultTableModel) memtable.getModel();
+            model.removeRow(rowIndex);
+
+            
+            
+             Session sess = Session.getInstance();
+                int currentUserId = sess.getUid();
+  
+            String event = "Record Deleted";
+            String description = "Deleted record with m_id: " + recordIdToDelete;
+           
+
+            JOptionPane.showMessageDialog(null, "Record deleted successfully.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Failed to delete record.");
+        }
+
+        if (pstmt != null) pstmt.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error deleting record: " + ex.getMessage());
+        ex.printStackTrace(); 
+    } finally {
+        dbc.closeConnection();
        
         
-         
-        
-    }//GEN-LAST:event_addMouseClicked
+    }    
+    
+}
+       
+    }//GEN-LAST:event_deleteeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,6 +645,7 @@ dbc.insertData("INSERT INTO tbl_membership (m_type, m_price, m_status, m_image) 
     private javax.swing.JButton cancel;
     private javax.swing.JLabel currentuser;
     private javax.swing.JLabel currentuser2;
+    private javax.swing.JButton deletee;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -502,5 +663,6 @@ dbc.insertData("INSERT INTO tbl_membership (m_type, m_price, m_status, m_image) 
     private javax.swing.JTextField mprice;
     private javax.swing.JComboBox<String> mstatus;
     private javax.swing.JComboBox<String> mtype;
+    private javax.swing.JButton updatee;
     // End of variables declaration//GEN-END:variables
 }
