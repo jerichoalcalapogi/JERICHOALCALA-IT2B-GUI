@@ -69,11 +69,11 @@ public class Adminlogs extends javax.swing.JFrame {
         ResultSet rs = dbc.getData(sql);
 
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("log_id");
-        model.addColumn("c_id");
-        model.addColumn("log_event");
-        model.addColumn("log_description");
-        model.addColumn("log_timestamp");
+        model.addColumn("Log ID");
+        model.addColumn("User ID");
+        model.addColumn("Log Event");
+        model.addColumn("Description");
+        model.addColumn("Timestamp");
 
         while (rs.next()) {
             model.addRow(new Object[]{
@@ -118,6 +118,9 @@ Color hover = new Color (203,14,14);
         currentuser = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        refresh1 = new javax.swing.JPanel();
+        jLabel97 = new javax.swing.JLabel();
+        jLabel98 = new javax.swing.JLabel();
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
 
@@ -148,7 +151,7 @@ Color hover = new Color (203,14,14);
         ));
         jScrollPane1.setViewportView(tablelogs);
 
-        jPanel8.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 620, 350));
+        jPanel8.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 630, 350));
 
         jPanel5.setBackground(new java.awt.Color(203, 14, 14));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -216,6 +219,43 @@ Color hover = new Color (203,14,14);
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
         jPanel8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 240, 220));
 
+        refresh1.setBackground(new java.awt.Color(204, 204, 204));
+        refresh1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        refresh1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refresh1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refresh1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refresh1MouseExited(evt);
+            }
+        });
+        refresh1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel97.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel97.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel97.setText("log");
+        jLabel97.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel97MouseClicked(evt);
+            }
+        });
+        refresh1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 60, -1));
+
+        jLabel98.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel98.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel98.setText("TRANSACTION");
+        jLabel98.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel98MouseClicked(evt);
+            }
+        });
+        refresh1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 180, -1));
+
+        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 170, 60));
+
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 560));
@@ -264,6 +304,31 @@ Color hover = new Color (203,14,14);
         
         
     }//GEN-LAST:event_refreshMouseClicked
+
+    private void refresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh1MouseClicked
+
+    private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
+        refresh1.setBackground(hover);
+    }//GEN-LAST:event_refresh1MouseEntered
+
+    private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
+        refresh1.setBackground(defaultcolor);
+    }//GEN-LAST:event_refresh1MouseExited
+
+    private void jLabel98MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel98MouseClicked
+     transactionlogs ts= new transactionlogs();
+    ts.setVisible(true);
+    this.dispose();
+
+    }//GEN-LAST:event_jLabel98MouseClicked
+
+    private void jLabel97MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel97MouseClicked
+      transactionlogs ts= new transactionlogs();
+    ts.setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_jLabel97MouseClicked
     
 
     public static void main(String args[]) {
@@ -286,11 +351,14 @@ Color hover = new Color (203,14,14);
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel refresh;
+    private javax.swing.JPanel refresh1;
     private javax.swing.JTable tablelogs;
     // End of variables declaration//GEN-END:variables
 }

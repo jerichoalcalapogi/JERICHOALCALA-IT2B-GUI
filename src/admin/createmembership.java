@@ -96,7 +96,7 @@ public class createmembership extends javax.swing.JFrame {
   public void displayData(){
     try{
         dbConnect dbc = new dbConnect();
-        ResultSet rs = dbc.getData("SELECT  m_id,m_type,m_price,m_status FROM tbl_membership");
+        ResultSet rs = dbc.getData("SELECT  m_id,m_type,price_per_hour,m_status FROM tbl_membership");
        memtable.setModel(DbUtils.resultSetToTableModel(rs));
          rs.close();
     }catch(SQLException ex){
@@ -214,8 +214,8 @@ public class createmembership extends javax.swing.JFrame {
         });
         jPanel1.add(mid, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, 170, 30));
 
-        mtype.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
-        mtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Premium", "Elite", "VIP1", "VIP2", "VIP3", " ", " ", " ", " " }));
+        mtype.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
+        mtype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "REGULAR", "PREMIUM", "ELITE", "SILVER", "GOLD", "VIP1", "VIP2", "VIP3", " ", " ", " ", " " }));
         mtype.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
         mtype.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,8 +275,8 @@ public class createmembership extends javax.swing.JFrame {
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, 0, 950, 80));
 
-        mstatus.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
-        mstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Unavailable", " ", " ", " " }));
+        mstatus.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
+        mstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACTIVE", "SUSPENDED", " ", " ", " " }));
         mstatus.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
         mstatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,7 +304,7 @@ public class createmembership extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(memtable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 350, 380));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 380, 380));
 
         updatee.setBackground(new java.awt.Color(255, 255, 255));
         updatee.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
@@ -463,7 +463,7 @@ public class createmembership extends javax.swing.JFrame {
         if (rs.next()) {
             mid.setText("" + rs.getInt("m_id"));
            mtype.setSelectedItem("" + rs.getString("m_type"));
-            mprice.setText("" + rs.getString("m_price"));
+            mprice.setText("" + rs.getString("price_per_hour"));
             mstatus.setSelectedItem("" + rs.getString("m_status"));
             add.setEnabled(false);
             checkadd=false;
@@ -483,7 +483,7 @@ public class createmembership extends javax.swing.JFrame {
         return;
       }else{
         dbConnect dbc = new dbConnect();
-dbc.insertData("INSERT INTO tbl_membership (m_type, m_price, m_status, m_image) VALUES (?, ?, ?, ?)",
+dbc.insertData("INSERT INTO tbl_membership (m_type, price_per_hour, m_status, m_image) VALUES (?, ?, ?, ?)",
         mtype.getSelectedItem(), mprice.getText(), mstatus.getSelectedItem(), null);
           JOptionPane.showMessageDialog(null, "Successfully Added");  
              displayData();
@@ -512,7 +512,7 @@ dbc.insertData("INSERT INTO tbl_membership (m_type, m_price, m_status, m_image) 
         }
        dbConnect dbc = new dbConnect();
       
-dbc.updateData("UPDATE tbl_membership SET m_type = '"+mtype.getSelectedItem()+"', m_price = '"+mprice.getText()+"',"
+dbc.updateData("UPDATE tbl_membership SET m_type = '"+mtype.getSelectedItem()+"', price_per_hour = '"+mprice.getText()+"',"
         + " m_status = '"+mstatus.getSelectedItem()+"' WHERE m_id = '"+mid.getText()+"'");
 JOptionPane.showMessageDialog(null, "Updated Successfully!");
         displayData();
@@ -524,11 +524,11 @@ JOptionPane.showMessageDialog(null, "Updated Successfully!");
     }//GEN-LAST:event_updateeMouseClicked
 
     private void updateeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseEntered
-        // TODO add your handling code here:
+     updatee.setBackground(hover);
     }//GEN-LAST:event_updateeMouseEntered
 
     private void updateeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseExited
-        // TODO add your handling code here:
+        updatee.setBackground(defaultcolor);
     }//GEN-LAST:event_updateeMouseExited
 
     private void updateeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateeActionPerformed
@@ -540,11 +540,11 @@ JOptionPane.showMessageDialog(null, "Updated Successfully!");
     }//GEN-LAST:event_deleteeMouseClicked
 
     private void deleteeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteeMouseEntered
-        // TODO add your handling code here:
+       deletee.setBackground(hover);
     }//GEN-LAST:event_deleteeMouseEntered
 
     private void deleteeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteeMouseExited
-        // TODO add your handling code here:
+         deletee.setBackground(defaultcolor);
     }//GEN-LAST:event_deleteeMouseExited
 
     private void deleteeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteeActionPerformed

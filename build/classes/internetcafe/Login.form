@@ -272,7 +272,7 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Yu Gothic UI" size="18" style="1"/>
+              <Font name="Yu Gothic UI" size="18" style="3"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="20" red="c8" type="rgb"/>
@@ -284,7 +284,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="600" y="390" width="340" height="70"/>
+              <AbsoluteConstraints x="600" y="380" width="340" height="90"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -449,7 +449,7 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Yu Gothic Light" size="17" style="1"/>
+              <Font name="Yu Gothic Light" size="18" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Not Registered?"/>
           </Properties>
@@ -458,7 +458,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="460" y="400" width="150" height="50"/>
+              <AbsoluteConstraints x="470" y="400" width="150" height="50"/>
             </Constraint>
           </Constraints>
         </Component>

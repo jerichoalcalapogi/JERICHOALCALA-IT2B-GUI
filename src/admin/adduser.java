@@ -119,17 +119,18 @@ public class adduser extends javax.swing.JFrame {
              }
     }
    
-    Color hover = new Color (203,14,14);
-    Color defaultcolor = new Color (255,255,255);
+      
+  Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (200,32,32);
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel23 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        clear = new javax.swing.JPanel();
+        loggin1 = new javax.swing.JLabel();
         contact = new javax.swing.JTextField();
-        registerr = new javax.swing.JButton();
-        cancel = new javax.swing.JButton();
         ps = new javax.swing.JPasswordField();
         ln = new javax.swing.JTextField();
         em = new javax.swing.JTextField();
@@ -157,6 +158,8 @@ public class adduser extends javax.swing.JFrame {
         ques = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
         ans = new javax.swing.JPasswordField();
+        registerr = new javax.swing.JPanel();
+        loggin = new javax.swing.JLabel();
 
         jLabel23.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel23.setText("Answer:");
@@ -171,6 +174,31 @@ public class adduser extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        clear.setBackground(new java.awt.Color(200, 32, 32));
+        clear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                clearMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                clearMouseExited(evt);
+            }
+        });
+        clear.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin1.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        loggin1.setText("CLEAR");
+        loggin1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin1MouseClicked(evt);
+            }
+        });
+        clear.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 20));
+
+        jPanel1.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 510, 120, 40));
+
         contact.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         contact.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         contact.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
@@ -179,55 +207,12 @@ public class adduser extends javax.swing.JFrame {
                 contactActionPerformed(evt);
             }
         });
-        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, 170, 30));
-
-        registerr.setBackground(new java.awt.Color(255, 255, 255));
-        registerr.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        registerr.setText("ADD");
-        registerr.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        registerr.setBorderPainted(false);
-        registerr.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                registerrMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                registerrMouseExited(evt);
-            }
-        });
-        registerr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerrActionPerformed(evt);
-            }
-        });
-        jPanel1.add(registerr, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 110, 40));
-
-        cancel.setBackground(new java.awt.Color(255, 255, 255));
-        cancel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        cancel.setText("CLEAR");
-        cancel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        cancel.setBorderPainted(false);
-        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancelMouseExited(evt);
-            }
-        });
-        cancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 510, 110, 40));
+        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, 200, 30));
 
         ps.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ps.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ps.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        jPanel1.add(ps, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 260, 170, 30));
+        jPanel1.add(ps, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 260, 200, 30));
 
         ln.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ln.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -237,7 +222,7 @@ public class adduser extends javax.swing.JFrame {
                 lnActionPerformed(evt);
             }
         });
-        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 140, 170, 30));
+        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 140, 200, 30));
 
         em.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         em.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -247,7 +232,7 @@ public class adduser extends javax.swing.JFrame {
                 emActionPerformed(evt);
             }
         });
-        jPanel1.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 170, 30));
+        jPanel1.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 200, 30));
 
         us.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         us.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -257,7 +242,7 @@ public class adduser extends javax.swing.JFrame {
                 usActionPerformed(evt);
             }
         });
-        jPanel1.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 170, 30));
+        jPanel1.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 200, 30));
 
         fn1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         fn1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -267,12 +252,12 @@ public class adduser extends javax.swing.JFrame {
                 fn1ActionPerformed(evt);
             }
         });
-        jPanel1.add(fn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 170, 30));
+        jPanel1.add(fn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 200, 30));
 
         confirmpass.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         confirmpass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         confirmpass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        jPanel1.add(confirmpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 170, 30));
+        jPanel1.add(confirmpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 200, 30));
 
         type.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Member", "Admin", "Owner", " ", " " }));
@@ -282,7 +267,7 @@ public class adduser extends javax.swing.JFrame {
                 typeActionPerformed(evt);
             }
         });
-        jPanel1.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 380, 170, 30));
+        jPanel1.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 380, 200, 30));
 
         jLabel4.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel4.setText("Last name:");
@@ -380,7 +365,35 @@ public class adduser extends javax.swing.JFrame {
         ans.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ans.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ans.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        jPanel1.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 460, 170, 30));
+        jPanel1.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 460, 200, 30));
+
+        registerr.setBackground(new java.awt.Color(200, 32, 32));
+        registerr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registerrMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                registerrMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                registerrMouseExited(evt);
+            }
+        });
+        registerr.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        loggin.setText("ADD");
+        loggin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logginMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logginMouseEntered(evt);
+            }
+        });
+        registerr.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 100, 20));
+
+        jPanel1.add(registerr, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 120, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -398,17 +411,55 @@ public class adduser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registerrMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerrMouseEntered
-        registerr.setBackground(hover);
-    }//GEN-LAST:event_registerrMouseEntered
+    private void lnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lnActionPerformed
 
-    private void registerrMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerrMouseExited
-        registerr.setBackground(defaultcolor);
-    }//GEN-LAST:event_registerrMouseExited
+    private void emActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emActionPerformed
 
-    private void registerrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerrActionPerformed
+    private void usActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usActionPerformed
 
-         Session sess = Session.getInstance();
+    private void fn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fn1ActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+     
+            adminuser ads = new adminuser();
+            ads.setVisible(true);
+             this.dispose();
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+       Session sess = Session.getInstance();
+        
+        currentuser2.setText(""+sess.getUid());
+    }//GEN-LAST:event_formWindowActivated
+
+    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contactActionPerformed
+
+    private void quesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quesActionPerformed
+
+    private void logginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseClicked
+
+      
+        
+    }//GEN-LAST:event_logginMouseClicked
+
+    private void registerrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerrMouseClicked
+    Session sess = Session.getInstance();
     dbConnect connector = new dbConnect();
     int LID = 0;
 
@@ -548,13 +599,20 @@ public class adduser extends javax.swing.JFrame {
 
 
   
-            
         }
-      
-    }//GEN-LAST:event_registerrActionPerformed
-}
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        fn1.setText("");
+        }
+    }//GEN-LAST:event_registerrMouseClicked
+
+    private void registerrMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerrMouseEntered
+        registerr.setBackground(hover);
+    }//GEN-LAST:event_registerrMouseEntered
+
+    private void registerrMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerrMouseExited
+        registerr.setBackground(defaultcolor);
+    }//GEN-LAST:event_registerrMouseExited
+
+    private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked
+       fn1.setText("");
         ln.setText("");
         em.setText("");
         us.setText("");
@@ -562,64 +620,26 @@ public class adduser extends javax.swing.JFrame {
         confirmpass.setText("");
         contact.setText("");
         type.setSelectedIndex(0);
+      
         fn1.requestFocus();
-       
+         ans.setText("");
+    }//GEN-LAST:event_loggin1MouseClicked
 
-    }//GEN-LAST:event_cancelMouseClicked
-
-    private void cancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseEntered
-        cancel.setBackground(hover);
-
-    }//GEN-LAST:event_cancelMouseEntered
-
-    private void cancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseExited
-        cancel.setBackground(defaultcolor);
-    }//GEN-LAST:event_cancelMouseExited
-
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-
-    }//GEN-LAST:event_cancelActionPerformed
-
-    private void lnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnActionPerformed
+    private void clearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lnActionPerformed
+    }//GEN-LAST:event_clearMouseClicked
 
-    private void emActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emActionPerformed
+    private void clearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseEntered
+       clear.setBackground(hover);
+    }//GEN-LAST:event_clearMouseEntered
 
-    private void usActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usActionPerformed
+    private void clearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseExited
+     clear.setBackground(defaultcolor);
+    }//GEN-LAST:event_clearMouseExited
 
-    private void fn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fn1ActionPerformed
-
-    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_typeActionPerformed
-
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-     
-            adminuser ads = new adminuser();
-            ads.setVisible(true);
-             this.dispose();
-    }//GEN-LAST:event_jLabel11MouseClicked
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-       Session sess = Session.getInstance();
-        
-        currentuser2.setText(""+sess.getUid());
-    }//GEN-LAST:event_formWindowActivated
-
-    private void contactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contactActionPerformed
-
-    private void quesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quesActionPerformed
+    private void logginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseEntered
+    
+    }//GEN-LAST:event_logginMouseEntered
 
     /**
      * @param args the command line arguments
@@ -648,6 +668,8 @@ public class adduser extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -659,7 +681,7 @@ public class adduser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField ans;
-    private javax.swing.JButton cancel;
+    private javax.swing.JPanel clear;
     private javax.swing.JPasswordField confirmpass;
     private javax.swing.JTextField contact;
     private javax.swing.JLabel currentuser2;
@@ -685,9 +707,11 @@ public class adduser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField ln;
+    private javax.swing.JLabel loggin;
+    private javax.swing.JLabel loggin1;
     private javax.swing.JPasswordField ps;
     private javax.swing.JComboBox<String> ques;
-    private javax.swing.JButton registerr;
+    private javax.swing.JPanel registerr;
     private javax.swing.JComboBox<String> type;
     private javax.swing.JTextField us;
     // End of variables declaration//GEN-END:variables

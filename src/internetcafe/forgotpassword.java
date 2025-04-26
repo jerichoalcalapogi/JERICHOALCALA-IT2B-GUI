@@ -190,12 +190,12 @@ public class forgotpassword extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Castellar", 1, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("FORGOT PASSWORD");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 460, 60));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 460, 60));
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hacker-64.png"))); // NOI18N
-        jPanel2.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 70, 100));
+        jPanel2.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 70, 100));
 
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview.png"))); // NOI18N
         jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {

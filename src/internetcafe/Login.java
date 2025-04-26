@@ -242,7 +242,7 @@ private static void logLogin(int userId, dbConnect connector) {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 140, -1));
 
         reg.setBackground(new java.awt.Color(102, 102, 102));
-        reg.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        reg.setFont(new java.awt.Font("Yu Gothic UI", 3, 18)); // NOI18N
         reg.setForeground(new java.awt.Color(200, 32, 32));
         reg.setText("Click here to register!");
         reg.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -250,7 +250,7 @@ private static void logLogin(int userId, dbConnect connector) {
                 regMouseClicked(evt);
             }
         });
-        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 340, 70));
+        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 340, 90));
 
         jPanel2.setBackground(new java.awt.Color(200, 32, 32));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -304,14 +304,14 @@ private static void logLogin(int userId, dbConnect connector) {
         jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 110, 180));
 
         reg3.setBackground(new java.awt.Color(102, 102, 102));
-        reg3.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
+        reg3.setFont(new java.awt.Font("Yu Gothic Light", 2, 18)); // NOI18N
         reg3.setText("Not Registered?");
         reg3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 reg3MouseClicked(evt);
             }
         });
-        jPanel1.add(reg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 150, 50));
+        jPanel1.add(reg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, 150, 50));
 
         reg4.setBackground(new java.awt.Color(102, 102, 102));
         reg4.setFont(new java.awt.Font("Yu Gothic Light", 2, 16)); // NOI18N

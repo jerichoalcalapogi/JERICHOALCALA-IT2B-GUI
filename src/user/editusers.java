@@ -35,8 +35,7 @@ public class editusers extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
           setLocationRelativeTo(null);
-         Color hover = new Color (200,32,32);
-    Color defaultcolor = new Color (0,0,0);
+         
     
    
        
@@ -194,13 +193,15 @@ public class editusers extends javax.swing.JFrame {
   
  
     
-      Color hover = new Color (102,102,102);
-    Color defaultcolor = new Color (204,204,204);
+     Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (200,32,32);
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        updateee = new javax.swing.JPanel();
+        loggin1 = new javax.swing.JLabel();
         contact = new javax.swing.JTextField();
         ln = new javax.swing.JTextField();
         em = new javax.swing.JTextField();
@@ -219,14 +220,14 @@ public class editusers extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         useriddd = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        delete = new javax.swing.JButton();
-        updateee = new javax.swing.JButton();
         reg2 = new javax.swing.JLabel();
         reg = new javax.swing.JLabel();
         imagesss = new javax.swing.JPanel();
         image = new javax.swing.JLabel();
         remove = new javax.swing.JButton();
         select = new javax.swing.JButton();
+        delete = new javax.swing.JPanel();
+        loggin2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -237,6 +238,32 @@ public class editusers extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        updateee.setBackground(new java.awt.Color(200, 32, 32));
+        updateee.setEnabled(false);
+        updateee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateeeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                updateeeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                updateeeMouseExited(evt);
+            }
+        });
+        updateee.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin1.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        loggin1.setText("UPDATE");
+        loggin1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin1MouseClicked(evt);
+            }
+        });
+        updateee.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 20));
+
+        jPanel1.add(updateee, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 130, 40));
 
         contact.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         contact.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -358,63 +385,18 @@ public class editusers extends javax.swing.JFrame {
         jLabel24.setText("user id:");
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 140, 30));
 
-        delete.setBackground(new java.awt.Color(255, 255, 255));
-        delete.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        delete.setText("CLEAR");
-        delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        delete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                deleteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                deleteMouseExited(evt);
-            }
-        });
-        delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 100, 40));
-
-        updateee.setBackground(new java.awt.Color(255, 255, 255));
-        updateee.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        updateee.setText("UPDATE");
-        updateee.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        updateee.setEnabled(false);
-        updateee.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                updateeeMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                updateeeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                updateeeMouseExited(evt);
-            }
-        });
-        updateee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateeeActionPerformed(evt);
-            }
-        });
-        jPanel1.add(updateee, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 100, 40));
-
         reg2.setBackground(new java.awt.Color(102, 102, 102));
-        reg2.setFont(new java.awt.Font("Yu Gothic Light", 1, 17)); // NOI18N
+        reg2.setFont(new java.awt.Font("Yu Gothic Light", 2, 18)); // NOI18N
         reg2.setText("Want to change password?");
         reg2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 reg2MouseClicked(evt);
             }
         });
-        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 230, 30));
+        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 210, 30));
 
         reg.setBackground(new java.awt.Color(102, 102, 102));
-        reg.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        reg.setFont(new java.awt.Font("Yu Gothic UI", 2, 18)); // NOI18N
         reg.setForeground(new java.awt.Color(200, 32, 32));
         reg.setText("Click here");
         reg.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -422,7 +404,7 @@ public class editusers extends javax.swing.JFrame {
                 regMouseClicked(evt);
             }
         });
-        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 310, 50));
+        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 120, 50));
 
         imagesss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         imagesss.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 188));
@@ -473,6 +455,32 @@ public class editusers extends javax.swing.JFrame {
         });
         jPanel1.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 100, 30));
 
+        delete.setBackground(new java.awt.Color(200, 32, 32));
+        delete.setEnabled(false);
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteMouseExited(evt);
+            }
+        });
+        delete.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin2.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        loggin2.setText("CLEAR");
+        loggin2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin2MouseClicked(evt);
+            }
+        });
+        delete.add(loggin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 20));
+
+        jPanel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 130, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -481,7 +489,7 @@ public class editusers extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
 
         pack();
@@ -510,115 +518,6 @@ public class editusers extends javax.swing.JFrame {
     private void useridddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useridddActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_useridddActionPerformed
-
-    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
-        fn1.setText("");
-        ln.setText("");
-        em.setText("");
-        us2.setText("");
-      
-        contact.setText("");
-      
-        fn1.requestFocus();
-        
-    }//GEN-LAST:event_deleteMouseClicked
-
-    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteMouseEntered
-
-    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteMouseExited
-
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteActionPerformed
-
-    private void updateeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeeMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateeeMouseClicked
-
-    private void updateeeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeeMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateeeMouseEntered
-
-    private void updateeeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeeMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateeeMouseExited
-
-    private void updateeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateeeActionPerformed
-     if (fn1.getText().isEmpty()
-            || ln.getText().isEmpty()
-            || em.getText().isEmpty()
-            || us2.getText().isEmpty()
-           
-            || contact.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "All fields are required");
-            return;
-        }
-  
-        if (!fn1.getText().matches("[a-zA-Z]+") || !ln.getText().matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(this, "First and Last names should contain only letters.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
-            fn1.setText("");
-            ln.setText("");
-            return;
-        }
-        if(UpdateCheck()){
-
-            System.out.println("Duplicate Exists");
-            return;
-
-        }
-        
-        
-        
-          String contactNumber = contact.getText();
-        if (!contactNumber.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Contact number must contain only numbers.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
-            contact.setText("");
-            return;
-        }
-
-        
-        dbConnect dbc = new dbConnect();
-    dbc.updateData("UPDATE tbl_user SET fname='" + fn1.getText() + "', lname='" + ln.getText() + "', "
-        + "email='" + em.getText() + "', username='" + us2.getText() + "', contactnum='" + contact.getText() + "', " // Added a comma here
-        + "u_image='" + destination + "' "
-        + "WHERE c_id='" + useriddd.getText() + "'");
-    
-if(destination.isEmpty()){
-    File existingFile = new File(oldpath);
-    if(existingFile.exists()){
-        existingFile.delete();
-    }
-}else{
-    if(!(oldpath.equals(path))){
-        imageUpdater(oldpath, path);
-    }
-}
-  
-    if (selectedFile != null) {
-        try {
-            Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
-            JOptionPane.showMessageDialog(null, "Updated Successfully!");
-
-            userdashboard ads = new userdashboard();
-            ads.setVisible(true);
-            this.dispose();
-        } catch (IOException ex) {
-            System.out.println("Insert Image Error: " + ex);
-            JOptionPane.showMessageDialog(null, "Error updating image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } else {
-        JOptionPane.showMessageDialog(null, "Updated Successfully!");
-        userdashboard ads = new userdashboard();
-        ads.setVisible(true);
-        this.dispose();
-    }
-
-       
-    }//GEN-LAST:event_updateeeActionPerformed
 
     private void jLabel37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseClicked
  userdashboard userss = new userdashboard();
@@ -717,6 +616,106 @@ path = "";
   
         
     }//GEN-LAST:event_selectActionPerformed
+
+    private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked
+      if (fn1.getText().isEmpty()
+            || ln.getText().isEmpty()
+            || em.getText().isEmpty()
+            || us2.getText().isEmpty()
+           
+            || contact.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields are required");
+            return;
+        }
+  
+        if (!fn1.getText().matches("[a-zA-Z]+") || !ln.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "First and Last names should contain only letters.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+            fn1.setText("");
+            ln.setText("");
+            return;
+        }
+        if(UpdateCheck()){
+
+            System.out.println("Duplicate Exists");
+            return;
+
+        }
+        
+        
+        
+          String contactNumber = contact.getText();
+        if (!contactNumber.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Contact number must contain only numbers.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+            contact.setText("");
+            return;
+        }
+
+        
+        dbConnect dbc = new dbConnect();
+    dbc.updateData("UPDATE tbl_user SET fname='" + fn1.getText() + "', lname='" + ln.getText() + "', "
+        + "email='" + em.getText() + "', username='" + us2.getText() + "', contactnum='" + contact.getText() + "', " // Added a comma here
+        + "u_image='" + destination + "' "
+        + "WHERE c_id='" + useriddd.getText() + "'");
+    
+if(destination.isEmpty()){
+    File existingFile = new File(oldpath);
+    if(existingFile.exists()){
+        existingFile.delete();
+    }
+}else{
+    if(!(oldpath.equals(path))){
+        imageUpdater(oldpath, path);
+    }
+}
+  
+    if (selectedFile != null) {
+        try {
+            Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            JOptionPane.showMessageDialog(null, "Updated Successfully!");
+
+            userdashboard ads = new userdashboard();
+            ads.setVisible(true);
+            this.dispose();
+        } catch (IOException ex) {
+            System.out.println("Insert Image Error: " + ex);
+            JOptionPane.showMessageDialog(null, "Error updating image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Updated Successfully!");
+        userdashboard ads = new userdashboard();
+        ads.setVisible(true);
+        this.dispose();
+    }
+
+    }//GEN-LAST:event_loggin1MouseClicked
+
+    private void updateeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateeeMouseClicked
+
+    private void updateeeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeeMouseEntered
+        updateee .setBackground(hover);
+    }//GEN-LAST:event_updateeeMouseEntered
+
+    private void updateeeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeeMouseExited
+        updateee .setBackground(defaultcolor);
+    }//GEN-LAST:event_updateeeMouseExited
+
+    private void loggin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loggin2MouseClicked
+
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteMouseClicked
+
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteMouseEntered
+
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteMouseExited
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -756,7 +755,7 @@ path = "";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField contact;
     private javax.swing.JLabel currentt;
-    private javax.swing.JButton delete;
+    public javax.swing.JPanel delete;
     public javax.swing.JTextField em;
     public javax.swing.JTextField fn1;
     private javax.swing.JLabel idisplay;
@@ -774,11 +773,13 @@ path = "";
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     public javax.swing.JTextField ln;
+    public javax.swing.JLabel loggin1;
+    public javax.swing.JLabel loggin2;
     private javax.swing.JLabel reg;
     private javax.swing.JLabel reg2;
     public javax.swing.JButton remove;
     public javax.swing.JButton select;
-    public javax.swing.JButton updateee;
+    public javax.swing.JPanel updateee;
     public javax.swing.JTextField us2;
     public javax.swing.JTextField useriddd;
     // End of variables declaration//GEN-END:variables

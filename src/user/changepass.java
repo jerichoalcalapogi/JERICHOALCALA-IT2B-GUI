@@ -44,15 +44,19 @@ public class changepass extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        cancel1 = new javax.swing.JPanel();
+        loggin2 = new javax.swing.JLabel();
+        confirm = new javax.swing.JPanel();
+        loggin1 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ps1 = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
-        confirm = new javax.swing.JButton();
-        cancel1 = new javax.swing.JButton();
         ps3 = new javax.swing.JPasswordField();
         ps2 = new javax.swing.JPasswordField();
+        jLabel31 = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,73 +132,31 @@ public class changepass extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(203, 14, 14));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel17.setFont(new java.awt.Font("Castellar", 1, 20)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Castellar", 1, 27)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("CHANGE PASSWORD FORM");
-        jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 320, 70));
+        jPanel12.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 430, 70));
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hacker-64.png"))); // NOI18N
-        jPanel12.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 60, 100));
+        jPanel12.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 60, 100));
 
-        getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 90));
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Adobe_Express_-_file-removebg-preview.png"))); // NOI18N
+        jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel29MouseClicked(evt);
+            }
+        });
+        jPanel12.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, 230, 230));
+
+        getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 90));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel19.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
-        jLabel19.setText("CURRENT PASSWORD:");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 240, 30));
-
-        jLabel4.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
-        jLabel4.setText("NEW PASSWORD:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 210, 30));
-
-        ps1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        ps1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        ps1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        jPanel2.add(ps1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 170, 30));
-
-        jLabel6.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
-        jLabel6.setText("confirm PASSWORD:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 240, 30));
-
-        confirm.setBackground(new java.awt.Color(255, 255, 255));
-        confirm.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        confirm.setText("CHANGE PASSWORD");
-        confirm.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        confirm.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                confirmMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                confirmMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                confirmMouseExited(evt);
-            }
-        });
-        confirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmActionPerformed(evt);
-            }
-        });
-        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 170, 40));
-
-        cancel1.setBackground(new java.awt.Color(255, 255, 255));
-        cancel1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        cancel1.setText("BACK");
-        cancel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        cancel1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cancel1AncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
+        cancel1.setBackground(new java.awt.Color(200, 32, 32));
+        cancel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cancel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cancel1MouseClicked(evt);
@@ -206,24 +168,76 @@ public class changepass extends javax.swing.JFrame {
                 cancel1MouseExited(evt);
             }
         });
-        cancel1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel1ActionPerformed(evt);
+        cancel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin2.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin2.setText("CANCEL");
+        loggin2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin2MouseClicked(evt);
             }
         });
-        jPanel2.add(cancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 90, 40));
+        cancel1.add(loggin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 200, 20));
+
+        jPanel2.add(cancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 310, 40));
+
+        confirm.setBackground(new java.awt.Color(200, 32, 32));
+        confirm.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        confirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmMouseExited(evt);
+            }
+        });
+        confirm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin1.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin1.setText("CHANGE PASSWORD");
+        loggin1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin1MouseClicked(evt);
+            }
+        });
+        confirm.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 200, 20));
+
+        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 310, 40));
+
+        jLabel19.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        jLabel19.setText("CURRENT PASSWORD:");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 240, 30));
+
+        jLabel4.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        jLabel4.setText("NEW PASSWORD:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 210, 30));
+
+        ps1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        ps1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ps1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
+        jPanel2.add(ps1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 310, 40));
+
+        jLabel6.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        jLabel6.setText("confirm PASSWORD:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 240, 30));
 
         ps3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ps3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ps3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        jPanel2.add(ps3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 170, 30));
+        jPanel2.add(ps3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 310, 40));
 
         ps2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ps2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ps2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        jPanel2.add(ps2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 170, 30));
+        jPanel2.add(ps2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 310, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 480, 430));
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/stylized_gaming_logo_480x480.png"))); // NOI18N
+        jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -30, 450, 540));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 840, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -251,9 +265,16 @@ public class changepass extends javax.swing.JFrame {
        }  
     }//GEN-LAST:event_formWindowActivated
 
-    private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
-                          
-    try {
+    private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
+        editusers edd = new editusers();
+      edd.setVisible(true);
+      this.dispose();
+        
+    }//GEN-LAST:event_jLabel29MouseClicked
+
+    private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked
+
+      try {
         dbConnect dbc = new dbConnect();
         Session sess = Session.getInstance();
 
@@ -309,54 +330,38 @@ public class changepass extends javax.swing.JFrame {
     }
  
 
+    }//GEN-LAST:event_loggin1MouseClicked
 
-        
-     
-        
+    private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
+        // TODO add your handling code here:
     }//GEN-LAST:event_confirmMouseClicked
 
     private void confirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseEntered
-        confirm.setBackground(hover);
+        // TODO add your handling code here:
     }//GEN-LAST:event_confirmMouseEntered
 
     private void confirmMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseExited
-        confirm.setBackground(defaultcolor);
+        // TODO add your handling code here:
     }//GEN-LAST:event_confirmMouseExited
 
-    private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-      
-    }//GEN-LAST:event_confirmActionPerformed
+    private void loggin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin2MouseClicked
+       ps1.setText("");     
+      ps2.setText("");  
+      ps3.setText(""); 
+        
+    }//GEN-LAST:event_loggin2MouseClicked
 
     private void cancel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_cancel1MouseClicked
 
     private void cancel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel1MouseEntered
-      cancel1.setBackground(hover);
+        // TODO add your handling code here:
     }//GEN-LAST:event_cancel1MouseEntered
 
     private void cancel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel1MouseExited
-       cancel1.setBackground(defaultcolor);
-    }//GEN-LAST:event_cancel1MouseExited
-
-    private void cancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel1ActionPerformed
-      editusers edd = new editusers();
-      edd.setVisible(true);
-      this.dispose();
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_cancel1ActionPerformed
-
-    private void cancel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cancel1AncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_cancel1AncestorAdded
+    }//GEN-LAST:event_cancel1MouseExited
 
     /**
      * @param args the command line arguments
@@ -397,14 +402,16 @@ public class changepass extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancel1;
-    private javax.swing.JButton confirm;
+    private javax.swing.JPanel cancel1;
+    private javax.swing.JPanel confirm;
     private javax.swing.JLabel currentuser;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -417,6 +424,8 @@ public class changepass extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel loggin1;
+    private javax.swing.JLabel loggin2;
     public javax.swing.JPasswordField ps1;
     public javax.swing.JPasswordField ps2;
     public javax.swing.JPasswordField ps3;

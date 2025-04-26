@@ -98,16 +98,14 @@ public class Registrationn extends javax.swing.JFrame {
          
          
          
-  Color hover = new Color (203,14,14);
-    Color defaultcolor = new Color (255,255,255);
+   Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (200,32,32);
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         contact = new javax.swing.JTextField();
-        register = new javax.swing.JButton();
-        cancel = new javax.swing.JButton();
         ps = new javax.swing.JPasswordField();
         ln = new javax.swing.JTextField();
         em = new javax.swing.JTextField();
@@ -134,6 +132,8 @@ public class Registrationn extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         ans = new javax.swing.JPasswordField();
+        register = new javax.swing.JPanel();
+        loggin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,53 +148,12 @@ public class Registrationn extends javax.swing.JFrame {
                 contactActionPerformed(evt);
             }
         });
-        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 340, 170, 30));
-
-        register.setBackground(new java.awt.Color(255, 255, 255));
-        register.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        register.setText("REGISTER");
-        register.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        register.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                registerMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                registerMouseExited(evt);
-            }
-        });
-        register.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerActionPerformed(evt);
-            }
-        });
-        jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, 110, 40));
-
-        cancel.setBackground(new java.awt.Color(255, 255, 255));
-        cancel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        cancel.setText("CANCEL");
-        cancel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancelMouseExited(evt);
-            }
-        });
-        cancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 500, 110, 40));
+        jPanel1.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 340, 200, 30));
 
         ps.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ps.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ps.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        jPanel1.add(ps, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, 170, 30));
+        jPanel1.add(ps, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, 200, 30));
 
         ln.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ln.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -204,7 +163,7 @@ public class Registrationn extends javax.swing.JFrame {
                 lnActionPerformed(evt);
             }
         });
-        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 140, 170, 30));
+        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 140, 200, 30));
 
         em.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         em.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -214,7 +173,7 @@ public class Registrationn extends javax.swing.JFrame {
                 emActionPerformed(evt);
             }
         });
-        jPanel1.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 170, 30));
+        jPanel1.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 200, 30));
 
         us.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         us.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -224,7 +183,7 @@ public class Registrationn extends javax.swing.JFrame {
                 usActionPerformed(evt);
             }
         });
-        jPanel1.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 220, 170, 30));
+        jPanel1.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 220, 200, 30));
 
         fn1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         fn1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -234,14 +193,14 @@ public class Registrationn extends javax.swing.JFrame {
                 fn1ActionPerformed(evt);
             }
         });
-        jPanel1.add(fn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 170, 30));
+        jPanel1.add(fn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 200, 30));
 
         confirmpass.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         confirmpass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         confirmpass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        jPanel1.add(confirmpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 170, 30));
+        jPanel1.add(confirmpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 200, 30));
 
-        type.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
+        type.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Member", "Admin", "Owner", " ", " " }));
         type.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
         type.addActionListener(new java.awt.event.ActionListener() {
@@ -249,7 +208,7 @@ public class Registrationn extends javax.swing.JFrame {
                 typeActionPerformed(evt);
             }
         });
-        jPanel1.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 380, 170, 30));
+        jPanel1.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 380, 200, 30));
 
         jLabel4.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel4.setText("Last name:");
@@ -294,12 +253,12 @@ public class Registrationn extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Castellar", 1, 31)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("REGISTration FORM");
-        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 420, 50));
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 420, 50));
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hacker-64.png"))); // NOI18N
-        jPanel5.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, -10, 70, 100));
+        jPanel5.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, -10, 70, 100));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 80));
 
@@ -312,7 +271,7 @@ public class Registrationn extends javax.swing.JFrame {
                 regisMouseClicked(evt);
             }
         });
-        jPanel1.add(regis, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 550, 320, 30));
+        jPanel1.add(regis, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 550, 320, 30));
 
         reg2.setBackground(new java.awt.Color(102, 102, 102));
         reg2.setFont(new java.awt.Font("Yu Gothic Light", 1, 16)); // NOI18N
@@ -322,12 +281,12 @@ public class Registrationn extends javax.swing.JFrame {
                 reg2MouseClicked(evt);
             }
         });
-        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 320, 30));
+        jPanel1.add(reg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 550, 320, 30));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/ekosh (1).jpg"))); // NOI18N
         jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 490, 500));
 
-        ques.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
+        ques.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
         ques.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What was your mother's maiden name?", "What city were you born in?", "What is your favorite pet's name?", "What was the name of your first school?\"", "What is your favorite book?", " ", " ", " ", " " }));
         ques.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
         ques.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +307,32 @@ public class Registrationn extends javax.swing.JFrame {
         ans.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         ans.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ans.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        jPanel1.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 460, 170, 30));
+        jPanel1.add(ans, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 460, 200, 30));
+
+        register.setBackground(new java.awt.Color(200, 32, 32));
+        register.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registerMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                registerMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                registerMouseExited(evt);
+            }
+        });
+        register.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        loggin.setText("REGISTER");
+        loggin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logginMouseClicked(evt);
+            }
+        });
+        register.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 100, 20));
+
+        jPanel1.add(register, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, 240, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -368,16 +352,42 @@ public class Registrationn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_contactActionPerformed
 
-    private void registerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseEntered
-        register.setBackground(hover);
-    }//GEN-LAST:event_registerMouseEntered
+    private void lnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lnActionPerformed
 
-    private void registerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseExited
-        register.setBackground(defaultcolor);
-    }//GEN-LAST:event_registerMouseExited
+    private void emActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emActionPerformed
 
-    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+    private void usActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usActionPerformed
 
+    private void fn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fn1ActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeActionPerformed
+
+    private void reg2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reg2MouseClicked
+
+    private void regisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regisMouseClicked
+        Login frm = new   Login();
+        frm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_regisMouseClicked
+
+    private void quesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_quesActionPerformed
+
+    private void logginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseClicked
+     
         if (fn1.getText().isEmpty()
             || ln.getText().isEmpty()
             || em.getText().isEmpty()
@@ -493,71 +503,20 @@ try {
         dbc.closeConnection();
     }
 }
-    
 
+    }//GEN-LAST:event_logginMouseClicked
 
-    }//GEN-LAST:event_registerActionPerformed
+    private void registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseClicked
 
-    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        fn1.setText("");
-        ln.setText("");
-        em.setText("");
-        us.setText("");
-        ps.setText("");
-        confirmpass.setText("");
-        contact.setText("");
-        type.setSelectedIndex(0);
-        fn1.requestFocus();
-       
+    }//GEN-LAST:event_registerMouseClicked
 
-    }//GEN-LAST:event_cancelMouseClicked
+    private void registerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseEntered
+        register.setBackground(hover);
+    }//GEN-LAST:event_registerMouseEntered
 
-    private void cancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseEntered
-        cancel.setBackground(hover);
-
-    }//GEN-LAST:event_cancelMouseEntered
-
-    private void cancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseExited
-        cancel.setBackground(defaultcolor);
-    }//GEN-LAST:event_cancelMouseExited
-
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-
-    }//GEN-LAST:event_cancelActionPerformed
-
-    private void lnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lnActionPerformed
-
-    private void emActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emActionPerformed
-
-    private void usActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usActionPerformed
-
-    private void fn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fn1ActionPerformed
-
-    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_typeActionPerformed
-
-    private void reg2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reg2MouseClicked
-
-    private void regisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regisMouseClicked
-        Login frm = new   Login();
-        frm.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_regisMouseClicked
-
-    private void quesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quesActionPerformed
+    private void registerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseExited
+        register.setBackground(defaultcolor);
+    }//GEN-LAST:event_registerMouseExited
 
     /**
      * @param args the command line arguments
@@ -596,7 +555,6 @@ try {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField ans;
-    private javax.swing.JButton cancel;
     private javax.swing.JPasswordField confirmpass;
     private javax.swing.JTextField contact;
     private javax.swing.JTextField em;
@@ -618,11 +576,12 @@ try {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField ln;
+    private javax.swing.JLabel loggin;
     private javax.swing.JPasswordField ps;
     private javax.swing.JComboBox<String> ques;
     private javax.swing.JLabel reg2;
     private javax.swing.JLabel regis;
-    private javax.swing.JButton register;
+    private javax.swing.JPanel register;
     private javax.swing.JComboBox<String> type;
     private javax.swing.JTextField us;
     // End of variables declaration//GEN-END:variables

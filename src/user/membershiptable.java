@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
@@ -22,29 +24,32 @@ public class membershiptable extends javax.swing.JFrame {
          setResizable(false);
         setLocationRelativeTo(null);
         displayData();
+        
+        
     }
 Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (204,204,204);
-   
+    
     
  public void displayData(){
     try{
         dbConnect dbc = new dbConnect();
-        ResultSet rs = dbc.getData("SELECT m_id,m_type,m_price,m_status FROM tbl_membership");
-       mtablee.setModel(DbUtils.resultSetToTableModel(rs));
-         rs.close();
+        ResultSet rs = dbc.getData("SELECT m_id, m_type, price_per_hour, m_status FROM tbl_membership");
+        mtablee.setModel(DbUtils.resultSetToTableModel(rs));
+
+       
+        mtablee.getColumnModel().getColumn(0).setHeaderValue("Membership ID");
+        mtablee.getColumnModel().getColumn(1).setHeaderValue("Membership");
+        mtablee.getColumnModel().getColumn(2).setHeaderValue("Price per Hour");
+        mtablee.getColumnModel().getColumn(3).setHeaderValue("Status");
+
+        rs.close();
     }catch(SQLException ex){
         System.out.println("Errors: "+ex.getMessage());
     }
 }
     
-    
-    
-    
-    
-    
-    
-    
+   
  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -200,6 +205,11 @@ Color hover = new Color (203,14,14);
         jLabel96.setBackground(new java.awt.Color(0, 0, 0));
         jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
         jLabel96.setText("CANCEL");
+        jLabel96.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel96MouseEntered(evt);
+            }
+        });
         refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
 
         jPanel2.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 100, 40));
@@ -314,17 +324,32 @@ Color hover = new Color (203,14,14);
 
     private void refresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseClicked
    
-int rowIndex = mtablee.getSelectedRow();
-if(rowIndex < 0){
-    JOptionPane.showMessageDialog(null, "Please Select an Item!");
-}else{
-    TableModel model = mtablee.getModel();
-    transactionform of = new transactionform();
-    of.memberid.setText(""+model.getValueAt(rowIndex, 0));
-    of.typee1.setSelectedItem(""+model.getValueAt(rowIndex, 1));
-    of.setVisible(true);
-    this.dispose();
-}
+ int rowIndex = mtablee.getSelectedRow();
+        if (rowIndex < 0) {
+            JOptionPane.showMessageDialog(null, "Please Select an Item!");
+            return; 
+        }
+
+        
+        String status = (String) mtablee.getValueAt(rowIndex, 3); 
+
+        if ("SUSPENDED".equals(status)) {
+            JOptionPane.showMessageDialog(membershiptable.this,
+                    "This membership  is currently unavailable.",
+                    "Selection Error",
+                    JOptionPane.ERROR_MESSAGE);
+            mtablee.clearSelection();
+            return; 
+        }
+
+       
+        TableModel model = mtablee.getModel();
+        transactionform of = new transactionform();
+        of.memberid.setText("" + model.getValueAt(rowIndex, 0));
+        of.typee1.setSelectedItem("" + model.getValueAt(rowIndex, 1));
+        of.setVisible(true);
+        this.dispose();
+    
 
 
     }//GEN-LAST:event_refresh1MouseClicked
@@ -340,6 +365,10 @@ if(rowIndex < 0){
     private void jLabel97MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel97MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel97MouseClicked
+
+    private void jLabel96MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel96MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel96MouseEntered
 
     /**
      * @param args the command line arguments

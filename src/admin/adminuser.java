@@ -112,20 +112,42 @@ public class adminuser extends javax.swing.JFrame {
     
 Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (204,204,204);
- public void displayData(){
-        try{
-            dbConnect dbc = new dbConnect();
-            ResultSet rs = dbc.getData("SELECT  c_id,fname,lname,email,username,type,status FROM tbl_user");
-            table.setModel(DbUtils.resultSetToTableModel(rs));
-             rs.close();
-        }catch(SQLException ex){
-            System.out.println("Errors: "+ex.getMessage());
+ public void displayData() {
+    try {
+        dbConnect dbc = new dbConnect();
+        ResultSet rs = dbc.getData("SELECT c_id, fname, lname, email, username, type, status FROM tbl_user");
 
+       
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("User ID");
+        model.addColumn("First Name");
+        model.addColumn("Last Name");
+        model.addColumn("Email ");
+        model.addColumn("Username");
+        model.addColumn("Account Type");
+        model.addColumn(" Status");
+
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getInt("c_id"),
+                rs.getString("fname"),
+                rs.getString("lname"),
+                rs.getString("email"),
+                rs.getString("username"),
+                rs.getString("type"),
+                rs.getString("status")
+            });
         }
- 
- }
 
-   
+        table.setModel(model);
+        rs.close();
+    } catch (SQLException ex) {
+        System.out.println("Errors: " + ex.getMessage());
+    }
+}
+
+
+                    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

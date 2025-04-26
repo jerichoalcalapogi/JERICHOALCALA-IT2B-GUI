@@ -5,12 +5,22 @@ import config.Session;
 import config.dbConnect;
 import internetcafe.Login;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import static user.editusers.getHeightFromWidth;
 
 
 public class transactionform extends javax.swing.JFrame {
@@ -18,14 +28,112 @@ public class transactionform extends javax.swing.JFrame {
     
     public transactionform() {
         initComponents();
-         setResizable(false);
+        setResizable(false);
         setLocationRelativeTo(null);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+       
+       DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 LocalDate localDate = LocalDate.now();
 tdate.setText(""+dtf.format(localDate));
-        
-   
+       
+
+      
+        typee1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateMembershipImage();
+            }
+        });
+
+       
+        updateMembershipImage();
     }
+   
+public String destination = "";
+    File selectedFile;
+    public String oldpath;
+    public String path;
+
+public static int getHeightFromWidth(String imagePath, int desiredWidth) {
+        try {
+            // Read the image file
+            File imageFile = new File(imagePath);
+            BufferedImage image = ImageIO.read(imageFile);
+            
+            // Get the original width and height of the image
+            int originalWidth = image.getWidth();
+            int originalHeight = image.getHeight();
+            
+            // Calculate the new height based on the desired width and the aspect ratio
+            int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
+            
+            return newHeight;
+        } catch (IOException ex) {
+            System.out.println("No image found!");
+        }
+        
+        return -1;
+    }
+
+
+
+public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+    private void updateMembershipImage() {
+        String selectedType = (String) typee1.getSelectedItem();
+        String imagePath = null;
+
+        if (selectedType != null) {
+            switch (selectedType.trim()) { 
+                case "VIP1":
+                    imagePath = "src/AdminUserImages/vip1.png";
+                    break;
+                  case "VIP2":
+                    imagePath = "src/AdminUserImages/vip2.png";
+                    break;    
+                    case "VIP3":
+                    imagePath = "src/AdminUserImages/vip3.png";
+                    break;
+                     case "SILVER":
+                    imagePath = "src/AdminUserImages/silver.png";
+                    break;
+                
+                default:
+                    image.setIcon(null);
+                    return;
+            }
+
+            if (imagePath != null) {
+                File imageFile = new File(imagePath);
+                if (imageFile.exists()) {
+                    image.setIcon(ResizeImage(imagePath, null, image));
+                } else {
+                    JOptionPane.showMessageDialog(this, "Image file not found: " + imagePath, "Error", JOptionPane.ERROR_MESSAGE);
+                    image.setIcon(null);
+                }
+            } else {
+                image.setIcon(null);
+            }
+        } else {
+            image.setIcon(null);
+        }
+    }
+
+
+
+    
 Color hover = new Color (102,102,102);
     Color defaultcolor = new Color (204,204,204);
     
@@ -54,11 +162,8 @@ Color hover = new Color (102,102,102);
         jLabel32 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        transactable = new javax.swing.JTable();
         memberid = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         tstatuss = new javax.swing.JComboBox<>();
@@ -71,6 +176,8 @@ Color hover = new Color (102,102,102);
         tdate = new javax.swing.JTextField();
         duration = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
+        imagesss = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -174,23 +281,6 @@ Color hover = new Color (102,102,102);
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        transactable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        transactable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                transactableMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(transactable);
-
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 350, 340));
-
         memberid.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         memberid.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         memberid.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
@@ -205,10 +295,6 @@ Color hover = new Color (102,102,102);
         jLabel19.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel19.setText("duration:");
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 190, 30));
-
-        jLabel20.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
-        jLabel20.setText("mEMBERSHIP TABLE:");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 190, 30));
 
         jLabel21.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel21.setText("MEMBERSHIP TYPE:");
@@ -229,8 +315,8 @@ Color hover = new Color (102,102,102);
         });
         jPanel2.add(tstatuss, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 180, 40));
 
-        typee1.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
-        typee1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Premium", "Elite", "VIP1", "VIP2", "VIP3", " ", " ", " " }));
+        typee1.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
+        typee1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "REGULAR", "PREMIUM", "ELITE", "SILVER", "GOLD", "VIP1", "VIP2", "VIP3", " ", " ", " " }));
         typee1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
         typee1.setEnabled(false);
         typee1.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +336,7 @@ Color hover = new Color (102,102,102);
                 jLabel30MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 90, 130));
+        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 40, 90));
 
         add1.setBackground(new java.awt.Color(255, 255, 255));
         add1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
@@ -343,6 +429,11 @@ Color hover = new Color (102,102,102);
         jLabel24.setText("date:");
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 190, 30));
 
+        imagesss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imagesss.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, 370));
+
+        jPanel2.add(imagesss, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 340, 390));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 430));
 
         pack();
@@ -371,11 +462,6 @@ Session sess = Session.getInstance();
         
         
     }//GEN-LAST:event_formWindowActivated
-
-    private void transactableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transactableMouseClicked
-
-     
-    }//GEN-LAST:event_transactableMouseClicked
 
     private void memberidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberidActionPerformed
         // TODO add your handling code here:
@@ -513,12 +599,13 @@ if(memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText
     private javax.swing.JButton add1;
     private javax.swing.JButton delete;
     public javax.swing.JTextField duration;
+    public javax.swing.JLabel image;
+    private javax.swing.JPanel imagesss;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -536,10 +623,8 @@ if(memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTextField memberid;
     public javax.swing.JTextField tdate;
-    private javax.swing.JTable transactable;
     private javax.swing.JComboBox<String> tstatuss;
     public javax.swing.JComboBox<String> typee1;
     private javax.swing.JButton update;

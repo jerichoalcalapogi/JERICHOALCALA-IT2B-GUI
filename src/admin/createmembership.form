@@ -163,20 +163,22 @@
         <Component class="javax.swing.JComboBox" name="mtype">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Castellar" size="11" style="1"/>
+              <Font name="Centaur" size="18" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
-                <StringItem index="0" value="Regular"/>
-                <StringItem index="1" value="Premium"/>
-                <StringItem index="2" value="Elite"/>
-                <StringItem index="3" value="VIP1"/>
-                <StringItem index="4" value="VIP2"/>
-                <StringItem index="5" value="VIP3"/>
-                <StringItem index="6" value=" "/>
-                <StringItem index="7" value=" "/>
+              <StringArray count="12">
+                <StringItem index="0" value="REGULAR"/>
+                <StringItem index="1" value="PREMIUM"/>
+                <StringItem index="2" value="ELITE"/>
+                <StringItem index="3" value="SILVER"/>
+                <StringItem index="4" value="GOLD"/>
+                <StringItem index="5" value="VIP1"/>
+                <StringItem index="6" value="VIP2"/>
+                <StringItem index="7" value="VIP3"/>
                 <StringItem index="8" value=" "/>
                 <StringItem index="9" value=" "/>
+                <StringItem index="10" value=" "/>
+                <StringItem index="11" value=" "/>
               </StringArray>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -361,12 +363,12 @@
         <Component class="javax.swing.JComboBox" name="mstatus">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Castellar" size="11" style="1"/>
+              <Font name="Centaur" size="18" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="5">
-                <StringItem index="0" value="Available"/>
-                <StringItem index="1" value="Unavailable"/>
+                <StringItem index="0" value="ACTIVE"/>
+                <StringItem index="1" value="SUSPENDED"/>
                 <StringItem index="2" value=" "/>
                 <StringItem index="3" value=" "/>
                 <StringItem index="4" value=" "/>
@@ -411,7 +413,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="110" width="350" height="380"/>
+              <AbsoluteConstraints x="20" y="110" width="380" height="380"/>
             </Constraint>
           </Constraints>
 
