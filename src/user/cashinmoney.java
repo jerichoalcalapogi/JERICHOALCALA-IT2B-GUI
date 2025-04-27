@@ -186,7 +186,7 @@ public class cashinmoney extends javax.swing.JFrame {
         });
         cancel1.add(loggin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 200, 20));
 
-        jPanel2.add(cancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 300, 40));
+        jPanel2.add(cancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 290, 40));
 
         confirm.setBackground(new java.awt.Color(200, 32, 32));
         confirm.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -212,15 +212,17 @@ public class cashinmoney extends javax.swing.JFrame {
         });
         confirm.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 140, 20));
 
-        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 300, 40));
+        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 290, 40));
 
         jLabel19.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
         jLabel19.setText("AMOUNT TO CASH IN:");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 270, 30));
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 270, 30));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/stylized_gaming_logo_480x480.png"))); // NOI18N
         jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -30, 450, 540));
-        jPanel2.add(cashin, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 290, 40));
+
+        cashin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        jPanel2.add(cashin, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 290, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 840, 470));
 

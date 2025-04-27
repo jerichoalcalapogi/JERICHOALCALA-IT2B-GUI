@@ -13,6 +13,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -94,50 +96,58 @@ public static int getHeightFromWidth(String imagePath, int desiredWidth) {
     }
 
  public void updateBalance(int userId) {
-    dbConnect connect = new dbConnect();
-    String query = "SELECT balance FROM tbl_member WHERE c_id = ?";
+     dbConnect connect = new dbConnect();
+        String query = "SELECT SUM(balance) AS total_balance FROM tbl_member WHERE c_id = ? AND c_status = 'Approve' AND balance > 0";
 
-    try (Connection conn = connect.getConnection();
-         PreparedStatement pst = conn.prepareStatement(query)) {
+        try (Connection conn = connect.getConnection();
+             PreparedStatement pst = conn.prepareStatement(query)) {
 
-        pst.setInt(1, userId);
+            pst.setInt(1, userId);
 
-        try (ResultSet rs = pst.executeQuery()) {
-            if (rs.next()) {
-                double balance = rs.getDouble("balance");
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    double totalBalance = rs.getDouble("total_balance");
 
-                // Update the balance in the UI on the EDT (Event Dispatch Thread)
-                SwingUtilities.invokeLater(() -> {
-                    balancee.setText(" " + String.format("%.2f", balance));  // Display formatted balance
-                });
-            } else {
-                // If no balance found, set it to 0.00
-                SwingUtilities.invokeLater(() -> {
-                    balancee.setText(" 0.00");
-                });
+                    // Update the balance in the UI on the EDT (Event Dispatch Thread)
+                    SwingUtilities.invokeLater(() -> {
+                        if (balancee != null) {
+                            balancee.setText(" " + String.format("%.2f", totalBalance)); // Display formatted balance
+                        }
+                    });
+                } else {
+                    // If no approved cash-ins found, set balance to 0.00
+                    SwingUtilities.invokeLater(() -> {
+                        if (balancee != null) {
+                            balancee.setText(" 0.00");
+                        }
+                    });
+                }
             }
+
+            System.out.println("Updating balance for UID: " + userId);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error loading balance: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            System.err.println("Error loading balance for user ID " + userId + ": " + ex.getMessage());
+
+            // In case of error, set balance to 0.00
+            SwingUtilities.invokeLater(() -> {
+                if (balancee != null) {
+                    balancee.setText(" 0.00");
+                }
+            });
         }
-
-        System.out.println("Updating balance for UID: " + userId);
-
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error loading balance: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        System.err.println("Error loading balance for user ID " + userId + ": " + ex.getMessage());
-
-        // In case of error, set balance to 0.00
-        SwingUtilities.invokeLater(() -> {
-            balancee.setText(" 0.00");
-        });
     }
-}
+
  
 
 // Call this inside your `transactionform` class after validating session
 
-
-
-
  
+ 
+ 
+ 
+  
  
  
 
@@ -426,8 +436,8 @@ Color hover = new Color (102,102,102);
         });
         jPanel2.add(memberid, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 180, 40));
 
-        jLabel19.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
-        jLabel19.setText("balance:");
+        jLabel19.setFont(new java.awt.Font("Centaur", 1, 24)); // NOI18N
+        jLabel19.setText("BALANCE:");
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, 190, 30));
 
         jLabel21.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
@@ -439,7 +449,7 @@ Color hover = new Color (102,102,102);
         jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 210, 30));
 
         tstatuss.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
-        tstatuss.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In Process", "Approved", " " }));
+        tstatuss.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Success", "Failed", " " }));
         tstatuss.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
         tstatuss.setEnabled(false);
         tstatuss.addActionListener(new java.awt.event.ActionListener() {
@@ -589,7 +599,7 @@ Color hover = new Color (102,102,102);
 
         balancee.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         balancee.setForeground(new java.awt.Color(203, 14, 14));
-        jPanel2.add(balancee, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 120, 20));
+        jPanel2.add(balancee, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 450, 120, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 830, 510));
 
@@ -673,20 +683,58 @@ Session sess = Session.getInstance();
     }//GEN-LAST:event_add1MouseEntered
 
     private void add1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add1MouseClicked
-  Session sess = Session.getInstance();
+  
+Session sess = Session.getInstance();
 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 LocalDate localDate = LocalDate.now();
 System.out.println(dtf.format(localDate));
-if(memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty()){
+
+if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty()) {
     JOptionPane.showMessageDialog(null, "All fields are required");
-}else{
-    dbConnect dbc = new dbConnect();
-    dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid) VALUES ('"+sess.getUid()+"',"
-                    + "'"+memberid.getText()+"','"+duration.getText()+"',"
-                    + "'"+tdate.getText()+"','"+tstatuss.getSelectedItem()+"','" + amount.getText() + "')");
-    JOptionPane.showMessageDialog(null, "Subscription added");
+} else {
+    double balance = Double.parseDouble(balancee.getText()); // Use balancee variable here
+    double price = Double.parseDouble(amount.getText());
+
+    if (balance >= price) {
+        String transactionStatus = "Success";
+        double newBalance = balance - price;
+
+        // Round newBalance to 2 decimal places for decimal(10,2) precision
+        BigDecimal newBalanceDecimal = new BigDecimal(newBalance).setScale(2, RoundingMode.HALF_UP);
+
+        dbConnect dbc = new dbConnect();
+        dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid, new_balance) VALUES ('"
+                + sess.getUid() + "','"
+                + memberid.getText() + "','"
+                + duration.getText() + "','"
+                + tdate.getText() + "','"
+                + transactionStatus + "','"
+                + amount.getText() + "', '"
+                + newBalanceDecimal + "')");
+
+        JOptionPane.showMessageDialog(null, "Successfully Subscribed");
+
+        // After successful insertion, retrieve the new_balance
+        try {
+            ResultSet rs = dbc.getData("SELECT new_balance FROM tbl_transaction ORDER BY t_id DESC LIMIT 1");
+            if (rs.next()) {
+                double latestBalance = rs.getDouble("new_balance");
+                balancee.setText(String.format("%.2f", latestBalance)); // Update the balancee field
+            } else {
+                JOptionPane.showMessageDialog(null, "Error retrieving updated balance.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
+        } finally {
+            dbc.closeConnection(); // Ensure connection is closed
+        }
+
+    } else {
+        JOptionPane.showMessageDialog(null, "Not enough cash");
+    }
 }
-     
+
       
     }//GEN-LAST:event_add1MouseClicked
 

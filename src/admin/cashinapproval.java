@@ -11,11 +11,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
+import user.transactionform;
 
 
 public class cashinapproval extends javax.swing.JFrame {
@@ -33,37 +36,48 @@ public class cashinapproval extends javax.swing.JFrame {
     
    public class LoanStatus {
     public static final String PENDING = "PENDING";
-    public static final String PAID = "APPROVED";
+    public static final String APPROVE = "APPROVE";
     public static final String REJECTED = "REJECTED";
 }
     
     
-    public void refreshTablee() {
-    try {
-        dbConnect dbc = new dbConnect();
-      
-        String query = "SELECT log_id, c_id, log_event, log_description, log_timestamp FROM tbl_log";
-        ResultSet rs = dbc.getData(query);
+   public void refreshTablee() {
+    DefaultTableModel model = (DefaultTableModel) cashtable.getModel();
+    model.setRowCount(0); // Clear existing rows
 
-        
-        DefaultTableModel model = (DefaultTableModel) cashtable.getModel();
-        model.setRowCount(0); 
-       
+    dbConnect dbc = new dbConnect();
+    try (Connection conn = dbc.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery("SELECT mem_id, balance, c_status, c_date, c_id FROM tbl_member WHERE c_status IN ('pending', 'Approve', 'REJECTED') ORDER BY c_date DESC")) {
+
         while (rs.next()) {
-            model.addRow(new Object[]{
-                rs.getInt("log_id"),
-                rs.getInt("c_id"),
-                rs.getString("log_event"),
-                rs.getString("log_description"),
-                rs.getTimestamp("log_timestamp") 
-            });
-        }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error refreshing logs table: " + e.getMessage());
-    }
+            int memId = rs.getInt("mem_id");
+            double requestedBalance = rs.getDouble("balance"); // Get the initial requested balance
+            String status = rs.getString("c_status");
+            Timestamp date = rs.getTimestamp("c_date");
+            int userId = rs.getInt("c_id");
 
+            model.addRow(new Object[]{memId, requestedBalance, status, date, userId});
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error loading cash-in logs: " + ex.getMessage());
+        ex.printStackTrace();
+    }
 }
 
+ 
+   private transactionform transactionFormInstance;
+   public void setTransactionFormInstance(transactionform form) {
+    this.transactionFormInstance = form;
+}
+   
+   public void updateBalanceInTransactionForm(int userId) {
+    if (transactionFormInstance != null) {
+        transactionFormInstance.updateBalance(userId);
+    }
+}
+   
+   
      
 
 public void displayData() {
@@ -246,7 +260,7 @@ Color hover = new Color (203,14,14);
         });
         refresh1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
 
-        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 120, 40));
+        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 120, 40));
 
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -311,7 +325,7 @@ Color hover = new Color (203,14,14);
                                 
 
  
-   int selectedRow = cashtable.getSelectedRow();
+    int selectedRow = cashtable.getSelectedRow();
 
     if (selectedRow == -1) {
         JOptionPane.showMessageDialog(null, "Please select a cash request to approve.");
@@ -351,28 +365,11 @@ Color hover = new Color (203,14,14);
 
     Connection conn = null;
     PreparedStatement pstCashUpdate = null;
-    PreparedStatement pstBalanceUpdate = null;
-    PreparedStatement pstGetUser = null;
-    String username = null;
 
     try {
         dbConnect dbc = new dbConnect();
         conn = dbc.getConnection();
         conn.setAutoCommit(false); // Start transaction
-
-        // Get username based on c_id from tbl_user
-        String getUsernameQuery = "SELECT username FROM tbl_user WHERE c_id = ?";
-        pstGetUser = conn.prepareStatement(getUsernameQuery);
-        pstGetUser.setInt(1, userIdToFind);
-        ResultSet rsUser = pstGetUser.executeQuery();
-        if (rsUser.next()) {
-            username = rsUser.getString("username");
-        } else {
-            JOptionPane.showMessageDialog(null, "User not found for User ID: " + userIdToFind);
-            return;
-        }
-        rsUser.close();
-        pstGetUser.close();
 
         // 1. Update cash request status to APPROVED in tbl_member
         String sqlCashUpdate = "UPDATE tbl_member SET c_status = 'Approve' WHERE mem_id = ? AND balance = ? AND c_status = 'pending'";
@@ -383,47 +380,19 @@ Color hover = new Color (203,14,14);
 
         // Check if cash update was successful
         if (cashUpdateResult > 0) {
-            // 2. Get user's current balance from tbl_member
-            String getBalanceQuery = "SELECT balance FROM tbl_member WHERE c_id = ?";
-            pstBalanceUpdate = conn.prepareStatement(getBalanceQuery);
-            pstBalanceUpdate.setInt(1, userIdToFind);
-            ResultSet rsBalance = pstBalanceUpdate.executeQuery();
+            conn.commit(); // Commit the transaction
+            JOptionPane.showMessageDialog(null, "Cash Request Approved.");
 
-            double currentBalance = 0.0;
-            if (rsBalance.next()) {
-                currentBalance = rsBalance.getDouble("balance");
-                System.out.println("Current balance for " + username + ": " + currentBalance);  // Debugging line
-            } else {
-                JOptionPane.showMessageDialog(null, "User balance not found!");
-                return;
-            }
-            rsBalance.close();
+            // Log the approval
+            String description = "Admin approved cash-in of ₱" + String.format("%.2f", cashAmount) + " for user ID: " + userIdToFind;
+          
 
-            // 3. Update user's balance by ADDING the approved cash amount
-            double newBalance = currentBalance + cashAmount;
-            System.out.println("New balance after cash approval: " + newBalance);  // Debugging line
+            // Refresh the table with the updated cash statuses
+            refreshTablee(); // Ensure this method exists and is relevant
 
-            String updateBalanceQuery = "UPDATE tbl_member SET balance = ? WHERE c_id = ?";
-PreparedStatement pstUpdateBalance = conn.prepareStatement(updateBalanceQuery);
-pstUpdateBalance.setDouble(1, newBalance);
-pstUpdateBalance.setInt(2, userIdToFind); // Correctly set the second parameter for c_id
-int balanceUpdateResult = pstUpdateBalance.executeUpdate();
-pstUpdateBalance.close();
-            // If both operations succeed, commit the transaction
-            if (balanceUpdateResult > 0) {
-                conn.commit(); // Commit the transaction
-                JOptionPane.showMessageDialog(null, "Cash Request Approved and Balance Updated.");
+            // Update the balance displayed in the Transaction Form
+            updateBalanceInTransactionForm(userIdToFind);
 
-                // Log the approval
-                String description = "Admin approved cash-in of ₱" + String.format("%.2f", cashAmount) + " for user " + username + " (ID: " + userIdToFind + ")";
-                // ... (your logging code here) ...
-
-                // Refresh the table with the updated cash statuses
-                refreshTablee(); // Ensure this method exists and is relevant
-            } else {
-                conn.rollback(); // Rollback transaction if balance update fails
-                JOptionPane.showMessageDialog(null, "Error updating user balance.");
-            }
         } else {
             conn.rollback(); // Rollback transaction if cash update fails
             JOptionPane.showMessageDialog(null, "Cash approval failed. Request may not be in pending status or amount mismatch.");
@@ -442,13 +411,13 @@ pstUpdateBalance.close();
     } finally {
         try {
             if (pstCashUpdate != null) pstCashUpdate.close();
-            if (pstBalanceUpdate != null) pstBalanceUpdate.close();
             if (conn != null) conn.close(); // Close the connection
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 
         
     }//GEN-LAST:event_jLabel97MouseClicked
