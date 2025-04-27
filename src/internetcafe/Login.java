@@ -430,7 +430,7 @@ private static void logLogin(int userId, dbConnect connector) {
                     }
                     if(x>MAX_X){
                         checked=false;
-                        x=400; //reset the X value
+                        x=400; 
                     }
                     if(x<MIN_X){
                         checked= true;

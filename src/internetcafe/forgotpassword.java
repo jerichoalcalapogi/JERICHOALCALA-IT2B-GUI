@@ -308,7 +308,7 @@ public class forgotpassword extends javax.swing.JFrame {
 
           
             ResultSet securityQuestionResult = dbc.getData(
-                    "SELECT fp_question FROM tbl_forgotpass WHERE c_id = ?",
+                    "SELECT fp_question FROM tbl_forgotpassword WHERE c_id = ?",
                     userId
             );
 
@@ -386,7 +386,7 @@ public class forgotpassword extends javax.swing.JFrame {
 
           
             ResultSet answerResult = dbc.getData(
-                    "SELECT fp_answer FROM tbl_forgotpass WHERE c_id = ?",
+                    "SELECT fp_answer FROM tbl_forgotpassword WHERE c_id = ?",
                     userId
             );
 

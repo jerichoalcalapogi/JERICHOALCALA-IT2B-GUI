@@ -108,6 +108,7 @@ Color hover = new Color (102,102,102);
         jLabel32 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
+        cashinn = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -260,7 +261,23 @@ Color hover = new Color (102,102,102);
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 170, 30));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 170, 30));
+
+        cashinn.setBackground(new java.awt.Color(0, 0, 0));
+        cashinn.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        cashinn.setText("SUBSCRIPTION");
+        cashinn.setEnabled(false);
+        cashinn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cashinnMouseClicked(evt);
+            }
+        });
+        cashinn.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                cashinnComponentShown(evt);
+            }
+        });
+        jPanel2.add(cashinn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 170, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 430));
 
@@ -366,6 +383,16 @@ Color hover = new Color (102,102,102);
 
     }//GEN-LAST:event_jLabel32MouseClicked
 
+    private void cashinnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cashinnMouseClicked
+       cashinmoney cash = new cashinmoney();
+       cash.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cashinnMouseClicked
+
+    private void cashinnComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_cashinnComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cashinnComponentShown
+
     /**
      * @param args the command line arguments
      */
@@ -404,6 +431,7 @@ Color hover = new Color (102,102,102);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accname;
     private javax.swing.JLabel accname1;
+    private javax.swing.JLabel cashinn;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

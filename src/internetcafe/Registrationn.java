@@ -470,7 +470,7 @@ try {
 
             // Insert into tbl_forgotpass using the retrieved userId
             int resultForgot = dbc.insertData(
-                    "INSERT INTO tbl_forgotpass (c_id, fp_question, fp_answer) VALUES (?, ?, ?)",
+                    "INSERT INTO tbl_forgotpassword(c_id, fp_question, fp_answer) VALUES (?, ?, ?)",
                     userId, selectedQuestion, answer
             );
 

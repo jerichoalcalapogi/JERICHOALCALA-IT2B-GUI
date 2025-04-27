@@ -121,6 +121,8 @@ Color hover = new Color (203,14,14);
         refresh1 = new javax.swing.JPanel();
         jLabel97 = new javax.swing.JLabel();
         jLabel98 = new javax.swing.JLabel();
+        refresh2 = new javax.swing.JPanel();
+        cashinlog = new javax.swing.JLabel();
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
 
@@ -254,7 +256,29 @@ Color hover = new Color (203,14,14);
         });
         refresh1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 180, -1));
 
-        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 170, 60));
+        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 170, 60));
+
+        refresh2.setBackground(new java.awt.Color(204, 204, 204));
+        refresh2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        refresh2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refresh2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refresh2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refresh2MouseExited(evt);
+            }
+        });
+        refresh2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cashinlog.setBackground(new java.awt.Color(0, 0, 0));
+        cashinlog.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        cashinlog.setText("CASH IN LOGS");
+        refresh2.add(cashinlog, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 160, -1));
+
+        jPanel8.add(refresh2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 170, 60));
 
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -329,6 +353,20 @@ Color hover = new Color (203,14,14);
     ts.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_jLabel97MouseClicked
+
+    private void refresh2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh2MouseClicked
+       cashinapproval app = new cashinapproval();
+    app.setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_refresh2MouseClicked
+
+    private void refresh2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh2MouseEntered
+
+    private void refresh2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh2MouseExited
     
 
     public static void main(String args[]) {
@@ -341,6 +379,7 @@ Color hover = new Color (203,14,14);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cashinlog;
     private javax.swing.JLabel currentuser;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
@@ -359,6 +398,7 @@ Color hover = new Color (203,14,14);
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel refresh;
     private javax.swing.JPanel refresh1;
+    private javax.swing.JPanel refresh2;
     private javax.swing.JTable tablelogs;
     // End of variables declaration//GEN-END:variables
 }

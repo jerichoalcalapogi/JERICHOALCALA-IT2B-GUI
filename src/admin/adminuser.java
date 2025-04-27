@@ -1383,7 +1383,7 @@ Color hover = new Color (203,14,14);
 
                 // Record transaction log
                 Session sess = Session.getInstance();
-                int currentUserId = sess.getUid(); // Assuming you have the current user's ID in the session
+                int currentUserId = sess.getUid(); 
                 String event = "User Deleted";
                 String description = " Deleted account ID " + userIdToDelete; 
                 recordTransactionLog(currentUserId, event, description);

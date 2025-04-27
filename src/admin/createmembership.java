@@ -477,50 +477,128 @@ public class createmembership extends javax.swing.JFrame {
     }//GEN-LAST:event_memtableMouseClicked
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-      if(checkadd){
-      if ( mprice.getText().isEmpty() ) {
-        JOptionPane.showMessageDialog(null, "All fields are required");
-        return;
-      }else{
-        dbConnect dbc = new dbConnect();
-dbc.insertData("INSERT INTO tbl_membership (m_type, price_per_hour, m_status, m_image) VALUES (?, ?, ?, ?)",
-        mtype.getSelectedItem(), mprice.getText(), mstatus.getSelectedItem(), null);
-          JOptionPane.showMessageDialog(null, "Successfully Added");  
-             displayData();
-               checkadd=true;      
-        mid.setText("");
-        mtype.setSelectedItem(0);
-        mprice.setText("");
-        mstatus.setSelectedItem(0);
-         add.setEnabled(true);
-      }
-       
-} else {
-    JOptionPane.showMessageDialog( null,"Clear the field first");
-}
-   
+      if (checkadd) {
+        if (mprice.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields are required");
+            return;
+        } else {
+            String selectedType = mtype.getSelectedItem().toString();
+            dbConnect dbc = new dbConnect();
+            java.sql.Connection con = dbc.getConnection();
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+
+            try {
+                String checkQuery = "SELECT COUNT(*) FROM tbl_membership WHERE m_type = ?";
+                pst = con.prepareStatement(checkQuery);
+                pst.setString(1, selectedType);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    if (count > 0) {
+                        JOptionPane.showMessageDialog(null, "Membership type '" + selectedType + "' already exists.");
+                        return; // Do not proceed with adding
+                    }
+                }
+
+              
+                String insertQuery = "INSERT INTO tbl_membership (m_type, price_per_hour, m_status, m_image) VALUES (?, ?, ?, ?)";
+                pst = con.prepareStatement(insertQuery);
+                pst.setString(1, selectedType);
+                pst.setString(2, mprice.getText());
+                pst.setString(3, mstatus.getSelectedItem().toString());
+                pst.setString(4, null); // Assuming m_image is not handled here
+                pst.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Successfully Added");
+                displayData();
+                checkadd = true;
+                mid.setText("");
+                mtype.setSelectedIndex(0);
+                mprice.setText("");
+                mstatus.setSelectedIndex(0);
+                add.setEnabled(true);
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error adding data: " + ex.getMessage());
+            } finally {
+                try {
+                    if (rs != null) rs.close();
+                    if (pst != null) pst.close();
+                    if (con != null) con.close();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error closing connection: " + ex.getMessage());
+                }
+            }
+        }
+
+    } else {
+        JOptionPane.showMessageDialog(null, "Clear the field first");
+    }
+
     }//GEN-LAST:event_addMouseClicked
 
     private void updateeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseClicked
     
-        if(mid.getText().isEmpty()){
+     if (mid.getText().isEmpty()) {
         JOptionPane.showMessageDialog(null, "Please select an item first");
-    }else{
-              if ( mprice.getText().isEmpty() ) {
-        JOptionPane.showMessageDialog(null, "All fields are required");
         return;
+    } else {
+        if (mprice.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields are required");
+            return;
         }
-       dbConnect dbc = new dbConnect();
-      
-dbc.updateData("UPDATE tbl_membership SET m_type = '"+mtype.getSelectedItem()+"', price_per_hour = '"+mprice.getText()+"',"
-        + " m_status = '"+mstatus.getSelectedItem()+"' WHERE m_id = '"+mid.getText()+"'");
-JOptionPane.showMessageDialog(null, "Updated Successfully!");
-        displayData();
-        checkadd=true;
-         mprice.setText("");
-       
-        } 
-      
+
+        String selectedType = mtype.getSelectedItem().toString();
+        dbConnect dbc = new dbConnect();
+        java.sql.Connection con = dbc.getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        try {
+           
+            String checkQuery = "SELECT COUNT(*) FROM tbl_membership WHERE m_type = ? AND m_id != ?";
+            pst = con.prepareStatement(checkQuery);
+            pst.setString(1, selectedType);
+            pst.setString(2, mid.getText()); 
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                if (count > 0) {
+                    JOptionPane.showMessageDialog(null, "Membership type '" + selectedType + "' already exists.");
+                    return; 
+                }
+            }
+
+           
+            String updateQuery = "UPDATE tbl_membership SET m_type = ?, price_per_hour = ?, m_status = ? WHERE m_id = ?";
+            pst = con.prepareStatement(updateQuery);
+            pst.setString(1, selectedType);
+            pst.setString(2, mprice.getText());
+            pst.setString(3, mstatus.getSelectedItem().toString());
+            pst.setString(4, mid.getText());
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Updated Successfully!");
+            displayData();
+            checkadd = true; 
+            mprice.setText(""); 
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error updating data: " + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pst != null) pst.close();
+                if (con != null) con.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error closing connection: " + ex.getMessage());
+            }
+        }
+    }
+
     }//GEN-LAST:event_updateeMouseClicked
 
     private void updateeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateeMouseEntered

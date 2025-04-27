@@ -8,9 +8,14 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -20,16 +25,22 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import static user.editusers.getHeightFromWidth;
 
 
 public class transactionform extends javax.swing.JFrame {
-
-    
+ 
+    private double pricePerHour = 0.00;
+    private String currentMembershipType = "";
     public transactionform() {
         initComponents();
+       
         setResizable(false);
         setLocationRelativeTo(null);
+       Session sess = Session.getInstance();
+        updateBalance(sess.getUid());
+       
        
        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 LocalDate localDate = LocalDate.now();
@@ -41,10 +52,18 @@ tdate.setText(""+dtf.format(localDate));
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateMembershipImage();
+                currentMembershipType = (String) typee1.getSelectedItem();
+                fetchPricePerHour(); 
+                calculateAmount(); 
             }
         });
-
-       
+duration.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                calculateAmount(); 
+            }
+        });
+        
+        
         updateMembershipImage();
     }
    
@@ -55,15 +74,15 @@ public String destination = "";
 
 public static int getHeightFromWidth(String imagePath, int desiredWidth) {
         try {
-            // Read the image file
+          
             File imageFile = new File(imagePath);
             BufferedImage image = ImageIO.read(imageFile);
             
-            // Get the original width and height of the image
+        
             int originalWidth = image.getWidth();
             int originalHeight = image.getHeight();
             
-            // Calculate the new height based on the desired width and the aspect ratio
+          
             int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
             
             return newHeight;
@@ -73,6 +92,117 @@ public static int getHeightFromWidth(String imagePath, int desiredWidth) {
         
         return -1;
     }
+
+ public void updateBalance(int userId) {
+    dbConnect connect = new dbConnect();
+    String query = "SELECT balance FROM tbl_member WHERE c_id = ?";
+
+    try (Connection conn = connect.getConnection();
+         PreparedStatement pst = conn.prepareStatement(query)) {
+
+        pst.setInt(1, userId);
+
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                double balance = rs.getDouble("balance");
+
+                // Update the balance in the UI on the EDT (Event Dispatch Thread)
+                SwingUtilities.invokeLater(() -> {
+                    balancee.setText(" " + String.format("%.2f", balance));  // Display formatted balance
+                });
+            } else {
+                // If no balance found, set it to 0.00
+                SwingUtilities.invokeLater(() -> {
+                    balancee.setText(" 0.00");
+                });
+            }
+        }
+
+        System.out.println("Updating balance for UID: " + userId);
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error loading balance: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        System.err.println("Error loading balance for user ID " + userId + ": " + ex.getMessage());
+
+        // In case of error, set balance to 0.00
+        SwingUtilities.invokeLater(() -> {
+            balancee.setText(" 0.00");
+        });
+    }
+}
+ 
+
+// Call this inside your `transactionform` class after validating session
+
+
+
+
+ 
+ 
+ 
+
+ private void fetchPricePerHour() {
+        String selectedType = (String) typee1.getSelectedItem();
+        pricePerHour = 0.00;
+
+        if (selectedType != null && !selectedType.isEmpty()) {
+            dbConnect dbc = new dbConnect();
+            Connection con = dbc.getConnection();
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+
+            try {
+                String query = "SELECT price_per_hour FROM tbl_membership WHERE m_type = ?";
+                pst = con.prepareStatement(query);
+                pst.setString(1, selectedType);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    pricePerHour = rs.getDouble("price_per_hour");
+                    System.out.println("Fetched Price per Hour for " + selectedType + ": " + pricePerHour); // DEBUG
+                } else {
+                    JOptionPane.showMessageDialog(this, "Price per hour not found for " + selectedType, "Warning", JOptionPane.WARNING_MESSAGE);
+                    System.out.println("Warning: Price per hour not found for " + selectedType); // DEBUG
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error fetching price: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace(); // Print the full error stack for debugging
+            } finally {
+                try {
+                    if (rs != null) rs.close();
+                    if (pst != null) pst.close();
+                    if (con != null) con.close();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this, "Error closing connection: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace(); // Print the full error stack
+                }
+            }
+        } else {
+            System.out.println("Membership type is null or empty."); // DEBUG
+        }
+    }
+
+    private void calculateAmount() {
+        try {
+            int durationHours = Integer.parseInt(duration.getText());
+            double totalAmount = durationHours * pricePerHour;
+            amount.setText(String.format("%.2f", totalAmount));
+            System.out.println("Calculated Amount: " + totalAmount); // DEBUG
+        } catch (NumberFormatException e) {
+            amount.setText("");
+            System.out.println("Invalid duration format."); // DEBUG
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -178,6 +308,10 @@ Color hover = new Color (102,102,102);
         jLabel24 = new javax.swing.JLabel();
         imagesss = new javax.swing.JPanel();
         image = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        amount = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        balancee = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -276,7 +410,7 @@ Color hover = new Color (102,102,102);
         });
         jPanel12.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, -70, 120, 230));
 
-        getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 90));
+        getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 90));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -293,18 +427,18 @@ Color hover = new Color (102,102,102);
         jPanel2.add(memberid, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 180, 40));
 
         jLabel19.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
-        jLabel19.setText("duration:");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 190, 30));
+        jLabel19.setText("balance:");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, 190, 30));
 
         jLabel21.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel21.setText("MEMBERSHIP TYPE:");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 190, 30));
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 190, 30));
 
         jLabel22.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel22.setText("SUBSCRIPTION STATUS:");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 210, 30));
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 210, 30));
 
-        tstatuss.setFont(new java.awt.Font("Castellar", 1, 11)); // NOI18N
+        tstatuss.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
         tstatuss.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In Process", "Approved", " " }));
         tstatuss.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
         tstatuss.setEnabled(false);
@@ -313,7 +447,7 @@ Color hover = new Color (102,102,102);
                 tstatussActionPerformed(evt);
             }
         });
-        jPanel2.add(tstatuss, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 180, 40));
+        jPanel2.add(tstatuss, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 180, 40));
 
         typee1.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
         typee1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "REGULAR", "PREMIUM", "ELITE", "SILVER", "GOLD", "VIP1", "VIP2", "VIP3", " ", " ", " " }));
@@ -328,7 +462,7 @@ Color hover = new Color (102,102,102);
 
         jLabel23.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel23.setText("MEMBERSHIP ID:");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 190, 30));
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 190, 30));
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AdminUserImages/icons8-add-32.png"))); // NOI18N
         jLabel30.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -423,18 +557,41 @@ Color hover = new Color (102,102,102);
                 durationActionPerformed(evt);
             }
         });
-        jPanel2.add(duration, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 180, 40));
+        jPanel2.add(duration, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 180, 40));
 
         jLabel24.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel24.setText("date:");
-        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 190, 30));
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 190, 30));
 
         imagesss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         imagesss.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, 370));
 
         jPanel2.add(imagesss, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 340, 390));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 430));
+        jLabel20.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        jLabel20.setText("duration (HOURS):");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 190, 30));
+
+        amount.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        amount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        amount.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        amount.setEnabled(false);
+        amount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountActionPerformed(evt);
+            }
+        });
+        jPanel2.add(amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 180, 40));
+
+        jLabel25.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        jLabel25.setText("total price:");
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 190, 30));
+
+        balancee.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        balancee.setForeground(new java.awt.Color(203, 14, 14));
+        jPanel2.add(balancee, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 450, 120, 20));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 830, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -516,17 +673,17 @@ Session sess = Session.getInstance();
     }//GEN-LAST:event_add1MouseEntered
 
     private void add1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add1MouseClicked
-   Session sess = Session.getInstance();
+  Session sess = Session.getInstance();
 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 LocalDate localDate = LocalDate.now();
 System.out.println(dtf.format(localDate));
-if(memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty()){
+if(memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty()){
     JOptionPane.showMessageDialog(null, "All fields are required");
 }else{
     dbConnect dbc = new dbConnect();
-    dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status) VALUES ('"+sess.getUid()+"',"
-            + "'"+memberid.getText()+"','"+duration.getText()+"',"
-            + "'"+tdate.getText()+"','"+tstatuss.getSelectedItem()+"')");
+    dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid) VALUES ('"+sess.getUid()+"',"
+                    + "'"+memberid.getText()+"','"+duration.getText()+"',"
+                    + "'"+tdate.getText()+"','"+tstatuss.getSelectedItem()+"','" + amount.getText() + "')");
     JOptionPane.showMessageDialog(null, "Subscription added");
 }
      
@@ -556,6 +713,10 @@ if(memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText
     private void durationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_durationActionPerformed
+
+    private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -597,6 +758,8 @@ if(memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText
     private javax.swing.JLabel accname;
     private javax.swing.JLabel accname1;
     private javax.swing.JButton add1;
+    public javax.swing.JTextField amount;
+    private javax.swing.JLabel balancee;
     private javax.swing.JButton delete;
     public javax.swing.JTextField duration;
     public javax.swing.JLabel image;
@@ -606,10 +769,12 @@ if(memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel32;

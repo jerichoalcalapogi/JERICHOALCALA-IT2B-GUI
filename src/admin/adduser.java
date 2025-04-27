@@ -565,7 +565,7 @@ public class adduser extends javax.swing.JFrame {
                 recordTransactionLog(userId, event, description);
 
                 int resultForgot = dbc.insertData(
-                        "INSERT INTO tbl_forgotpass (c_id, fp_question, fp_answer) VALUES (?, ?, ?)",
+                        "INSERT INTO tbl_forgotpassword (c_id, fp_question, fp_answer) VALUES (?, ?, ?)",
                         generatedUserId, selectedQuestion, answer
                 );
 

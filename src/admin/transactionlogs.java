@@ -127,6 +127,8 @@ Color hover = new Color (203,14,14);
         currentuser = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        approve = new javax.swing.JPanel();
+        jLabel97 = new javax.swing.JLabel();
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
 
@@ -211,7 +213,7 @@ Color hover = new Color (203,14,14);
         jLabel96.setText("refresh");
         refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
 
-        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 100, 40));
+        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 100, 40));
 
         currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         currentuser.setForeground(new java.awt.Color(203, 14, 14));
@@ -224,6 +226,28 @@ Color hover = new Color (203,14,14);
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
         jPanel8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 240, 220));
+
+        approve.setBackground(new java.awt.Color(204, 204, 204));
+        approve.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        approve.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                approveMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                approveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                approveMouseExited(evt);
+            }
+        });
+        approve.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel97.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel97.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel97.setText("APPROVE");
+        approve.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, -1));
+
+        jPanel8.add(approve, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 120, 40));
 
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -273,6 +297,18 @@ Color hover = new Color (203,14,14);
         
         
     }//GEN-LAST:event_refreshMouseClicked
+
+    private void approveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_approveMouseClicked
+
+    private void approveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_approveMouseEntered
+
+    private void approveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_approveMouseExited
     
 
     public static void main(String args[]) {
@@ -285,6 +321,7 @@ Color hover = new Color (203,14,14);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel approve;
     private javax.swing.JLabel currentuser;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
@@ -295,6 +332,7 @@ Color hover = new Color (203,14,14);
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
