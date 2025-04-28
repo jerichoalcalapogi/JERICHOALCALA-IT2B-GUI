@@ -5,16 +5,23 @@
         <group>
             <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/internetcafe/Registrationn.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/adminuser.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/Adminlogs.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/user/userdashboard.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/createuser.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/transactionlogs.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/user/changepass.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/config/dbConnect.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/user/transactionform.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/createmembership.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/adduser.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/user/userdashboard.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/config/Session.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/createuser.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/Admindashboard.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/cashinapproval.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/user/cashinmoney.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/user/editusers.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/internetcafe/Login.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/admin/transactionlogs.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/user/membershiptable.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/user/transactionform.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/alcalaaaa/JERICHOALCALA-IT2B-GUI/src/internetcafe/forgotpassword.java</file>
         </group>
     </open-files>
 </project-private>

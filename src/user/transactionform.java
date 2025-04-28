@@ -96,52 +96,53 @@ public static int getHeightFromWidth(String imagePath, int desiredWidth) {
     }
 
  public void updateBalance(int userId) {
-     dbConnect connect = new dbConnect();
-        String query = "SELECT SUM(balance) AS total_balance FROM tbl_member WHERE c_id = ? AND c_status = 'Approve' AND balance > 0";
+    dbConnect connect = new dbConnect();
+    String query = "SELECT u_balance FROM tbl_user WHERE c_id = ?"; 
 
-        try (Connection conn = connect.getConnection();
-             PreparedStatement pst = conn.prepareStatement(query)) {
+    try (Connection conn = connect.getConnection();
+         PreparedStatement pst = conn.prepareStatement(query)) {
 
-            pst.setInt(1, userId);
+        pst.setInt(1, userId);
 
-            try (ResultSet rs = pst.executeQuery()) {
-                if (rs.next()) {
-                    double totalBalance = rs.getDouble("total_balance");
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                double balance = rs.getDouble("u_balance"); 
 
-                    // Update the balance in the UI on the EDT (Event Dispatch Thread)
-                    SwingUtilities.invokeLater(() -> {
-                        if (balancee != null) {
-                            balancee.setText(" " + String.format("%.2f", totalBalance)); // Display formatted balance
-                        }
-                    });
-                } else {
-                    // If no approved cash-ins found, set balance to 0.00
-                    SwingUtilities.invokeLater(() -> {
-                        if (balancee != null) {
-                            balancee.setText(" 0.00");
-                        }
-                    });
-                }
+              
+                SwingUtilities.invokeLater(() -> {
+                    if (balancee != null) {
+                        balancee.setText(" " + String.format("%.2f", balance)); 
+                    }
+                });
+            } else {
+                // If no balance found, set balance to 0.00
+                SwingUtilities.invokeLater(() -> {
+                    if (balancee != null) {
+                        balancee.setText(" 0.00");
+                    }
+                });
             }
-
-            System.out.println("Updating balance for UID: " + userId);
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error loading balance: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            System.err.println("Error loading balance for user ID " + userId + ": " + ex.getMessage());
-
-            // In case of error, set balance to 0.00
-            SwingUtilities.invokeLater(() -> {
-                if (balancee != null) {
-                    balancee.setText(" 0.00");
-                }
-            });
         }
+
+        System.out.println("Updating balance for UID: " + userId);
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error loading balance: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        System.err.println("Error loading balance for user ID " + userId + ": " + ex.getMessage());
+
+        // In case of error, set balance to 0.00
+        SwingUtilities.invokeLater(() -> {
+            if (balancee != null) {
+                balancee.setText("₱ 0.00");
+            }
+        });
     }
+}
+
 
  
 
-// Call this inside your `transactionform` class after validating session
+
 
  
  
@@ -311,8 +312,6 @@ Color hover = new Color (102,102,102);
         jLabel23 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         add1 = new javax.swing.JButton();
-        update = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
         tdate = new javax.swing.JTextField();
         duration = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -502,51 +501,7 @@ Color hover = new Color (102,102,102);
                 add1ActionPerformed(evt);
             }
         });
-        jPanel2.add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 110, 40));
-
-        update.setBackground(new java.awt.Color(255, 255, 255));
-        update.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        update.setText("UPDATE");
-        update.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        update.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                updateMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                updateMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                updateMouseExited(evt);
-            }
-        });
-        update.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
-            }
-        });
-        jPanel2.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 110, 40));
-
-        delete.setBackground(new java.awt.Color(255, 255, 255));
-        delete.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        delete.setText("DELETE");
-        delete.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        delete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                deleteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                deleteMouseExited(evt);
-            }
-        });
-        delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
-            }
-        });
-        jPanel2.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 110, 40));
+        jPanel2.add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 110, 40));
 
         tdate.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         tdate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -599,7 +554,7 @@ Color hover = new Color (102,102,102);
 
         balancee.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         balancee.setForeground(new java.awt.Color(203, 14, 14));
-        jPanel2.add(balancee, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 450, 120, 20));
+        jPanel2.add(balancee, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 80, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 830, 510));
 
@@ -654,22 +609,6 @@ Session sess = Session.getInstance();
         this.dispose();
     }//GEN-LAST:event_jLabel29MouseClicked
 
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateActionPerformed
-
-    private void updateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateMouseExited
-
-    private void updateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateMouseEntered
-
-    private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateMouseClicked
-
     private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_add1ActionPerformed
@@ -692,7 +631,7 @@ System.out.println(dtf.format(localDate));
 if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty()) {
     JOptionPane.showMessageDialog(null, "All fields are required");
 } else {
-    double balance = Double.parseDouble(balancee.getText()); // Use balancee variable here
+    double balance = Double.parseDouble(balancee.getText()); // Use balancee variable here (from tbl_user)
     double price = Double.parseDouble(amount.getText());
 
     if (balance >= price) {
@@ -703,23 +642,27 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
         BigDecimal newBalanceDecimal = new BigDecimal(newBalance).setScale(2, RoundingMode.HALF_UP);
 
         dbConnect dbc = new dbConnect();
-        dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid, new_balance) VALUES ('"
+
+        // Insert into tbl_transaction without new_balance
+        dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid) VALUES ('"
                 + sess.getUid() + "','"
                 + memberid.getText() + "','"
                 + duration.getText() + "','"
                 + tdate.getText() + "','"
                 + transactionStatus + "','"
-                + amount.getText() + "', '"
-                + newBalanceDecimal + "')");
+                + amount.getText() + "')");
+
+        // Update u_balance in tbl_user (decrease the balance after the transaction)
+        dbc.insertData("UPDATE tbl_user SET u_balance = u_balance - '" + price + "' WHERE c_id = '" + sess.getUid() + "'");
 
         JOptionPane.showMessageDialog(null, "Successfully Subscribed");
 
-        // After successful insertion, retrieve the new_balance
+        // After successful insertion, retrieve the updated balance from tbl_user
         try {
-            ResultSet rs = dbc.getData("SELECT new_balance FROM tbl_transaction ORDER BY t_id DESC LIMIT 1");
+            ResultSet rs = dbc.getData("SELECT u_balance FROM tbl_user WHERE c_id = '" + sess.getUid() + "'");
             if (rs.next()) {
-                double latestBalance = rs.getDouble("new_balance");
-                balancee.setText(String.format("%.2f", latestBalance)); // Update the balancee field
+                double latestBalance = rs.getDouble("u_balance");
+                balancee.setText(String.format("%.2f", latestBalance)); // Update the balancee field with the latest balance
             } else {
                 JOptionPane.showMessageDialog(null, "Error retrieving updated balance.");
             }
@@ -735,24 +678,10 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
     }
 }
 
+
+
       
     }//GEN-LAST:event_add1MouseClicked
-
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-
-    }//GEN-LAST:event_deleteActionPerformed
-
-    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
-        delete.setBackground(defaultcolor);
-    }//GEN-LAST:event_deleteMouseExited
-
-    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
-        delete.setBackground(hover);
-    }//GEN-LAST:event_deleteMouseEntered
-
-    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
-
-    }//GEN-LAST:event_deleteMouseClicked
 
     private void tdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdateActionPerformed
         // TODO add your handling code here:
@@ -808,7 +737,6 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
     private javax.swing.JButton add1;
     public javax.swing.JTextField amount;
     private javax.swing.JLabel balancee;
-    private javax.swing.JButton delete;
     public javax.swing.JTextField duration;
     public javax.swing.JLabel image;
     private javax.swing.JPanel imagesss;
@@ -840,7 +768,6 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
     public javax.swing.JTextField tdate;
     private javax.swing.JComboBox<String> tstatuss;
     public javax.swing.JComboBox<String> typee1;
-    private javax.swing.JButton update;
     private javax.swing.JButton users;
     // End of variables declaration//GEN-END:variables
 }

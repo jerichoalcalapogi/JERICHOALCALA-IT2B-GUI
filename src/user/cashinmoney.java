@@ -57,8 +57,6 @@ public class cashinmoney extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        cancel1 = new javax.swing.JPanel();
-        loggin2 = new javax.swing.JLabel();
         confirm = new javax.swing.JPanel();
         loggin1 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -162,32 +160,6 @@ public class cashinmoney extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cancel1.setBackground(new java.awt.Color(200, 32, 32));
-        cancel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        cancel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancel1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cancel1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cancel1MouseExited(evt);
-            }
-        });
-        cancel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        loggin2.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
-        loggin2.setText("CANCEL");
-        loggin2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loggin2MouseClicked(evt);
-            }
-        });
-        cancel1.add(loggin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 200, 20));
-
-        jPanel2.add(cancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 290, 40));
-
         confirm.setBackground(new java.awt.Color(200, 32, 32));
         confirm.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         confirm.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -210,19 +182,19 @@ public class cashinmoney extends javax.swing.JFrame {
                 loggin1MouseClicked(evt);
             }
         });
-        confirm.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 140, 20));
+        confirm.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 140, 20));
 
-        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 290, 40));
+        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 290, 40));
 
         jLabel19.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
         jLabel19.setText("AMOUNT TO CASH IN:");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 270, 30));
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 270, 30));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/stylized_gaming_logo_480x480.png"))); // NOI18N
         jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -30, 450, 540));
 
         cashin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        jPanel2.add(cashin, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 290, 40));
+        jPanel2.add(cashin, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 290, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 840, 470));
 
@@ -345,23 +317,6 @@ String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmMouseExited
 
-    private void loggin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin2MouseClicked
-    
-        
-    }//GEN-LAST:event_loggin2MouseClicked
-
-    private void cancel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel1MouseClicked
-
-    private void cancel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel1MouseEntered
-
-    private void cancel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel1MouseExited
-
     /**
      * @param args the command line arguments
      */
@@ -405,7 +360,6 @@ String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel cancel1;
     private javax.swing.JTextField cashin;
     private javax.swing.JPanel confirm;
     private javax.swing.JLabel currentuser;
@@ -427,7 +381,6 @@ String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel loggin1;
-    private javax.swing.JLabel loggin2;
     private javax.swing.JButton users;
     // End of variables declaration//GEN-END:variables
 }

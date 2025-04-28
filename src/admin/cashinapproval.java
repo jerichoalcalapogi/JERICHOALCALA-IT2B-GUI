@@ -324,68 +324,77 @@ Color hover = new Color (203,14,14);
        
                                 
 
- 
-    int selectedRow = cashtable.getSelectedRow();
+ int selectedRow = cashtable.getSelectedRow();
 
-    if (selectedRow == -1) {
-        JOptionPane.showMessageDialog(null, "Please select a cash request to approve.");
-        return;
-    }
+if (selectedRow == -1) {
+    JOptionPane.showMessageDialog(null, "Please select a cash request to approve.");
+    return;
+}
 
-    // Adjust column indices based on how your cashtable is populated
-    int memberIdToUpdate = (int) cashtable.getValueAt(selectedRow, 0); // Assuming mem_id is at index 0
-    double cashAmount = 0.0;
-    String cashAmountStr = cashtable.getValueAt(selectedRow, 1).toString(); // Assuming Balance is at index 1
-    String currentStatus = cashtable.getValueAt(selectedRow, 2).toString().toUpperCase(); // Assuming Status is at index 2
-    int userIdToFind = (int) cashtable.getValueAt(selectedRow, 4); // Assuming c_id is at index 4
+// Adjust column indices based on how your cashtable is populated
+int memberIdToUpdate = (int) cashtable.getValueAt(selectedRow, 0); // Assuming mem_id is at index 0
+double cashAmount = 0.0;
+String cashAmountStr = cashtable.getValueAt(selectedRow, 1).toString(); // Assuming Balance is at index 1
+String currentStatus = cashtable.getValueAt(selectedRow, 2).toString().toUpperCase(); // Assuming Status is at index 2
+int userIdToFind = (int) cashtable.getValueAt(selectedRow, 4); // Assuming c_id is at index 4
 
-    // Check if the cash request is already approved or rejected
-    if ("APPROVED".equals(currentStatus) || "REJECTED".equals(currentStatus)) {
-        JOptionPane.showMessageDialog(null, "This cash request has already been processed.");
-        return;
-    }
+// Check if the cash request is already approved or rejected
+if ("APPROVED".equals(currentStatus) || "REJECTED".equals(currentStatus)) {
+    JOptionPane.showMessageDialog(null, "This cash request has already been processed.");
+    return;
+}
 
-    // Check if cashAmountStr is numeric before parsing
-    try {
-        cashAmount = Double.parseDouble(cashAmountStr);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Invalid cash amount. Please ensure the cash amount is a valid number.");
-        return; // Exit if cash amount is invalid
-    }
+// Check if cashAmountStr is numeric before parsing
+try {
+    cashAmount = Double.parseDouble(cashAmountStr);
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(null, "Invalid cash amount. Please ensure the cash amount is a valid number.");
+    return; // Exit if cash amount is invalid
+}
 
-    // Get admin session details
-    Session sess = Session.getInstance();
-    int adminId = sess.getUid();
-    String adminUsername = sess.getUserrname();
+// Get admin session details
+Session sess = Session.getInstance();
+int adminId = sess.getUid();
+String adminUsername = sess.getUserrname();
 
-    if (adminId == -1) {
-        JOptionPane.showMessageDialog(null, "Admin not logged in!", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+if (adminId == -1) {
+    JOptionPane.showMessageDialog(null, "Admin not logged in!", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
 
-    Connection conn = null;
-    PreparedStatement pstCashUpdate = null;
+Connection conn = null;
+PreparedStatement pstCashUpdate = null;
+PreparedStatement pstBalanceUpdate = null;
 
-    try {
-        dbConnect dbc = new dbConnect();
-        conn = dbc.getConnection();
-        conn.setAutoCommit(false); // Start transaction
+try {
+    dbConnect dbc = new dbConnect();
+    conn = dbc.getConnection();
+    conn.setAutoCommit(false); // Start transaction
 
-        // 1. Update cash request status to APPROVED in tbl_member
-        String sqlCashUpdate = "UPDATE tbl_member SET c_status = 'Approve' WHERE mem_id = ? AND balance = ? AND c_status = 'pending'";
-        pstCashUpdate = conn.prepareStatement(sqlCashUpdate);
-        pstCashUpdate.setInt(1, memberIdToUpdate);
-        pstCashUpdate.setDouble(2, cashAmount);
-        int cashUpdateResult = pstCashUpdate.executeUpdate();
+    // 1. Update cash request status to APPROVED in tbl_member
+    String sqlCashUpdate = "UPDATE tbl_member SET c_status = 'Approve' WHERE mem_id = ? AND balance = ? AND c_status = 'pending'";
+    pstCashUpdate = conn.prepareStatement(sqlCashUpdate);
+    pstCashUpdate.setInt(1, memberIdToUpdate);
+    pstCashUpdate.setDouble(2, cashAmount);
+    int cashUpdateResult = pstCashUpdate.executeUpdate();
 
-        // Check if cash update was successful
-        if (cashUpdateResult > 0) {
+    // Check if cash update was successful
+    if (cashUpdateResult > 0) {
+
+        // 2. Update the balance in tbl_user (t_balance)
+        String sqlBalanceUpdate = "UPDATE tbl_user SET u_balance = u_balance + ? WHERE c_id = ?";
+        pstBalanceUpdate = conn.prepareStatement(sqlBalanceUpdate);
+        pstBalanceUpdate.setDouble(1, cashAmount);
+        pstBalanceUpdate.setInt(2, userIdToFind);
+
+        int balanceUpdateResult = pstBalanceUpdate.executeUpdate();
+
+        if (balanceUpdateResult > 0) {
             conn.commit(); // Commit the transaction
             JOptionPane.showMessageDialog(null, "Cash Request Approved.");
 
             // Log the approval
             String description = "Admin approved cash-in of ₱" + String.format("%.2f", cashAmount) + " for user ID: " + userIdToFind;
-          
 
             // Refresh the table with the updated cash statuses
             refreshTablee(); // Ensure this method exists and is relevant
@@ -394,29 +403,36 @@ Color hover = new Color (203,14,14);
             updateBalanceInTransactionForm(userIdToFind);
 
         } else {
-            conn.rollback(); // Rollback transaction if cash update fails
-            JOptionPane.showMessageDialog(null, "Cash approval failed. Request may not be in pending status or amount mismatch.");
+            conn.rollback(); // Rollback transaction if balance update fails
+            JOptionPane.showMessageDialog(null, "Failed to update user balance.");
         }
 
-    } catch (SQLException e) {
-        if (conn != null) {
-            try {
-                conn.rollback(); // Rollback the transaction in case of error
-            } catch (SQLException sqlEx) {
-                JOptionPane.showMessageDialog(null, "Error rolling back transaction: " + sqlEx.getMessage());
-            }
-        }
-        JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
-        e.printStackTrace();
-    } finally {
+    } else {
+        conn.rollback(); // Rollback transaction if cash update fails
+        JOptionPane.showMessageDialog(null, "Cash approval failed. Request may not be in pending status or amount mismatch.");
+    }
+
+} catch (SQLException e) {
+    if (conn != null) {
         try {
-            if (pstCashUpdate != null) pstCashUpdate.close();
-            if (conn != null) conn.close(); // Close the connection
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage());
-            e.printStackTrace();
+            conn.rollback(); // Rollback the transaction in case of error
+        } catch (SQLException sqlEx) {
+            JOptionPane.showMessageDialog(null, "Error rolling back transaction: " + sqlEx.getMessage());
         }
     }
+    JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+    e.printStackTrace();
+} finally {
+    try {
+        if (pstCashUpdate != null) pstCashUpdate.close();
+        if (pstBalanceUpdate != null) pstBalanceUpdate.close();
+        if (conn != null) conn.close(); // Close the connection
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
 
 
         
