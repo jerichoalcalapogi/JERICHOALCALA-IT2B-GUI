@@ -351,6 +351,11 @@ Color hover = new Color (203,14,14);
         add.setBackground(new java.awt.Color(0, 0, 0));
         add.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
         add.setText("add");
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+        });
         cancel21.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, -1));
 
         cancel22.setBackground(new java.awt.Color(255, 255, 255));
@@ -1565,6 +1570,10 @@ Color hover = new Color (203,14,14);
         
         
     }//GEN-LAST:event_refreshMouseClicked
+
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMouseClicked
     
 
     public static void main(String args[]) {

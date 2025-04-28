@@ -1,10 +1,12 @@
 
 package user;
 
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import config.Session;
 import config.dbConnect;
 import internetcafe.Login;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +29,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import static user.editusers.getHeightFromWidth;
 
@@ -37,12 +40,20 @@ public class transactionform extends javax.swing.JFrame {
     private String currentMembershipType = "";
     public transactionform() {
         initComponents();
-       
+        
         setResizable(false);
         setLocationRelativeTo(null);
        Session sess = Session.getInstance();
         updateBalance(sess.getUid());
        
+        
+       
+        
+        
+        
+        
+        
+        
        
        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 LocalDate localDate = LocalDate.now();
@@ -141,7 +152,7 @@ public static int getHeightFromWidth(String imagePath, int desiredWidth) {
 
 
  
-
+  
 
 
  
@@ -311,7 +322,6 @@ Color hover = new Color (102,102,102);
         typee1 = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        add1 = new javax.swing.JButton();
         tdate = new javax.swing.JTextField();
         duration = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -321,6 +331,11 @@ Color hover = new Color (102,102,102);
         amount = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         balancee = new javax.swing.JLabel();
+        add1 = new javax.swing.JPanel();
+        buy = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        receiptArea = new javax.swing.JTextArea();
+        jLabel26 = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -417,9 +432,9 @@ Color hover = new Color (102,102,102);
                 jLabel29MouseClicked(evt);
             }
         });
-        jPanel12.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, -70, 120, 230));
+        jPanel12.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, -60, 120, 230));
 
-        getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 90));
+        getContentPane().add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 90));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -433,19 +448,19 @@ Color hover = new Color (102,102,102);
                 memberidActionPerformed(evt);
             }
         });
-        jPanel2.add(memberid, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 180, 40));
+        jPanel2.add(memberid, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 180, 40));
 
-        jLabel19.setFont(new java.awt.Font("Centaur", 1, 24)); // NOI18N
-        jLabel19.setText("BALANCE:");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, 190, 30));
+        jLabel19.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
+        jLabel19.setText("RECEIPT:");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 190, 30));
 
         jLabel21.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel21.setText("MEMBERSHIP TYPE:");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 190, 30));
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 190, 30));
 
         jLabel22.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel22.setText("SUBSCRIPTION STATUS:");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 210, 30));
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 210, 30));
 
         tstatuss.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
         tstatuss.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Success", "Failed", " " }));
@@ -456,7 +471,7 @@ Color hover = new Color (102,102,102);
                 tstatussActionPerformed(evt);
             }
         });
-        jPanel2.add(tstatuss, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 180, 40));
+        jPanel2.add(tstatuss, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 180, 40));
 
         typee1.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
         typee1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "REGULAR", "PREMIUM", "ELITE", "SILVER", "GOLD", "VIP1", "VIP2", "VIP3", " ", " ", " " }));
@@ -467,11 +482,11 @@ Color hover = new Color (102,102,102);
                 typee1ActionPerformed(evt);
             }
         });
-        jPanel2.add(typee1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 180, 40));
+        jPanel2.add(typee1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 180, 40));
 
         jLabel23.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel23.setText("MEMBERSHIP ID:");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 190, 30));
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 190, 30));
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AdminUserImages/icons8-add-32.png"))); // NOI18N
         jLabel30.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -479,12 +494,63 @@ Color hover = new Color (102,102,102);
                 jLabel30MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 40, 90));
+        jPanel2.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 40, 90));
 
-        add1.setBackground(new java.awt.Color(255, 255, 255));
-        add1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        add1.setText("ADD");
-        add1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        tdate.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        tdate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tdate.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        tdate.setEnabled(false);
+        tdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tdateActionPerformed(evt);
+            }
+        });
+        jPanel2.add(tdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 180, 40));
+
+        duration.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        duration.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        duration.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        duration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                durationActionPerformed(evt);
+            }
+        });
+        jPanel2.add(duration, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 180, 40));
+
+        jLabel24.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        jLabel24.setText("date:");
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 190, 30));
+
+        imagesss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        imagesss.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, 370));
+
+        jPanel2.add(imagesss, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 340, 390));
+
+        jLabel20.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        jLabel20.setText("duration (HOURS):");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 190, 30));
+
+        amount.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        amount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        amount.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        amount.setEnabled(false);
+        amount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountActionPerformed(evt);
+            }
+        });
+        jPanel2.add(amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, 180, 40));
+
+        jLabel25.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
+        jLabel25.setText("total price:");
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 190, 30));
+
+        balancee.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        balancee.setForeground(new java.awt.Color(203, 14, 14));
+        jPanel2.add(balancee, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 450, 100, 20));
+
+        add1.setBackground(new java.awt.Color(200, 32, 32));
+        add1.setEnabled(false);
         add1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 add1MouseClicked(evt);
@@ -496,67 +562,31 @@ Color hover = new Color (102,102,102);
                 add1MouseExited(evt);
             }
         });
-        add1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add1ActionPerformed(evt);
+        add1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buy.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        buy.setText("BUY");
+        buy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buyMouseClicked(evt);
             }
         });
-        jPanel2.add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 110, 40));
+        add1.add(buy, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 70, 20));
 
-        tdate.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        tdate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tdate.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        tdate.setEnabled(false);
-        tdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tdateActionPerformed(evt);
-            }
-        });
-        jPanel2.add(tdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 180, 40));
+        jPanel2.add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 130, 40));
 
-        duration.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        duration.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        duration.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        duration.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                durationActionPerformed(evt);
-            }
-        });
-        jPanel2.add(duration, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 180, 40));
+        receiptArea.setColumns(20);
+        receiptArea.setRows(5);
+        receiptArea.setEnabled(false);
+        jScrollPane1.setViewportView(receiptArea);
 
-        jLabel24.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
-        jLabel24.setText("date:");
-        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 190, 30));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 290, 300));
 
-        imagesss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        imagesss.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, 370));
+        jLabel26.setFont(new java.awt.Font("Centaur", 1, 24)); // NOI18N
+        jLabel26.setText("BALANCE:");
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, 190, 30));
 
-        jPanel2.add(imagesss, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 340, 390));
-
-        jLabel20.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
-        jLabel20.setText("duration (HOURS):");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 190, 30));
-
-        amount.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        amount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        amount.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        amount.setEnabled(false);
-        amount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amountActionPerformed(evt);
-            }
-        });
-        jPanel2.add(amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 180, 40));
-
-        jLabel25.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
-        jLabel25.setText("total price:");
-        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 190, 30));
-
-        balancee.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
-        balancee.setForeground(new java.awt.Color(203, 14, 14));
-        jPanel2.add(balancee, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 80, 20));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 830, 510));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 990, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -609,80 +639,6 @@ Session sess = Session.getInstance();
         this.dispose();
     }//GEN-LAST:event_jLabel29MouseClicked
 
-    private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add1ActionPerformed
-
-    private void add1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add1MouseExited
-
-    private void add1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add1MouseEntered
-
-    private void add1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add1MouseClicked
-  
-Session sess = Session.getInstance();
-DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-LocalDate localDate = LocalDate.now();
-System.out.println(dtf.format(localDate));
-
-if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty()) {
-    JOptionPane.showMessageDialog(null, "All fields are required");
-} else {
-    double balance = Double.parseDouble(balancee.getText()); // Use balancee variable here (from tbl_user)
-    double price = Double.parseDouble(amount.getText());
-
-    if (balance >= price) {
-        String transactionStatus = "Success";
-        double newBalance = balance - price;
-
-        // Round newBalance to 2 decimal places for decimal(10,2) precision
-        BigDecimal newBalanceDecimal = new BigDecimal(newBalance).setScale(2, RoundingMode.HALF_UP);
-
-        dbConnect dbc = new dbConnect();
-
-        // Insert into tbl_transaction without new_balance
-        dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid) VALUES ('"
-                + sess.getUid() + "','"
-                + memberid.getText() + "','"
-                + duration.getText() + "','"
-                + tdate.getText() + "','"
-                + transactionStatus + "','"
-                + amount.getText() + "')");
-
-        // Update u_balance in tbl_user (decrease the balance after the transaction)
-        dbc.insertData("UPDATE tbl_user SET u_balance = u_balance - '" + price + "' WHERE c_id = '" + sess.getUid() + "'");
-
-        JOptionPane.showMessageDialog(null, "Successfully Subscribed");
-
-        // After successful insertion, retrieve the updated balance from tbl_user
-        try {
-            ResultSet rs = dbc.getData("SELECT u_balance FROM tbl_user WHERE c_id = '" + sess.getUid() + "'");
-            if (rs.next()) {
-                double latestBalance = rs.getDouble("u_balance");
-                balancee.setText(String.format("%.2f", latestBalance)); // Update the balancee field with the latest balance
-            } else {
-                JOptionPane.showMessageDialog(null, "Error retrieving updated balance.");
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
-        } finally {
-            dbc.closeConnection(); // Ensure connection is closed
-        }
-
-    } else {
-        JOptionPane.showMessageDialog(null, "Not enough cash");
-    }
-}
-
-
-
-      
-    }//GEN-LAST:event_add1MouseClicked
-
     private void tdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tdateActionPerformed
@@ -694,6 +650,92 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
     private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_amountActionPerformed
+
+    private void buyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyMouseClicked
+     Session sess = Session.getInstance();
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+LocalDate localDate = LocalDate.now();
+System.out.println(dtf.format(localDate));
+
+if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty()) {
+    JOptionPane.showMessageDialog(null, "All fields are required");
+} else {
+    double balance = Double.parseDouble(balancee.getText()); 
+    double price = Double.parseDouble(amount.getText());
+
+    if (balance >= price) {
+        String transactionStatus = "Success";
+        double newBalance = balance - price;
+
+       
+        BigDecimal newBalanceDecimal = new BigDecimal(newBalance).setScale(2, RoundingMode.HALF_UP);
+
+        dbConnect dbc = new dbConnect();
+
+        
+        dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid) VALUES ('"
+                + sess.getUid() + "','"
+                + memberid.getText() + "','"
+                + duration.getText() + "','"
+                + tdate.getText() + "','"
+                + transactionStatus + "','"
+                + amount.getText() + "')");
+
+      
+        dbc.insertData("UPDATE tbl_user SET u_balance = u_balance - '" + price + "' WHERE c_id = '" + sess.getUid() + "'");
+
+        JOptionPane.showMessageDialog(null, "Successfully Subscribed");
+   receiptArea.setEnabled(true);
+       
+        try {
+            ResultSet rs = dbc.getData("SELECT u_balance FROM tbl_user WHERE c_id = '" + sess.getUid() + "'");
+            if (rs.next()) {
+                double latestBalance = rs.getDouble("u_balance");
+                balancee.setText(String.format("%.2f", latestBalance)); 
+            } else {
+                JOptionPane.showMessageDialog(null, "Error retrieving updated balance.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
+        } finally {
+            dbc.closeConnection(); 
+        }
+
+        
+        
+        StringBuilder receipt = new StringBuilder();
+        receipt.append("*********************************************\n");
+        receipt.append("*       INTERNET CAFE MEMBERSHIP RECEIPT        *\n");
+        receipt.append("*********************************************\n\n");
+        Date date = new Date();
+        receipt.append(date.toString() + "\n\n");
+        receipt.append("User's Username: " + sess.getUserrname() + "\n");  
+        receipt.append("Amount Paid: ₱" + String.format("%.2f", price) + "\n");
+        receipt.append("New Balance: ₱" + String.format("%.2f", newBalanceDecimal) + "\n");
+        receipt.append("Transaction Status: " + transactionStatus + "\n");
+       receiptArea.setText(receipt.toString());
+       
+receiptArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        
+    } else {
+        JOptionPane.showMessageDialog(null, "Not enough cash to avail membership!");
+    }
+}
+    }//GEN-LAST:event_buyMouseClicked
+
+    private void add1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add1MouseClicked
+     
+
+    }//GEN-LAST:event_add1MouseClicked
+
+    private void add1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add1MouseEntered
+
+    private void add1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add1MouseExited
 
     /**
      * @param args the command line arguments
@@ -734,9 +776,10 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accname;
     private javax.swing.JLabel accname1;
-    private javax.swing.JButton add1;
+    public javax.swing.JPanel add1;
     public javax.swing.JTextField amount;
     private javax.swing.JLabel balancee;
+    public javax.swing.JLabel buy;
     public javax.swing.JTextField duration;
     public javax.swing.JLabel image;
     private javax.swing.JPanel imagesss;
@@ -751,6 +794,7 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel32;
@@ -764,7 +808,9 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField memberid;
+    private javax.swing.JTextArea receiptArea;
     public javax.swing.JTextField tdate;
     private javax.swing.JComboBox<String> tstatuss;
     public javax.swing.JComboBox<String> typee1;

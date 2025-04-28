@@ -232,7 +232,7 @@ public class cashinmoney extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel29MouseClicked
 
     private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked
- // Retrieve the session instance and get user ID
+ 
 Session sess = Session.getInstance();
 int userId = sess.getUid(); // Get user ID from session
 
@@ -266,7 +266,7 @@ try {
         return;
     }
 
-    // Database connection and query preparation
+   
    dbConnect dbc = new dbConnect();
  
 String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?, ?, ?, NOW())";
@@ -274,20 +274,20 @@ String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?
          PreparedStatement pst = conn.prepareStatement(sql)) {
 
         pst.setInt(1, userId);
-        pst.setDouble(2, cashInAmount); // Corrected the order based on the SQL statement
+        pst.setDouble(2, cashInAmount); 
         pst.setString(3, "PENDING");
 
         int result = pst.executeUpdate();
 
         if (result > 0) {
-            // Notify user of successful submission
-            JOptionPane.showMessageDialog(this, "Cash-in request submitted successfully! Awaiting admin approval.", "Success", JOptionPane.INFORMATION_MESSAGE);
+           
+            JOptionPane.showMessageDialog(this, "Cash-in request submitted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-            // Log the event with the username
-            // ... (your logging code here) ...
-
-            // Clear the fields for new input
+          
             cashin.setText("");
+             userdashboard das= new userdashboard();
+    das.setVisible(true);
+    this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Cash-in request submission failed.", "Error", JOptionPane.ERROR_MESSAGE);
         }

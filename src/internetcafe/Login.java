@@ -117,9 +117,9 @@ private static void logLogin(int userId, dbConnect connector) {
         jLabel24 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        hide = new javax.swing.JLabel();
         show = new javax.swing.JLabel();
         user = new javax.swing.JTextField();
-        hide = new javax.swing.JLabel();
         pasw = new javax.swing.JPasswordField();
         login = new javax.swing.JPanel();
         loggin = new javax.swing.JLabel();
@@ -177,6 +177,17 @@ private static void logLogin(int userId, dbConnect connector) {
         jLabel2.setText("Username:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 140, 30));
 
+        hide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hide-50.png"))); // NOI18N
+        hide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                hideMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hideMouseReleased(evt);
+            }
+        });
+        jPanel1.add(hide, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 230, 60, 40));
+
         show.setForeground(new java.awt.Color(153, 102, 0));
         show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-eye-50.png"))); // NOI18N
         show.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,7 +195,7 @@ private static void logLogin(int userId, dbConnect connector) {
                 showMouseClicked(evt);
             }
         });
-        jPanel1.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, 70, 120));
+        jPanel1.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 200, 70, 100));
 
         user.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         user.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -195,17 +206,6 @@ private static void logLogin(int userId, dbConnect connector) {
             }
         });
         jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 200, 40));
-
-        hide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hide-50.png"))); // NOI18N
-        hide.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                hideMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                hideMouseReleased(evt);
-            }
-        });
-        jPanel1.add(hide, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 190, 220, 120));
 
         pasw.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         pasw.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -242,7 +242,7 @@ private static void logLogin(int userId, dbConnect connector) {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 140, -1));
 
         reg.setBackground(new java.awt.Color(102, 102, 102));
-        reg.setFont(new java.awt.Font("Yu Gothic UI", 3, 18)); // NOI18N
+        reg.setFont(new java.awt.Font("Yu Gothic UI", 2, 18)); // NOI18N
         reg.setForeground(new java.awt.Color(200, 32, 32));
         reg.setText("Click here to register!");
         reg.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -250,7 +250,7 @@ private static void logLogin(int userId, dbConnect connector) {
                 regMouseClicked(evt);
             }
         });
-        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 340, 90));
+        jPanel1.add(reg, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, 340, 130));
 
         jPanel2.setBackground(new java.awt.Color(200, 32, 32));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -311,7 +311,7 @@ private static void logLogin(int userId, dbConnect connector) {
                 reg3MouseClicked(evt);
             }
         });
-        jPanel1.add(reg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, 150, 50));
+        jPanel1.add(reg3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 150, 90));
 
         reg4.setBackground(new java.awt.Color(102, 102, 102));
         reg4.setFont(new java.awt.Font("Yu Gothic Light", 2, 16)); // NOI18N

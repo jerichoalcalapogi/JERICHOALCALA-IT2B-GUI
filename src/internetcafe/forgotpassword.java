@@ -73,6 +73,8 @@ public class forgotpassword extends javax.swing.JFrame {
         secccc = new javax.swing.JTextField();
         answerrr = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
+        hide = new javax.swing.JLabel();
+        show = new javax.swing.JLabel();
 
         jPanel4.setBackground(new java.awt.Color(203, 14, 14));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -255,6 +257,26 @@ public class forgotpassword extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
         jLabel8.setText("SECURITY QUESTION:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 240, -1));
+
+        hide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-hide-50.png"))); // NOI18N
+        hide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                hideMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hideMouseReleased(evt);
+            }
+        });
+        jPanel1.add(hide, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 300, 220, 30));
+
+        show.setForeground(new java.awt.Color(153, 102, 0));
+        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-eye-50.png"))); // NOI18N
+        show.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showMouseClicked(evt);
+            }
+        });
+        jPanel1.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 270, 70, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -489,6 +511,23 @@ public class forgotpassword extends javax.swing.JFrame {
                 this.dispose();
     }//GEN-LAST:event_jLabel29MouseClicked
 
+    private void hideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMousePressed
+        show.setVisible(true);
+        hide.setVisible(false);
+       answerrr.setEchoChar((char)0);
+
+    }//GEN-LAST:event_hideMousePressed
+
+    private void hideMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMouseReleased
+        show.setVisible(false);
+        hide.setVisible(true);
+        answerrr.setEchoChar('*');
+    }//GEN-LAST:event_hideMouseReleased
+
+    private void showMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -521,6 +560,7 @@ public class forgotpassword extends javax.swing.JFrame {
     private javax.swing.JPanel Submit;
     private javax.swing.JPasswordField answerrr;
     private javax.swing.JPasswordField confirmpasss;
+    private javax.swing.JLabel hide;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -545,6 +585,7 @@ public class forgotpassword extends javax.swing.JFrame {
     private javax.swing.JPanel login;
     private javax.swing.JPasswordField newpasss;
     private javax.swing.JTextField secccc;
+    private javax.swing.JLabel show;
     private javax.swing.JTextField userrrr;
     // End of variables declaration//GEN-END:variables
 }

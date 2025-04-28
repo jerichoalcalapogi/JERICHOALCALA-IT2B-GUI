@@ -253,6 +253,9 @@ Color hover = new Color (203,14,14);
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel98MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel98MouseEntered(evt);
+            }
         });
         refresh1.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 180, -1));
 
@@ -361,12 +364,16 @@ Color hover = new Color (203,14,14);
     }//GEN-LAST:event_refresh2MouseClicked
 
     private void refresh2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh2MouseEntered
-        // TODO add your handling code here:
+         refresh2.setBackground(hover);
     }//GEN-LAST:event_refresh2MouseEntered
 
     private void refresh2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh2MouseExited
-        // TODO add your handling code here:
+       refresh2.setBackground(defaultcolor);
     }//GEN-LAST:event_refresh2MouseExited
+
+    private void jLabel98MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel98MouseEntered
+      
+    }//GEN-LAST:event_jLabel98MouseEntered
     
 
     public static void main(String args[]) {

@@ -73,11 +73,10 @@ Color hover = new Color (203,14,14);
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         mtablee = new javax.swing.JTable();
-        refresh = new javax.swing.JPanel();
-        jLabel96 = new javax.swing.JLabel();
-        refresh1 = new javax.swing.JPanel();
-        jLabel97 = new javax.swing.JLabel();
-        add2 = new javax.swing.JButton();
+        delete = new javax.swing.JPanel();
+        loggin2 = new javax.swing.JLabel();
+        delete1 = new javax.swing.JPanel();
+        loggin3 = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -187,83 +186,59 @@ Color hover = new Color (203,14,14);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 750, 340));
 
-        refresh.setBackground(new java.awt.Color(204, 204, 204));
-        refresh.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+        delete.setBackground(new java.awt.Color(200, 32, 32));
+        delete.setEnabled(false);
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refreshMouseClicked(evt);
+                deleteMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                refreshMouseEntered(evt);
+                deleteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                refreshMouseExited(evt);
+                deleteMouseExited(evt);
             }
         });
-        refresh.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        delete.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel96.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        jLabel96.setText("CANCEL");
-        jLabel96.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel96MouseEntered(evt);
-            }
-        });
-        refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
-
-        jPanel2.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 100, 40));
-
-        refresh1.setBackground(new java.awt.Color(204, 204, 204));
-        refresh1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        refresh1.addMouseListener(new java.awt.event.MouseAdapter() {
+        loggin2.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        loggin2.setText("CANCEL");
+        loggin2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refresh1MouseClicked(evt);
+                loggin2MouseClicked(evt);
+            }
+        });
+        delete.add(loggin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 180, 60));
+
+        jPanel2.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 130, 40));
+
+        delete1.setBackground(new java.awt.Color(200, 32, 32));
+        delete1.setEnabled(false);
+        delete1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delete1MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                refresh1MouseEntered(evt);
+                delete1MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                refresh1MouseExited(evt);
+                delete1MouseExited(evt);
             }
         });
-        refresh1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        delete1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel97.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel97.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        jLabel97.setText("select");
-        jLabel97.addMouseListener(new java.awt.event.MouseAdapter() {
+        loggin3.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        loggin3.setText("SELECT");
+        loggin3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel97MouseClicked(evt);
+                loggin3MouseClicked(evt);
             }
         });
-        refresh1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, -1));
+        delete1.add(loggin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 20));
 
-        jPanel2.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, 40));
+        jPanel2.add(delete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 430));
-
-        add2.setBackground(new java.awt.Color(255, 255, 255));
-        add2.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        add2.setText("SELECT");
-        add2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        add2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                add2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                add2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                add2MouseExited(evt);
-            }
-        });
-        add2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(add2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -290,41 +265,26 @@ Color hover = new Color (203,14,14);
      
     }//GEN-LAST:event_mtableeMouseClicked
 
-    private void add2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add2MouseClicked
-
-    private void add2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add2MouseEntered
-
-    private void add2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add2MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add2MouseExited
-
-    private void add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_add2ActionPerformed
-
-    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
-  transactionform ts = new  transactionform();
+    private void loggin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin2MouseClicked
+          transactionform ts = new  transactionform();
         ts.setVisible(true);
         this.dispose();
-     
+    }//GEN-LAST:event_loggin2MouseClicked
 
-    }//GEN-LAST:event_refreshMouseClicked
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+      
+    }//GEN-LAST:event_deleteMouseClicked
 
-    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
-        refresh.setBackground(hover);
-    }//GEN-LAST:event_refreshMouseEntered
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteMouseEntered
 
-    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
-        refresh.setBackground(defaultcolor);
-    }//GEN-LAST:event_refreshMouseExited
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteMouseExited
 
-    private void refresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseClicked
-   
- int rowIndex = mtablee.getSelectedRow();
+    private void loggin3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin3MouseClicked
+   int rowIndex = mtablee.getSelectedRow();
         if (rowIndex < 0) {
             JOptionPane.showMessageDialog(null, "Please Select an Item!");
             return; 
@@ -349,26 +309,19 @@ Color hover = new Color (203,14,14);
         of.typee1.setSelectedItem("" + model.getValueAt(rowIndex, 1));
         of.setVisible(true);
         this.dispose();
-    
+    }//GEN-LAST:event_loggin3MouseClicked
 
-
-    }//GEN-LAST:event_refresh1MouseClicked
-
-    private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
-       refresh1.setBackground(hover);
-    }//GEN-LAST:event_refresh1MouseEntered
-
-    private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
-         refresh1.setBackground(defaultcolor);
-    }//GEN-LAST:event_refresh1MouseExited
-
-    private void jLabel97MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel97MouseClicked
+    private void delete1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel97MouseClicked
+    }//GEN-LAST:event_delete1MouseClicked
 
-    private void jLabel96MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel96MouseEntered
+    private void delete1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete1MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel96MouseEntered
+    }//GEN-LAST:event_delete1MouseEntered
+
+    private void delete1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delete1MouseExited
 
     /**
      * @param args the command line arguments
@@ -409,7 +362,8 @@ Color hover = new Color (203,14,14);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton add2;
+    public javax.swing.JPanel delete;
+    public javax.swing.JPanel delete1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -417,8 +371,6 @@ Color hover = new Color (203,14,14);
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
@@ -428,9 +380,9 @@ Color hover = new Color (203,14,14);
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JLabel loggin2;
+    public javax.swing.JLabel loggin3;
     private javax.swing.JTable mtablee;
-    private javax.swing.JPanel refresh;
-    private javax.swing.JPanel refresh1;
     private javax.swing.JButton users;
     // End of variables declaration//GEN-END:variables
 }
