@@ -225,10 +225,9 @@ public class cashinmoney extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
-        editusers edd = new editusers();
-      edd.setVisible(true);
+         userdashboard userr = new userdashboard();
+   userr.setVisible(true);
       this.dispose();
-        
     }//GEN-LAST:event_jLabel29MouseClicked
 
     private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked

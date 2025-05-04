@@ -6,6 +6,7 @@ import config.Session;
 import config.dbConnect;
 import java.awt.Color;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -68,7 +69,7 @@ public class adminuser extends javax.swing.JFrame {
         System.out.println("Transaction log recorded: " + event + ", " + description);
     } catch (SQLException e) {
         System.err.println("Error recording transaction log: " + e.getMessage());
-        // Consider more robust error handling here, such as logging to a file or displaying an error message to the user
+      
     }
 }
     
@@ -160,6 +161,10 @@ Color hover = new Color (203,14,14);
         jLabel15 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        approve = new javax.swing.JPanel();
+        jLabel114 = new javax.swing.JLabel();
+        deactivate = new javax.swing.JPanel();
+        jLabel115 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
@@ -284,6 +289,50 @@ Color hover = new Color (203,14,14);
         jLabel2.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
         jLabel2.setText("Current user:");
         jPanel10.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 140, 30));
+
+        approve.setBackground(new java.awt.Color(204, 204, 204));
+        approve.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        approve.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                approveMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                approveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                approveMouseExited(evt);
+            }
+        });
+        approve.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel114.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel114.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel114.setText("APPROVE");
+        approve.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, -1));
+
+        jPanel10.add(approve, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 140, 40));
+
+        deactivate.setBackground(new java.awt.Color(204, 204, 204));
+        deactivate.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        deactivate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deactivateMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deactivateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deactivateMouseExited(evt);
+            }
+        });
+        deactivate.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel115.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel115.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel115.setText("DEACTIVATE");
+        deactivate.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, -1));
+
+        jPanel10.add(deactivate, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 140, 40));
 
         jPanel8.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 190, 470));
 
@@ -1574,6 +1623,98 @@ Color hover = new Color (203,14,14);
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_addMouseClicked
+
+    private void approveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveMouseClicked
+     int selectedRow = table.getSelectedRow(); 
+
+if (selectedRow != -1) {
+    String status = table.getValueAt(selectedRow, 6).toString(); 
+
+    if (status.equalsIgnoreCase("Pending")) {
+        String userId = table.getValueAt(selectedRow, 0).toString(); 
+
+        try {
+            dbConnect dbc = new dbConnect();
+            String sql = "UPDATE `tbl_user` SET status = 'Active' WHERE c_id = ?";
+            PreparedStatement pst = dbc.connect.prepareStatement(sql);
+            pst.setString(1, userId);
+
+            int updated = pst.executeUpdate();
+
+            if (updated > 0) {
+                table.setValueAt("Active", selectedRow, 6);
+                JOptionPane.showMessageDialog(null, "User approved successfully.");
+            }
+
+            pst.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "This user is already active.");
+    }
+} else {
+    JOptionPane.showMessageDialog(null, "Please select a user to approve.");
+}
+
+
+   
+        
+        
+    }//GEN-LAST:event_approveMouseClicked
+
+    private void approveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveMouseEntered
+         approve.setBackground(hover);
+    }//GEN-LAST:event_approveMouseEntered
+
+    private void approveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveMouseExited
+        approve.setBackground(defaultcolor);
+    }//GEN-LAST:event_approveMouseExited
+
+    private void deactivateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deactivateMouseClicked
+     int selectedRow = table.getSelectedRow(); 
+
+if (selectedRow != -1) {
+    String status = table.getValueAt(selectedRow, 6).toString(); 
+
+    if (status.equalsIgnoreCase("Active")) {
+        String userId = table.getValueAt(selectedRow, 0).toString(); 
+
+        try {
+            dbConnect dbc = new dbConnect();
+            String sql = "UPDATE `tbl_user` SET status = 'Pending' WHERE c_id = ?";
+            PreparedStatement pst = dbc.connect.prepareStatement(sql);
+            pst.setString(1, userId);
+
+            int updated = pst.executeUpdate();
+
+            if (updated > 0) {
+                table.setValueAt("Pending", selectedRow, 6);
+                JOptionPane.showMessageDialog(null, "User deactivated successfully.");
+            }
+
+            pst.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "This user is not currently active.");
+    }
+} else {
+    JOptionPane.showMessageDialog(null, "Please select a user to deactivate.");
+}
+
+    }//GEN-LAST:event_deactivateMouseClicked
+
+    private void deactivateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deactivateMouseEntered
+         deactivate.setBackground(hover);
+    }//GEN-LAST:event_deactivateMouseEntered
+
+    private void deactivateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deactivateMouseExited
+       deactivate.setBackground(defaultcolor);
+    }//GEN-LAST:event_deactivateMouseExited
     
 
     public static void main(String args[]) {
@@ -1588,6 +1729,7 @@ Color hover = new Color (203,14,14);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel add;
     private javax.swing.JLabel add1;
+    private javax.swing.JPanel approve;
     private javax.swing.JPanel cancel100;
     private javax.swing.JPanel cancel21;
     private javax.swing.JPanel cancel22;
@@ -1625,6 +1767,7 @@ Color hover = new Color (203,14,14);
     private javax.swing.JPanel cancel98;
     private javax.swing.JPanel cancel99;
     private javax.swing.JLabel currentuser;
+    private javax.swing.JPanel deactivate;
     private javax.swing.JPanel delete;
     private javax.swing.JPanel edit;
     private javax.swing.JPanel edit1;
@@ -1643,6 +1786,8 @@ Color hover = new Color (203,14,14);
     private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
+    private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;

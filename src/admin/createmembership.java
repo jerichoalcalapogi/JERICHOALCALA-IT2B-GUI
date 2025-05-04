@@ -96,7 +96,7 @@ public class createmembership extends javax.swing.JFrame {
   public void displayData(){
     try{
         dbConnect dbc = new dbConnect();
-        ResultSet rs = dbc.getData("SELECT  m_id,m_type,price_per_hour,m_status FROM tbl_membership");
+        ResultSet rs = dbc.getData("SELECT  m_id,m_type,price_per_month,m_status FROM tbl_membership");
        memtable.setModel(DbUtils.resultSetToTableModel(rs));
          rs.close();
     }catch(SQLException ex){
@@ -463,7 +463,7 @@ public class createmembership extends javax.swing.JFrame {
         if (rs.next()) {
             mid.setText("" + rs.getInt("m_id"));
            mtype.setSelectedItem("" + rs.getString("m_type"));
-            mprice.setText("" + rs.getString("price_per_hour"));
+            mprice.setText("" + rs.getString("price_per_month"));
             mstatus.setSelectedItem("" + rs.getString("m_status"));
             add.setEnabled(false);
             checkadd=false;
@@ -498,12 +498,12 @@ public class createmembership extends javax.swing.JFrame {
                     int count = rs.getInt(1);
                     if (count > 0) {
                         JOptionPane.showMessageDialog(null, "Membership type '" + selectedType + "' already exists.");
-                        return; // Do not proceed with adding
+                        return; 
                     }
                 }
 
               
-                String insertQuery = "INSERT INTO tbl_membership (m_type, price_per_hour, m_status, m_image) VALUES (?, ?, ?, ?)";
+                String insertQuery = "INSERT INTO tbl_membership (m_type, price_per_month, m_status, m_image) VALUES (?, ?, ?, ?)";
                 pst = con.prepareStatement(insertQuery);
                 pst.setString(1, selectedType);
                 pst.setString(2, mprice.getText());
@@ -573,7 +573,7 @@ public class createmembership extends javax.swing.JFrame {
             }
 
            
-            String updateQuery = "UPDATE tbl_membership SET m_type = ?, price_per_hour = ?, m_status = ? WHERE m_id = ?";
+            String updateQuery = "UPDATE tbl_membership SET m_type = ?, price_per_month = ?, m_status = ? WHERE m_id = ?";
             pst = con.prepareStatement(updateQuery);
             pst.setString(1, selectedType);
             pst.setString(2, mprice.getText());

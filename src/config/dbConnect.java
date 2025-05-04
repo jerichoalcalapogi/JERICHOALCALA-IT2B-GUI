@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class dbConnect {
 
-    private Connection connect;
+    public Connection connect;
 
     public dbConnect() {
         try {

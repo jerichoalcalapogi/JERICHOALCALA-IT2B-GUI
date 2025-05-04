@@ -572,8 +572,8 @@ public class adduser extends javax.swing.JFrame {
                 if (resultForgot > 0) {
                     JOptionPane.showMessageDialog(null, "Successfully Registered");
                     this.dispose();
-                    Login loginFrame = new Login();
-                    loginFrame.setVisible(true);
+                   adminuser ads = new adminuser ();
+                    ads.setVisible(true);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Security Question Registration Failed!");

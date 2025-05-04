@@ -34,13 +34,13 @@ Color hover = new Color (203,14,14);
  public void displayData(){
     try{
         dbConnect dbc = new dbConnect();
-        ResultSet rs = dbc.getData("SELECT m_id, m_type, price_per_hour, m_status FROM tbl_membership");
+        ResultSet rs = dbc.getData("SELECT m_id, m_type, price_per_month, m_status FROM tbl_membership");
         mtablee.setModel(DbUtils.resultSetToTableModel(rs));
 
        
         mtablee.getColumnModel().getColumn(0).setHeaderValue("Membership ID");
         mtablee.getColumnModel().getColumn(1).setHeaderValue("Membership");
-        mtablee.getColumnModel().getColumn(2).setHeaderValue("Price per Hour");
+        mtablee.getColumnModel().getColumn(2).setHeaderValue("Price per Month");
         mtablee.getColumnModel().getColumn(3).setHeaderValue("Status");
 
         rs.close();

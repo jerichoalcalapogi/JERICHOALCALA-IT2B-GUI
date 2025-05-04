@@ -106,6 +106,8 @@ public static int getHeightFromWidth(String imagePath, int desiredWidth) {
         return -1;
     }
 
+
+
  public void updateBalance(int userId) {
     dbConnect connect = new dbConnect();
     String query = "SELECT u_balance FROM tbl_user WHERE c_id = ?"; 
@@ -152,15 +154,6 @@ public static int getHeightFromWidth(String imagePath, int desiredWidth) {
 
 
  
-  
-
-
- 
- 
- 
- 
-  
- 
  
 
  private void fetchPricePerHour() {
@@ -174,17 +167,17 @@ public static int getHeightFromWidth(String imagePath, int desiredWidth) {
             ResultSet rs = null;
 
             try {
-                String query = "SELECT price_per_hour FROM tbl_membership WHERE m_type = ?";
+                String query = "SELECT price_per_month FROM tbl_membership WHERE m_type = ?";
                 pst = con.prepareStatement(query);
                 pst.setString(1, selectedType);
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
-                    pricePerHour = rs.getDouble("price_per_hour");
+                    pricePerHour = rs.getDouble("price_per_month");
                     System.out.println("Fetched Price per Hour for " + selectedType + ": " + pricePerHour); // DEBUG
                 } else {
-                    JOptionPane.showMessageDialog(this, "Price per hour not found for " + selectedType, "Warning", JOptionPane.WARNING_MESSAGE);
-                    System.out.println("Warning: Price per hour not found for " + selectedType); // DEBUG
+                    JOptionPane.showMessageDialog(this, "Price per month not found for " + selectedType, "Warning", JOptionPane.WARNING_MESSAGE);
+                    System.out.println("Warning: Price per month not found for " + selectedType); // DEBUG
                 }
 
             } catch (SQLException ex) {
@@ -204,18 +197,25 @@ public static int getHeightFromWidth(String imagePath, int desiredWidth) {
             System.out.println("Membership type is null or empty."); // DEBUG
         }
     }
+ 
+ 
+   private void calculateAmount() {
+    try {
+        int durationMonths = Integer.parseInt(duration.getText().trim());
 
-    private void calculateAmount() {
-        try {
-            int durationHours = Integer.parseInt(duration.getText());
-            double totalAmount = durationHours * pricePerHour;
-            amount.setText(String.format("%.2f", totalAmount));
-            System.out.println("Calculated Amount: " + totalAmount); // DEBUG
-        } catch (NumberFormatException e) {
-            amount.setText("");
-            System.out.println("Invalid duration format."); // DEBUG
+        if (durationMonths > 3) {
+            amount.setText("Max is 3 months only!");
+            return;
         }
+
+        double totalAmount = durationMonths * pricePerHour;
+        amount.setText(String.format("%.2f", totalAmount));
+        System.out.println("Calculated Amount: " + totalAmount); // DEBUG
+    } catch (NumberFormatException e) {
+        amount.setText("Enter duration!");
+        System.out.println("Invalid duration format."); // DEBUG
     }
+}
 
 
 
@@ -456,11 +456,11 @@ Color hover = new Color (102,102,102);
 
         jLabel21.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel21.setText("MEMBERSHIP TYPE:");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 190, 30));
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 190, 30));
 
         jLabel22.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel22.setText("SUBSCRIPTION STATUS:");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 210, 30));
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 210, 30));
 
         tstatuss.setFont(new java.awt.Font("Centaur", 0, 18)); // NOI18N
         tstatuss.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Success", "Failed", " " }));
@@ -486,7 +486,7 @@ Color hover = new Color (102,102,102);
 
         jLabel23.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel23.setText("MEMBERSHIP ID:");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 190, 30));
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 190, 30));
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AdminUserImages/icons8-add-32.png"))); // NOI18N
         jLabel30.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -519,7 +519,7 @@ Color hover = new Color (102,102,102);
 
         jLabel24.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel24.setText("date:");
-        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 190, 30));
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 190, 30));
 
         imagesss.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         imagesss.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, 370));
@@ -527,8 +527,8 @@ Color hover = new Color (102,102,102);
         jPanel2.add(imagesss, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 340, 390));
 
         jLabel20.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
-        jLabel20.setText("duration (HOURS):");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 190, 30));
+        jLabel20.setText("MONTHS DURATION (MAX OF 3):");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 290, 30));
 
         amount.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         amount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -543,7 +543,7 @@ Color hover = new Color (102,102,102);
 
         jLabel25.setFont(new java.awt.Font("Castellar", 1, 14)); // NOI18N
         jLabel25.setText("total price:");
-        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 190, 30));
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, 190, 30));
 
         balancee.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         balancee.setForeground(new java.awt.Color(203, 14, 14));
@@ -657,9 +657,22 @@ DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 LocalDate localDate = LocalDate.now();
 System.out.println(dtf.format(localDate));
 
-if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty()) {
+// Retrieve the selected membership type from the combo box
+String membershipType = typee1.getSelectedItem().toString(); // Get the selected membership type
+
+// Validate fields
+if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty() || membershipType.isEmpty()) {
     JOptionPane.showMessageDialog(null, "All fields are required");
-} else {
+    return;
+} 
+
+int months = Integer.parseInt(duration.getText());
+if (months < 1 || months > 3) {
+    JOptionPane.showMessageDialog(null, "Please enter a valid duration!");
+    return;
+}
+
+else {
     double balance = Double.parseDouble(balancee.getText()); 
     double price = Double.parseDouble(amount.getText());
 
@@ -667,26 +680,26 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
         String transactionStatus = "Success";
         double newBalance = balance - price;
 
-       
         BigDecimal newBalanceDecimal = new BigDecimal(newBalance).setScale(2, RoundingMode.HALF_UP);
 
         dbConnect dbc = new dbConnect();
 
-        
-        dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid) VALUES ('"
+        // Insert transaction including membership type
+        dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid, membership_type) VALUES ('"
                 + sess.getUid() + "','"
                 + memberid.getText() + "','"
                 + duration.getText() + "','"
                 + tdate.getText() + "','"
                 + transactionStatus + "','"
-                + amount.getText() + "')");
+                + amount.getText() + "','"
+                + membershipType + "')");
 
-      
+        // Update balance
         dbc.insertData("UPDATE tbl_user SET u_balance = u_balance - '" + price + "' WHERE c_id = '" + sess.getUid() + "'");
 
         JOptionPane.showMessageDialog(null, "Successfully Subscribed");
-   receiptArea.setEnabled(true);
-       
+        receiptArea.setEnabled(true);
+
         try {
             ResultSet rs = dbc.getData("SELECT u_balance FROM tbl_user WHERE c_id = '" + sess.getUid() + "'");
             if (rs.next()) {
@@ -702,8 +715,7 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
             dbc.closeConnection(); 
         }
 
-        
-        
+        // Generate receipt
         StringBuilder receipt = new StringBuilder();
         receipt.append("*********************************************\n");
         receipt.append("*       INTERNET CAFE MEMBERSHIP RECEIPT        *\n");
@@ -714,13 +726,15 @@ if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getTex
         receipt.append("Amount Paid: ₱" + String.format("%.2f", price) + "\n");
         receipt.append("New Balance: ₱" + String.format("%.2f", newBalanceDecimal) + "\n");
         receipt.append("Transaction Status: " + transactionStatus + "\n");
-       receiptArea.setText(receipt.toString());
-       
-receiptArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
-        
+        receipt.append("Membership Type: " + membershipType + "\n"); // Display membership type
+        receiptArea.setText(receipt.toString());
+
+        receiptArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
     } else {
         JOptionPane.showMessageDialog(null, "Not enough cash to avail membership!");
     }
+
+
 }
     }//GEN-LAST:event_buyMouseClicked
 
