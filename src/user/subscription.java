@@ -73,7 +73,7 @@ public class subscription extends javax.swing.JFrame {
 
                 rs.close();
                 pstmt.close();
-                loadMembershipStatus(con); // Pass the connection
+                loadMembershipStatus(con); 
             } else {
                 memberships.setText("");
                 JOptionPane.showMessageDialog(null, "Database connection is not valid.");
@@ -87,7 +87,7 @@ public class subscription extends javax.swing.JFrame {
         }
     }
 
-    private void loadMembershipStatus(Connection con) { // Modified to accept Connection
+    private void loadMembershipStatus(Connection con) { 
         Session sess = Session.getInstance();
 
         try {
@@ -100,7 +100,7 @@ public class subscription extends javax.swing.JFrame {
             if (rs.next()) {
                 String startStr = rs.getString("start_datetime");
                 String endStr = rs.getString("end_datetime");
-                String status = rs.getString("activation_status"); // Get the status
+                String status = rs.getString("activation_status"); 
 
                 if (startStr != null && !startStr.isEmpty() && endStr != null && !endStr.isEmpty()) {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -108,9 +108,9 @@ public class subscription extends javax.swing.JFrame {
                     LocalDateTime end = LocalDateTime.parse(endStr, formatter);
 
                     if ("Activated".equals(status)) {
-                        startMembershipCountdown(end, start, end); // Pass start and end time
+                        startMembershipCountdown(end, start, end); 
                     } else if ("Paused".equals(status)) {
-                        // If it's paused, just display the start and end times and a paused message
+                   
                       
                         if (countdownTimer != null) {
                             countdownTimer.stop();
@@ -158,48 +158,49 @@ public class subscription extends javax.swing.JFrame {
         } catch (DateTimeParseException ex) {
             displayy.setText("Error parsing membership dates.");
         } finally {
-            // con.close(); // Don't close the connection here as it was passed in
+      
         }
     }
 
     private void startMembershipCountdown(LocalDateTime endDateTime, LocalDateTime startTime, LocalDateTime endTimeFull) {
-        this.endTime = endDateTime;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String endDateString = endTimeFull.format(formatter);
-        String initialMessage = "<html><b>Membership Active!</b><br>Start Date & Time: %s<br>End Date & Time: %s<br><br>Time left: ";
+    this.endTime = endDateTime;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    String endDateString = endTimeFull.format(formatter);
+    String initialMessage = "<html><b>Membership Active!</b><br>Start Date & Time: %s<br>End Date & Time: %s<br><br>Time left: ";
 
-        if (timerStarted) {
-            countdownTimer.stop();
-        }
-        timerStarted = true;
-        isPaused = false; // Ensure isPaused is false when starting/resuming
-
-        countdownTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (isPaused) {
-                    return;
-                }
-
-                LocalDateTime now = LocalDateTime.now();
-                Duration remaining = Duration.between(now, endTime);
-                String startDateString = now.format(formatter); // Update start time on each tick
-
-                if (!remaining.isNegative()) {
-                    String msg = String.format(initialMessage, startDateString, endDateString) + formatDuration(remaining) + "</html>";
-                    displayy.setText(msg);
-                } else {
-                    displayy.setText("<html><b>Membership expired.</b></html>");
-                    countdownTimer.stop();
-                    timerStarted = false;
-                    isPaused = false;
-                    // Potentially disable pause/resume buttons here
-                }
-            }
-        });
-
-        countdownTimer.start();
+    if (timerStarted) {
+        countdownTimer.stop();
     }
+    timerStarted = true;
+    isPaused = false;
+
+    countdownTimer = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (isPaused) {
+                return;
+            }
+
+            LocalDateTime now = LocalDateTime.now();
+            Duration remaining = Duration.between(now, endTime);
+            String startDateString = now.format(formatter); 
+
+            if (!remaining.isNegative()) {
+                String msg = String.format(initialMessage, startDateString, endDateString) + formatDuration(remaining) + 
+                             "<br><span style='color:red'><i>We're open 24/7</i></span></html>";
+                displayy.setText(msg);
+            } else {
+                displayy.setText("<html><b>Membership expired.</b></html>");
+                countdownTimer.stop();
+                timerStarted = false;
+                isPaused = false;
+            }
+        }
+    });
+
+    countdownTimer.start();
+}
+
    
 
     private String formatDuration(Duration duration) {
@@ -345,7 +346,7 @@ public class subscription extends javax.swing.JFrame {
         memberships.setFont(new java.awt.Font("Bell MT", 1, 35)); // NOI18N
         memberships.setForeground(new java.awt.Color(203, 14, 14));
         memberships.setText("SILVER");
-        jPanel2.add(memberships, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 150, 60));
+        jPanel2.add(memberships, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 150, 60));
 
         displayy.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         jPanel2.add(displayy, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 310, 270));

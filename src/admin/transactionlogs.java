@@ -127,13 +127,11 @@ Color hover = new Color (203,14,14);
         jLabel14 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        refresh = new javax.swing.JPanel();
+        refresh1 = new javax.swing.JPanel();
         jLabel96 = new javax.swing.JLabel();
         currentuser = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        refresh1 = new javax.swing.JPanel();
-        jLabel97 = new javax.swing.JLabel();
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
 
@@ -198,40 +196,6 @@ Color hover = new Color (203,14,14);
         jLabel11.setText("REGISTER FORM");
         jPanel8.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, -10, 310, 60));
 
-        refresh.setBackground(new java.awt.Color(204, 204, 204));
-        refresh.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refreshMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                refreshMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                refreshMouseExited(evt);
-            }
-        });
-        refresh.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel96.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        jLabel96.setText("refresh");
-        refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
-
-        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 100, 40));
-
-        currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
-        currentuser.setForeground(new java.awt.Color(203, 14, 14));
-        jPanel8.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 60, 60));
-
-        jLabel15.setBackground(new java.awt.Color(255, 51, 0));
-        jLabel15.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
-        jLabel15.setText("Current user:");
-        jPanel8.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 130, 40));
-
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 240, 220));
-
         refresh1.setBackground(new java.awt.Color(204, 204, 204));
         refresh1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         refresh1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -247,17 +211,24 @@ Color hover = new Color (203,14,14);
         });
         refresh1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel97.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel97.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        jLabel97.setText("ACTIVATION");
-        jLabel97.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel97MouseClicked(evt);
-            }
-        });
-        refresh1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, -1));
+        jLabel96.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel96.setText("ACTIVATION");
+        refresh1.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, -1));
 
-        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 150, 40));
+        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 140, 40));
+
+        currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        currentuser.setForeground(new java.awt.Color(203, 14, 14));
+        jPanel8.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 60, 60));
+
+        jLabel15.setBackground(new java.awt.Color(255, 51, 0));
+        jLabel15.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
+        jLabel15.setText("Current user:");
+        jPanel8.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 130, 40));
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
+        jPanel8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 240, 220));
 
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -266,13 +237,13 @@ Color hover = new Color (203,14,14);
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
-       refresh.setBackground(defaultcolor);
-    }//GEN-LAST:event_refreshMouseExited
+    private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
+       refresh1.setBackground(defaultcolor);
+    }//GEN-LAST:event_refresh1MouseExited
 
-    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
-       refresh.setBackground(hover);
-    }//GEN-LAST:event_refreshMouseEntered
+    private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
+       refresh1.setBackground(hover);
+    }//GEN-LAST:event_refresh1MouseEntered
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
             Admindashboard add = new Admindashboard();            
@@ -301,26 +272,8 @@ Color hover = new Color (203,14,14);
         
     }//GEN-LAST:event_formWindowActivated
     
-    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
-      
-        refreshTablee();
-        
-        
-    }//GEN-LAST:event_refreshMouseClicked
-
     private void refresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseClicked
       
-    }//GEN-LAST:event_refresh1MouseClicked
-
-    private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_refresh1MouseEntered
-
-    private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_refresh1MouseExited
-
-    private void jLabel97MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel97MouseClicked
     int selectedRow = tablelogs.getSelectedRow();
 
     if (selectedRow != -1) {
@@ -333,12 +286,12 @@ Color hover = new Color (203,14,14);
         activateForm.setMembershipType(membershipType); 
         activateForm.setVisible(true);
         this.dispose();
+       activateForm.enableConfirmButton();
     } else {
         JOptionPane.showMessageDialog(this, "Please select a user to activate.");
     }
-
-
-    }//GEN-LAST:event_jLabel97MouseClicked
+        
+    }//GEN-LAST:event_refresh1MouseClicked
     
 
     public static void main(String args[]) {
@@ -361,12 +314,10 @@ Color hover = new Color (203,14,14);
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel refresh;
     private javax.swing.JPanel refresh1;
     private javax.swing.JTable tablelogs;
     // End of variables declaration//GEN-END:variables

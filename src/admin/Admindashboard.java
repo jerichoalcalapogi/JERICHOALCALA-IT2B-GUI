@@ -163,11 +163,11 @@ public class Admindashboard extends javax.swing.JFrame {
                 logoMouseClicked(evt);
             }
         });
-        jPanel2.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 150, 180));
+        jPanel2.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 150, 180));
 
         jSeparator3.setForeground(new java.awt.Color(200, 32, 32));
         jSeparator3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 170, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 170, 20));
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/profile_6914786.png"))); // NOI18N
         jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +190,7 @@ public class Admindashboard extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 120, 50));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 120, 50));
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N

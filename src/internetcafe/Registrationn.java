@@ -79,25 +79,7 @@ public class Registrationn extends javax.swing.JFrame {
         }
     }
 
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
+       
    Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (200,32,32);
     @SuppressWarnings("unchecked")

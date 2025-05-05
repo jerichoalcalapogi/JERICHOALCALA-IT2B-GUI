@@ -136,7 +136,7 @@ Color hover = new Color (203,14,14);
         jLabel15 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         refresh1 = new javax.swing.JPanel();
-        jLabel97 = new javax.swing.JLabel();
+        cashinlog = new javax.swing.JLabel();
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
 
@@ -219,9 +219,9 @@ Color hover = new Color (203,14,14);
         jLabel96.setBackground(new java.awt.Color(0, 0, 0));
         jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
         jLabel96.setText("refresh");
-        refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
+        refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, -1));
 
-        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 100, 40));
+        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 120, 40));
 
         currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         currentuser.setForeground(new java.awt.Color(203, 14, 14));
@@ -250,17 +250,12 @@ Color hover = new Color (203,14,14);
         });
         refresh1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel97.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel97.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        jLabel97.setText("APPROVE");
-        jLabel97.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel97MouseClicked(evt);
-            }
-        });
-        refresh1.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
+        cashinlog.setBackground(new java.awt.Color(0, 0, 0));
+        cashinlog.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        cashinlog.setText("APPROVE");
+        refresh1.add(cashinlog, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, -1));
 
-        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 120, 40));
+        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 120, 40));
 
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -309,22 +304,7 @@ Color hover = new Color (203,14,14);
     }//GEN-LAST:event_refreshMouseClicked
 
     private void refresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_refresh1MouseClicked
-
-    private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
-         refresh1.setBackground(hover);
-    }//GEN-LAST:event_refresh1MouseEntered
-
-    private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
-       refresh1.setBackground(defaultcolor);
-    }//GEN-LAST:event_refresh1MouseExited
-
-    private void jLabel97MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel97MouseClicked
-       
-                                
-
- int selectedRow = cashtable.getSelectedRow();
+       int selectedRow = cashtable.getSelectedRow();
 
 if (selectedRow == -1) {
     JOptionPane.showMessageDialog(null, "Please select a cash request to approve.");
@@ -433,10 +413,15 @@ try {
     }
 }
 
+    }//GEN-LAST:event_refresh1MouseClicked
 
+    private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
+        refresh1.setBackground(hover);
+    }//GEN-LAST:event_refresh1MouseEntered
 
-        
-    }//GEN-LAST:event_jLabel97MouseClicked
+    private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
+        refresh1.setBackground(defaultcolor);
+    }//GEN-LAST:event_refresh1MouseExited
     
 
     public static void main(String args[]) {
@@ -449,6 +434,7 @@ try {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cashinlog;
     private javax.swing.JTable cashtable;
     private javax.swing.JLabel currentuser;
     private javax.swing.JLabel jLabel11;
@@ -460,7 +446,6 @@ try {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;

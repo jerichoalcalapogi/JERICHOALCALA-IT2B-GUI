@@ -200,6 +200,10 @@ public class editusers extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        remove = new javax.swing.JPanel();
+        loggin4 = new javax.swing.JLabel();
+        select = new javax.swing.JPanel();
+        loggin3 = new javax.swing.JLabel();
         updateee = new javax.swing.JPanel();
         loggin1 = new javax.swing.JLabel();
         contact = new javax.swing.JTextField();
@@ -224,8 +228,6 @@ public class editusers extends javax.swing.JFrame {
         reg = new javax.swing.JLabel();
         imagesss = new javax.swing.JPanel();
         image = new javax.swing.JLabel();
-        remove = new javax.swing.JButton();
-        select = new javax.swing.JButton();
         delete = new javax.swing.JPanel();
         loggin2 = new javax.swing.JLabel();
 
@@ -238,6 +240,58 @@ public class editusers extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        remove.setBackground(new java.awt.Color(200, 32, 32));
+        remove.setEnabled(false);
+        remove.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                removeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                removeMouseExited(evt);
+            }
+        });
+        remove.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin4.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        loggin4.setText("REMOVE");
+        loggin4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin4MouseClicked(evt);
+            }
+        });
+        remove.add(loggin4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 90, 30));
+
+        jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, 110, 30));
+
+        select.setBackground(new java.awt.Color(200, 32, 32));
+        select.setEnabled(false);
+        select.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                selectMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                selectMouseExited(evt);
+            }
+        });
+        select.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin3.setFont(new java.awt.Font("Centaur", 1, 20)); // NOI18N
+        loggin3.setText("SELECT");
+        loggin3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin3MouseClicked(evt);
+            }
+        });
+        select.add(loggin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 100, 30));
+
+        jPanel1.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 110, 30));
 
         updateee.setBackground(new java.awt.Color(200, 32, 32));
         updateee.setEnabled(false);
@@ -411,50 +465,6 @@ public class editusers extends javax.swing.JFrame {
 
         jPanel1.add(imagesss, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 200, 210));
 
-        remove.setBackground(new java.awt.Color(255, 255, 255));
-        remove.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        remove.setText("remove");
-        remove.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        remove.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                removeMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                removeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                removeMouseExited(evt);
-            }
-        });
-        remove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeActionPerformed(evt);
-            }
-        });
-        jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, 100, 30));
-
-        select.setBackground(new java.awt.Color(255, 255, 255));
-        select.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        select.setText("select");
-        select.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(203, 14, 14), 5, true));
-        select.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                selectMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                selectMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                selectMouseExited(evt);
-            }
-        });
-        select.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectActionPerformed(evt);
-            }
-        });
-        jPanel1.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 100, 30));
-
         delete.setBackground(new java.awt.Color(200, 32, 32));
         delete.setEnabled(false);
         delete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -548,74 +558,6 @@ Session sess = Session.getInstance();
    
 
     }//GEN-LAST:event_formWindowActivated
-
-    private void removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeMouseClicked
-
-    private void removeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeMouseEntered
-
-    private void removeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeMouseExited
-
-    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
-      
-remove.setEnabled(false);
-select.setEnabled(true);
-image.setIcon(null);
-destination = "";
-path = "";
-
-  
-        
-    }//GEN-LAST:event_removeActionPerformed
-
-    private void selectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectMouseClicked
-
-    private void selectMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectMouseEntered
-
-    private void selectMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectMouseExited
-
-    private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
-      
-        
-          JFileChooser fileChooser = new JFileChooser();
-                int returnValue = fileChooser.showOpenDialog(null);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    try {
-                        selectedFile = fileChooser.getSelectedFile();
-                        destination = "src/userimage/" + selectedFile.getName();
-                        path  = selectedFile.getAbsolutePath();
-                        
-                        
-                        if(FileExistenceChecker(path) == 1){
-                          JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
-                            destination = "";
-                            path="";
-                        }else{
-                            image.setIcon(ResizeImage(path, null, image));
-                          select.setEnabled(false);
-                          remove.setEnabled(true);
-                            
-                        }
-                    } catch (Exception ex) {
-                        System.out.println("File Error!");
-                    }
-                }
-        
-        
-  
-        
-    }//GEN-LAST:event_selectActionPerformed
 
     private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked
       if (fn1.getText().isEmpty()
@@ -716,6 +658,67 @@ if(destination.isEmpty()){
     private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteMouseExited
+
+    private void loggin3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin3MouseClicked
+        JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        selectedFile = fileChooser.getSelectedFile();
+                        destination = "src/userimage/" + selectedFile.getName();
+                        path  = selectedFile.getAbsolutePath();
+                        
+                        
+                        if(FileExistenceChecker(path) == 1){
+                          JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
+                            destination = "";
+                            path="";
+                        }else{
+                            image.setIcon(ResizeImage(path, null, image));
+                          select.setEnabled(false);
+                          remove.setEnabled(true);
+                            
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("File Error!");
+                    }
+                }
+        
+    }//GEN-LAST:event_loggin3MouseClicked
+
+    private void selectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseClicked
+         
+    }//GEN-LAST:event_selectMouseClicked
+
+    private void selectMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectMouseEntered
+
+    private void selectMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectMouseExited
+
+    private void loggin4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin4MouseClicked
+      remove.setEnabled(false);
+select.setEnabled(true);
+image.setIcon(null);
+destination = "";
+path = "";
+    }//GEN-LAST:event_loggin4MouseClicked
+
+    private void removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseClicked
+         
+
+
+    }//GEN-LAST:event_removeMouseClicked
+
+    private void removeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeMouseEntered
+
+    private void removeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeMouseExited
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -775,10 +778,12 @@ if(destination.isEmpty()){
     public javax.swing.JTextField ln;
     public javax.swing.JLabel loggin1;
     public javax.swing.JLabel loggin2;
+    public javax.swing.JLabel loggin3;
+    public javax.swing.JLabel loggin4;
     private javax.swing.JLabel reg;
     private javax.swing.JLabel reg2;
-    public javax.swing.JButton remove;
-    public javax.swing.JButton select;
+    public javax.swing.JPanel remove;
+    public javax.swing.JPanel select;
     public javax.swing.JPanel updateee;
     public javax.swing.JTextField us2;
     public javax.swing.JTextField useriddd;
