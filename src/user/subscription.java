@@ -34,136 +34,185 @@ public class subscription extends javax.swing.JFrame {
          setResizable(false);
         setLocationRelativeTo(null);
         displayMembershipType();
-        loadMembershipStatus();
+      
+       
       
     }
 
-   
-   private boolean membershipMessageShown = false;
-  
-   public void displayMembershipType() {
-   
-    dbConnect dbc = new dbConnect();
-    try {
-        Session sess = Session.getInstance();
-        int currentLoggedInUserId = sess.getUid();
+ 
+   private Timer countdownTimer;
+    private boolean isPaused = false;
+    private Duration remainingTime;
+    private LocalDateTime pauseTime;
+    private LocalDateTime endTime;
+    private boolean membershipMessageShown = false;
+    private boolean timerStarted = false; 
+ public void displayMembershipType() {
+        dbConnect dbc = new dbConnect();
+        try {
+            Session sess = Session.getInstance();
+            int currentLoggedInUserId = sess.getUid();
 
-        Connection con = dbc.getConnection();
-        if (con != null && !con.isClosed()) {
-            String query = "SELECT membership_type FROM tbl_transaction WHERE c_id = ? ORDER BY t_id DESC LIMIT 1";
+            Connection con = dbc.getConnection();
+            if (con != null && !con.isClosed()) {
+                String query = "SELECT membership_type FROM tbl_transaction WHERE c_id = ? ORDER BY t_id DESC LIMIT 1";
+                PreparedStatement pstmt = con.prepareStatement(query);
+                pstmt.setInt(1, currentLoggedInUserId);
+                ResultSet rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+                    String type = rs.getString("membership_type");
+                    if (type != null && !type.trim().isEmpty()) {
+                        memberships.setText(type);
+                    } else {
+                        memberships.setText("");
+                    }
+                } else {
+                    memberships.setText("");
+                }
+
+                rs.close();
+                pstmt.close();
+                loadMembershipStatus(con); // Pass the connection
+            } else {
+                memberships.setText("");
+                JOptionPane.showMessageDialog(null, "Database connection is not valid.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            memberships.setText("");
+            JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
+        } finally {
+            dbc.closeConnection();
+        }
+    }
+
+    private void loadMembershipStatus(Connection con) { // Modified to accept Connection
+        Session sess = Session.getInstance();
+
+        try {
+            String query = "SELECT start_datetime, end_datetime, activation_status FROM tbl_transaction "
+                           + "WHERE c_id = ? AND start_datetime IS NOT NULL ORDER BY t_id DESC LIMIT 1";
             PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setInt(1, currentLoggedInUserId);
+            pstmt.setInt(1, sess.getUid());
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                String type = rs.getString("membership_type");
-                if (type != null && !type.trim().isEmpty()) {
-                    memberships.setText(type);
+                String startStr = rs.getString("start_datetime");
+                String endStr = rs.getString("end_datetime");
+                String status = rs.getString("activation_status"); // Get the status
+
+                if (startStr != null && !startStr.isEmpty() && endStr != null && !endStr.isEmpty()) {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    LocalDateTime start = LocalDateTime.parse(startStr, formatter);
+                    LocalDateTime end = LocalDateTime.parse(endStr, formatter);
+
+                    if ("Activated".equals(status)) {
+                        startMembershipCountdown(end, start, end); // Pass start and end time
+                    } else if ("Paused".equals(status)) {
+                        // If it's paused, just display the start and end times and a paused message
+                      
+                        if (countdownTimer != null) {
+                            countdownTimer.stop();
+                            timerStarted = false;
+                        }
+                        isPaused = true;
+
+                    } else if ("Expired".equals(status)) {
+                        displayy.setText("Membership Expired");
+                        if (countdownTimer != null) {
+                            countdownTimer.stop();
+                            timerStarted = false;
+                        }
+                        isPaused = false;
+                    } else {
+                        displayy.setText("Membership status is unknown.");
+                        if (countdownTimer != null) {
+                            countdownTimer.stop();
+                            timerStarted = false;
+                        }
+                        isPaused = false;
+                    }
                 } else {
-                    memberships.setText(""); 
+                    displayy.setText("No active membership found.");
+                    if (countdownTimer != null) {
+                        countdownTimer.stop();
+                        timerStarted = false;
+                    }
+                    isPaused = false;
                 }
             } else {
-                memberships.setText(""); 
+                displayy.setText("No active membership found.");
+                if (countdownTimer != null) {
+                    countdownTimer.stop();
+                    timerStarted = false;
+                }
+                isPaused = false;
             }
 
             rs.close();
             pstmt.close();
-        } else {
-            memberships.setText("");
-            JOptionPane.showMessageDialog(null, "Database connection is not valid.");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            displayy.setText("Error: " + ex.getMessage());
+        } catch (DateTimeParseException ex) {
+            displayy.setText("Error parsing membership dates.");
+        } finally {
+            // con.close(); // Don't close the connection here as it was passed in
         }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        memberships.setText("");
-        JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
-    } finally {
-        dbc.closeConnection();
     }
-}
-    
-   
-   
-  private void loadMembershipStatus() {
-    Session sess = Session.getInstance();
-    dbConnect dbc = new dbConnect();
 
-    try {
-        Connection con = dbc.getConnection();
-        String query = "SELECT start_datetime, end_datetime FROM tbl_transaction " +
-                       "WHERE c_id = ? AND start_datetime IS NOT NULL ORDER BY t_id DESC LIMIT 1";
-        PreparedStatement pstmt = con.prepareStatement(query);
-        pstmt.setInt(1, sess.getUid());
-        ResultSet rs = pstmt.executeQuery();
+    private void startMembershipCountdown(LocalDateTime endDateTime, LocalDateTime startTime, LocalDateTime endTimeFull) {
+        this.endTime = endDateTime;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String endDateString = endTimeFull.format(formatter);
+        String initialMessage = "<html><b>Membership Active!</b><br>Start Date & Time: %s<br>End Date & Time: %s<br><br>Time left: ";
 
-        if (rs.next()) {
-            String startStr = rs.getString("start_datetime");
-            String endStr = rs.getString("end_datetime");
-
-          
-            if (endStr != null && !endStr.isEmpty()) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                LocalDateTime end = LocalDateTime.parse(endStr, formatter);
-
-                confirm.setEnabled(false);  
-
-               
-                startMembershipCountdown(end); 
-            } else {
-                displayy.setText("Invalid membership data (end date is empty).");
-                confirm.setEnabled(true);  
-            }
-        } else {
-
-            confirm.setEnabled(true);  
+        if (timerStarted) {
+            countdownTimer.stop();
         }
+        timerStarted = true;
+        isPaused = false; // Ensure isPaused is false when starting/resuming
 
-        rs.close();
-        pstmt.close();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        displayy.setText("Error: " + ex.getMessage());
-    } catch (DateTimeParseException ex) {
-        displayy.setText("Error parsing membership dates.");
-    } finally {
-        dbc.closeConnection();
+        countdownTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isPaused) {
+                    return;
+                }
+
+                LocalDateTime now = LocalDateTime.now();
+                Duration remaining = Duration.between(now, endTime);
+                String startDateString = now.format(formatter); // Update start time on each tick
+
+                if (!remaining.isNegative()) {
+                    String msg = String.format(initialMessage, startDateString, endDateString) + formatDuration(remaining) + "</html>";
+                    displayy.setText(msg);
+                } else {
+                    displayy.setText("<html><b>Membership expired.</b></html>");
+                    countdownTimer.stop();
+                    timerStarted = false;
+                    isPaused = false;
+                    // Potentially disable pause/resume buttons here
+                }
+            }
+        });
+
+        countdownTimer.start();
     }
-}
+   
 
+    private String formatDuration(Duration duration) {
+        long days = duration.toDays();
+        long hours = duration.minusDays(days).toHours();
+        long minutes = duration.minusDays(days).minusHours(hours).toMinutes();
+        long seconds = duration.minusDays(days).minusHours(hours).minusMinutes(minutes).getSeconds();
+        return String.format("%d days, %02d:%02d:%02d", days, hours, minutes, seconds);
+    }
 
-   private void startMembershipCountdown(LocalDateTime endDateTime) {
-    Timer timer = new Timer(1000, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            LocalDateTime now = LocalDateTime.now();
-            Duration remaining = Duration.between(now, endDateTime);
+  
 
-            if (!remaining.isNegative()) {
-                long days = remaining.toDays();
-                long hours = remaining.minusDays(days).toHours();
-                long minutes = remaining.minusDays(days).minusHours(hours).toMinutes();
-                long seconds = remaining.minusDays(days).minusHours(hours).minusMinutes(minutes).getSeconds();
-
-        
-                String startDateStr = endDateTime.minusDays(days).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                String endDateStr = endDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-                // Construct the message
-                String msg = String.format("<html>Start Date: %s<br>"
-                        + "End Date: %s<br>"
-                        + "Time Left: %d days, %02d:%02d:%02d</html>", 
-                        startDateStr, endDateStr, days, hours, minutes, seconds);
-                
-                displayy.setText(msg);
-            } else {
-                displayy.setText("<html>Membership expired.</html>");
-                ((Timer) e.getSource()).stop();
-            }
-        }
-    });
-    timer.start();
-}
-
-    
+  
   Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (255,255,255);
 
@@ -189,11 +238,7 @@ public class subscription extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        confirm = new javax.swing.JPanel();
-        loggin1 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        pause = new javax.swing.JPanel();
-        loggin2 = new javax.swing.JLabel();
         memberships = new javax.swing.JLabel();
         displayy = new javax.swing.JLabel();
 
@@ -294,68 +339,16 @@ public class subscription extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        confirm.setBackground(new java.awt.Color(200, 32, 32));
-        confirm.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        confirm.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                confirmMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                confirmMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                confirmMouseExited(evt);
-            }
-        });
-        confirm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        loggin1.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
-        loggin1.setText("START");
-        loggin1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loggin1MouseClicked(evt);
-            }
-        });
-        confirm.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 140, 20));
-
-        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 290, 40));
-
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/stylized_gaming_logo_480x480.png"))); // NOI18N
         jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -30, 450, 540));
-
-        pause.setBackground(new java.awt.Color(200, 32, 32));
-        pause.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        pause.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pauseMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pauseMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                pauseMouseExited(evt);
-            }
-        });
-        pause.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        loggin2.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
-        loggin2.setText("PAUSE/RESUME");
-        loggin2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loggin2MouseClicked(evt);
-            }
-        });
-        pause.add(loggin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 170, 20));
-
-        jPanel2.add(pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 290, 40));
 
         memberships.setFont(new java.awt.Font("Bell MT", 1, 35)); // NOI18N
         memberships.setForeground(new java.awt.Color(203, 14, 14));
         memberships.setText("SILVER");
         jPanel2.add(memberships, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 150, 60));
 
-        displayy.setFont(new java.awt.Font("Monospaced", 2, 18)); // NOI18N
-        jPanel2.add(displayy, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 290, 210));
+        displayy.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jPanel2.add(displayy, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 310, 270));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 840, 470));
 
@@ -401,114 +394,6 @@ public class subscription extends javax.swing.JFrame {
       this.dispose();
         
     }//GEN-LAST:event_jLabel29MouseClicked
-
-    private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked
- 
-            
-    }//GEN-LAST:event_loggin1MouseClicked
-
-    private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
-      
-  if (!confirm.isEnabled()) {
-        return;
-    }
-
-    // Immediately disable button to avoid multiple triggers
-    confirm.setEnabled(false);
-
-    Session sess = Session.getInstance();
-    dbConnect dbc = new dbConnect();
-
-    try {
-        Connection con = dbc.getConnection();
-        if (con != null && !con.isClosed()) {
-            String query = "SELECT t_id, duration FROM tbl_transaction WHERE c_id = ? ORDER BY t_id DESC LIMIT 1";
-            PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setInt(1, sess.getUid());
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                int t_id = rs.getInt("t_id");
-                int durationInMonths = rs.getInt("duration");
-                int totalDays = durationInMonths * 30;
-
-                LocalDateTime startDateTime = LocalDateTime.now();
-                LocalDateTime endDateTime = startDateTime.plusDays(totalDays);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-                String update = "UPDATE tbl_transaction SET start_datetime = ?, end_datetime = ? WHERE t_id = ?";
-                PreparedStatement upstmt = con.prepareStatement(update);
-                upstmt.setString(1, startDateTime.format(formatter));
-                upstmt.setString(2, endDateTime.format(formatter));
-                upstmt.setInt(3, t_id);
-                upstmt.executeUpdate();
-                upstmt.close();
-
-                String message = "<html>Membership Started!<br><br>"
-                        + "Start Date & Time: " + startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "<br>"
-                        + "End Date : " + endDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "</html>";
-
-                displayy.setText(message);
-
-                // Start the countdown timer
-                startMembershipCountdown(endDateTime);
-            } else {
-                displayy.setText("No membership transaction found.");
-                confirm.setEnabled(true); // Re-enable if no transaction
-            }
-
-            rs.close();
-            pstmt.close();
-        } else {
-            displayy.setText("Database connection failed.");
-            confirm.setEnabled(true); // Re-enable if connection failed
-        }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        displayy.setText("Error: " + ex.getMessage());
-        confirm.setEnabled(true); // Re-enable on error
-    } finally {
-        dbc.closeConnection();
-    }
-
-
-
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_confirmMouseClicked
-
-    private void confirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmMouseEntered
-
-    private void confirmMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmMouseExited
-
-    private void loggin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loggin2MouseClicked
-
-    private void pauseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pauseMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pauseMouseClicked
-
-    private void pauseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pauseMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pauseMouseEntered
-
-    private void pauseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pauseMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pauseMouseExited
 
     /**
      * @param args the command line arguments
@@ -561,7 +446,6 @@ public class subscription extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel confirm;
     private javax.swing.JLabel currentuser;
     private javax.swing.JLabel displayy;
     private javax.swing.JFrame jFrame1;
@@ -580,10 +464,7 @@ public class subscription extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JLabel loggin1;
-    private javax.swing.JLabel loggin2;
     public javax.swing.JLabel memberships;
-    private javax.swing.JPanel pause;
     private javax.swing.JButton users;
     // End of variables declaration//GEN-END:variables
 }

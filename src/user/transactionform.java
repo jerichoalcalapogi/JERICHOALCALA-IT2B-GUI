@@ -23,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.imageio.ImageIO;
@@ -653,46 +654,76 @@ Session sess = Session.getInstance();
 
     private void buyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyMouseClicked
      Session sess = Session.getInstance();
-DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-LocalDate localDate = LocalDate.now();
-System.out.println(dtf.format(localDate));
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    LocalDate localDate = LocalDate.now();
+    System.out.println(dtf.format(localDate));
 
-// Retrieve the selected membership type from the combo box
-String membershipType = typee1.getSelectedItem().toString(); // Get the selected membership type
+    String membershipType = typee1.getSelectedItem().toString(); 
 
-// Validate fields
-if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty() || membershipType.isEmpty()) {
-    JOptionPane.showMessageDialog(null, "All fields are required");
-    return;
-} 
+    // Validate fields
+    if (memberid.getText().isEmpty() || duration.getText().isEmpty() || tdate.getText().isEmpty() || amount.getText().isEmpty() || membershipType.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "All fields are required");
+        return;
+    } 
 
-int months = Integer.parseInt(duration.getText());
-if (months < 1 || months > 3) {
-    JOptionPane.showMessageDialog(null, "Please enter a valid duration!");
-    return;
-}
+    int months = Integer.parseInt(duration.getText());
+    if (months < 1 || months > 3) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid duration!");
+        return;
+    }
 
-else {
     double balance = Double.parseDouble(balancee.getText()); 
     double price = Double.parseDouble(amount.getText());
 
-    if (balance >= price) {
+    if (balance < price) {
+        JOptionPane.showMessageDialog(null, "Not enough cash to avail membership!");
+        return;
+    }
+
+    dbConnect dbc = new dbConnect();
+    Connection con = dbc.getConnection();
+
+    try {
+        // Validation: check if user already has an active membership
+        PreparedStatement checkStmt = con.prepareStatement(
+            "SELECT t.end_datetime FROM tbl_transaction t " +
+            "JOIN tbl_user u ON t.c_id = u.c_id " +
+            "WHERE u.c_id = ? AND t.activation_status = 'Activated' " +
+            "ORDER BY t.t_id DESC LIMIT 1"
+        );
+      checkStmt.setString(1, String.valueOf(sess.getUid()));
+
+        ResultSet rsCheck = checkStmt.executeQuery();
+
+        if (rsCheck.next()) {
+            String endDateStr = rsCheck.getString("end_datetime");
+            if (endDateStr != null && !endDateStr.isEmpty()) {
+                LocalDateTime endDate = LocalDateTime.parse(endDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                if (LocalDateTime.now().isBefore(endDate)) {
+                    JOptionPane.showMessageDialog(null, "You already have an active membership that has not yet expired.");
+                    rsCheck.close();
+                    checkStmt.close();
+                    con.close();
+                    return;
+                }
+            }
+        }
+        rsCheck.close();
+        checkStmt.close();
+
+        // Proceed to insert transaction
         String transactionStatus = "Success";
         double newBalance = balance - price;
-
         BigDecimal newBalanceDecimal = new BigDecimal(newBalance).setScale(2, RoundingMode.HALF_UP);
 
-        dbConnect dbc = new dbConnect();
-
-        // Insert transaction including membership type
-        dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid, membership_type) VALUES ('"
-                + sess.getUid() + "','"
-                + memberid.getText() + "','"
-                + duration.getText() + "','"
-                + tdate.getText() + "','"
-                + transactionStatus + "','"
-                + amount.getText() + "','"
-                + membershipType + "')");
+        dbc.insertData("INSERT INTO tbl_transaction (c_id, m_id, duration, date, t_status, amount_to_be_paid, membership_type, activation_status) VALUES ('"
+            + sess.getUid() + "','"
+            + memberid.getText() + "','"
+            + duration.getText() + "','"
+            + tdate.getText() + "','"
+            + transactionStatus + "','"
+            + amount.getText() + "','"
+            + membershipType + "','Pending')");
 
         // Update balance
         dbc.insertData("UPDATE tbl_user SET u_balance = u_balance - '" + price + "' WHERE c_id = '" + sess.getUid() + "'");
@@ -711,8 +742,6 @@ else {
         } catch (SQLException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
-        } finally {
-            dbc.closeConnection(); 
         }
 
         // Generate receipt
@@ -726,16 +755,18 @@ else {
         receipt.append("Amount Paid: ₱" + String.format("%.2f", price) + "\n");
         receipt.append("New Balance: ₱" + String.format("%.2f", newBalanceDecimal) + "\n");
         receipt.append("Transaction Status: " + transactionStatus + "\n");
-        receipt.append("Membership Type: " + membershipType + "\n"); // Display membership type
+        receipt.append("Membership Type: " + membershipType + "\n");
         receiptArea.setText(receipt.toString());
-
         receiptArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
-    } else {
-        JOptionPane.showMessageDialog(null, "Not enough cash to avail membership!");
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error during transaction: " + ex.getMessage());
+    } finally {
+        dbc.closeConnection();
     }
 
 
-}
+
     }//GEN-LAST:event_buyMouseClicked
 
     private void add1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add1MouseClicked

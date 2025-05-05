@@ -91,7 +91,7 @@ public void displayData() {
         model.addColumn("Balance");
         model.addColumn("Status");
         model.addColumn("Date");
-        model.addColumn("User ID"); // Assuming c_id links to tbl_user
+        model.addColumn("User ID"); 
 
         while (rs.next()) {
             model.addRow(new Object[]{
@@ -103,7 +103,7 @@ public void displayData() {
             });
         }
 
-        cashtable.setModel(model); // Make sure 'tablelogs' is the correct JTable for tbl_member data
+        cashtable.setModel(model); 
         rs.close();
     } catch (SQLException ex) {
         System.out.println("Errors displaying member data: " + ex.getMessage());
@@ -313,11 +313,11 @@ Color hover = new Color (203,14,14);
     }//GEN-LAST:event_refresh1MouseClicked
 
     private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
-        // TODO add your handling code here:
+         refresh1.setBackground(hover);
     }//GEN-LAST:event_refresh1MouseEntered
 
     private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
-        // TODO add your handling code here:
+       refresh1.setBackground(defaultcolor);
     }//GEN-LAST:event_refresh1MouseExited
 
     private void jLabel97MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel97MouseClicked

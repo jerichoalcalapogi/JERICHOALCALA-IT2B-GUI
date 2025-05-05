@@ -306,9 +306,9 @@ Color hover = new Color (203,14,14);
         approve.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel114.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel114.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
+        jLabel114.setFont(new java.awt.Font("Castellar", 1, 16)); // NOI18N
         jLabel114.setText("APPROVE");
-        approve.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 120, -1));
+        approve.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 20));
 
         jPanel10.add(approve, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 140, 40));
 
@@ -1163,7 +1163,7 @@ Color hover = new Color (203,14,14);
         jLabel96.setText("refresh");
         refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
 
-        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 100, 40));
+        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 100, 40));
 
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
