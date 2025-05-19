@@ -42,7 +42,11 @@ public class subscriptionactivate extends javax.swing.JFrame {
       
      loadActivatedMembershipData();
        
-      
+       cancell.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            cancelMouseClicked(evt);
+        }
+    });
     }
 
  private Timer countdownTimer;
@@ -69,50 +73,87 @@ private LocalDateTime endTime;
 }
    
  public void loadActivatedMembershipData() {
-        dbConnect dbc = new dbConnect();
+    dbConnect dbc = new dbConnect();
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
 
-        try {
-            Connection con = dbc.getConnection();
-            if (con != null && !con.isClosed()) {
-                String query = "SELECT t.start_datetime, t.end_datetime FROM tbl_transaction t " +
-                               "JOIN tbl_user u ON t.c_id = u.c_id " +
-                               "WHERE u.username = ? AND t.activation_status = 'Activated' " +
-                               "ORDER BY t.t_id DESC LIMIT 1";
+    try {
+        con = dbc.getConnection();
+        if (con == null || con.isClosed()) {
+            displayy.setText("Database connection error");
+            return;
+        }
 
-                PreparedStatement pstmt = con.prepareStatement(query);
-                pstmt.setString(1, user.getText());
-                ResultSet rs = pstmt.executeQuery();
+        String query = "SELECT t.start_datetime, t.end_datetime, t.activation_status, t.cancel_reason " +
+                      "FROM tbl_transaction t " +
+                      "JOIN tbl_user u ON t.c_id = u.c_id " +
+                      "WHERE u.username = ? " +
+                      "ORDER BY t.t_id DESC LIMIT 1";
 
-                if (rs.next()) {
-                    String startStr = rs.getString("start_datetime");
-                    String endStr = rs.getString("end_datetime");
+        pstmt = con.prepareStatement(query);
+        pstmt.setString(1, user.getText());
+        rs = pstmt.executeQuery();
 
-                    LocalDateTime startDateTime = LocalDateTime.parse(startStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                    LocalDateTime endDateTime = LocalDateTime.parse(endStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        if (!rs.next()) {
+            displayy.setText("<html><div style='text-align:center;'>No membership data found.</div></html>");
+            stopCountdown();
+            return;
+        }
 
-                    this.endTime = endDateTime;
+        String activationStatus = rs.getString("activation_status");
+        String startStr = rs.getString("start_datetime");
+        String endStr = rs.getString("end_datetime");
 
-                    if (LocalDateTime.now().isBefore(endDateTime)) {
-                        startMembershipCountdown(endDateTime);
-                    } else {
-                        displayy.setText("<html><b>Membership expired.</b></html>");
-                        stopCountdown();
-                    }
-                } else {
-                    displayy.setText("No active membership found.");
-                    stopCountdown();
-                }
-
-                rs.close();
-                pstmt.close();
+        if ("Cancelled".equalsIgnoreCase(activationStatus)) {
+            String reason = rs.getString("cancel_reason");
+            if (reason == null || reason.trim().isEmpty()) {
+                reason = "No reason provided";
             }
+            
+            // Enhanced cancellation message design
+            String message = "<html><div style='text-align:center; color:#d32f2f;'>" +
+                            "<h3 style='margin-bottom:5px;'>MEMBERSHIP CANCELLED</h3>" +
+                            "<div style='font-size:14px; margin-bottom:10px;'>VIP3 Status Revoked</div>" +
+                            "<div style='background-color:#ffebee; padding:10px; border-radius:5px;'>" +
+                            "<b>Reason:</b> " + reason + "</div></div></html>";
+            
+            displayy.setText(message);
+            stopCountdown();
+            
+        } else if ("Activated".equalsIgnoreCase(activationStatus)) {
+            LocalDateTime startDateTime = LocalDateTime.parse(startStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            LocalDateTime endDateTime = LocalDateTime.parse(endStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            this.endTime = endDateTime;
+
+            if (LocalDateTime.now().isBefore(endDateTime)) {
+                startMembershipCountdown(endDateTime);
+            } else {
+                displayy.setText("<html><div style='text-align:center; color:#ff6f00;'>" +
+                               "<h3>MEMBERSHIP EXPIRED</h3></div></html>");
+                stopCountdown();
+            }
+        } else {
+            displayy.setText("<html><div style='text-align:center;'>No active membership found.</div></html>");
+            stopCountdown();
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        displayy.setText("<html><div style='color:#d32f2f;'>Error loading membership data</div></html>");
+    } catch (DateTimeParseException e) {
+        e.printStackTrace();
+        displayy.setText("<html><div style='color:#d32f2f;'>Invalid date format in database</div></html>");
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (pstmt != null) pstmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            displayy.setText("Error loading activated membership: " + e.getMessage());
-        } finally {
-            dbc.closeConnection();
         }
+        dbc.closeConnection();
     }
+}
 
     private void stopCountdown() {
         if (countdownTimer != null && countdownTimer.isRunning()) {
@@ -189,6 +230,8 @@ private LocalDateTime endTime;
         jLabel36 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        cancel = new javax.swing.JPanel();
+        cancell = new javax.swing.JLabel();
         confirm = new javax.swing.JPanel();
         loggin1 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -295,6 +338,33 @@ private LocalDateTime endTime;
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        cancel.setBackground(new java.awt.Color(200, 32, 32));
+        cancel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cancel.setEnabled(false);
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancelMouseExited(evt);
+            }
+        });
+        cancel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cancell.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        cancell.setText("CANCEL");
+        cancell.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancellMouseClicked(evt);
+            }
+        });
+        cancel.add(cancell, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 160, 20));
+
+        jPanel2.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 290, 40));
+
         confirm.setBackground(new java.awt.Color(200, 32, 32));
         confirm.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         confirm.setEnabled(false);
@@ -320,13 +390,14 @@ private LocalDateTime endTime;
         });
         confirm.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 160, 20));
 
-        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 290, 40));
+        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 290, 40));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/stylized_gaming_logo_480x480.png"))); // NOI18N
         jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -30, 450, 540));
 
         displayy.setFont(new java.awt.Font("Monospaced", 0, 15)); // NOI18N
-        jPanel2.add(displayy, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 320, 270));
+        displayy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(displayy, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 350, 240));
 
         user.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         user.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -337,11 +408,11 @@ private LocalDateTime endTime;
                 userActionPerformed(evt);
             }
         });
-        jPanel2.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 200, 30));
+        jPanel2.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 200, 30));
 
         jLabel16.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel16.setText("MEMBERSHIP:");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 150, 30));
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 150, 30));
 
         membershipss.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         membershipss.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -352,13 +423,13 @@ private LocalDateTime endTime;
                 membershipssActionPerformed(evt);
             }
         });
-        jPanel2.add(membershipss, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 200, -1));
+        jPanel2.add(membershipss, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, 200, -1));
 
         jLabel18.setFont(new java.awt.Font("Castellar", 3, 18)); // NOI18N
         jLabel18.setText("Username:");
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 130, 30));
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 130, 30));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 870, 490));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 870, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -404,75 +475,100 @@ private LocalDateTime endTime;
 
     private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
       
-     if (!confirm.isEnabled()) return;
-        confirm.setEnabled(false);
+    if (!confirm.isEnabled()) return;
+    confirm.setEnabled(false);
 
-        dbConnect dbc = new dbConnect();
+    dbConnect dbc = new dbConnect();
 
-        try {
-            Connection con = dbc.getConnection();
-            if (con != null && !con.isClosed()) {
+    try {
+        Connection con = dbc.getConnection();
+        if (con != null && !con.isClosed()) {
 
-                String selectedUsername = user.getText();
+            String selectedUsername = user.getText();
 
-                String getTransaction = "SELECT t.t_id, t.duration, t.start_datetime, t.end_datetime FROM tbl_transaction t " +
-                                        "JOIN tbl_user u ON t.c_id = u.c_id " +
-                                        "WHERE u.username = ? ORDER BY t.t_id DESC LIMIT 1";
-                PreparedStatement pstmt = con.prepareStatement(getTransaction);
-                pstmt.setString(1, selectedUsername);
-                ResultSet rs = pstmt.executeQuery();
+            String getTransaction = "SELECT t.t_id, t.duration, t.start_datetime, t.end_datetime, t.activation_status " +
+                                    "FROM tbl_transaction t " +
+                                    "JOIN tbl_user u ON t.c_id = u.c_id " +
+                                    "WHERE u.username = ? ORDER BY t.t_id DESC LIMIT 1";
 
-                if (rs.next()) {
-                    int t_id = rs.getInt("t_id");
-                    int durationInMonths = rs.getInt("duration");
-                    int totalDays = durationInMonths * 30;
+            PreparedStatement pstmt = con.prepareStatement(getTransaction);
+            pstmt.setString(1, selectedUsername);
+            ResultSet rs = pstmt.executeQuery();
 
-                    String startStr = rs.getString("start_datetime");
-                    String endStr = rs.getString("end_datetime");
+            if (rs.next()) {
+                int t_id = rs.getInt("t_id");
+                int durationInMonths = rs.getInt("duration");
+                int totalDays = durationInMonths * 30;
 
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                    LocalDateTime startDateTime;
-                    LocalDateTime endDateTime;
+                String startStr = rs.getString("start_datetime");
+                String endStr = rs.getString("end_datetime");
+                String activationStatus = rs.getString("activation_status");
 
-                    if (startStr != null && endStr != null) {
-                        startDateTime = LocalDateTime.parse(startStr, formatter);
-                        endDateTime = LocalDateTime.parse(endStr, formatter);
-                    } else {
-                        startDateTime = LocalDateTime.now();
-                        endDateTime = startDateTime.plusDays(totalDays);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime startDateTime;
+                LocalDateTime endDateTime;
 
-                        String update = "UPDATE tbl_transaction SET start_datetime = ?, end_datetime = ?, activation_status = 'Activated' WHERE t_id = ?";
-                        PreparedStatement updateStmt = con.prepareStatement(update);
-                        updateStmt.setString(1, startDateTime.format(formatter));
-                        updateStmt.setString(2, endDateTime.format(formatter));
-                        updateStmt.setInt(3, t_id);
-                        updateStmt.executeUpdate();
-                        updateStmt.close();
+                // Ask for confirmation if membership was cancelled
+                if ("Cancelled".equalsIgnoreCase(activationStatus)) {
+                    int confirmResult = JOptionPane.showConfirmDialog(null,
+                        "This membership was previously cancelled.\nDo you want to activate it again?",
+                        "Confirm Reactivation", JOptionPane.YES_NO_OPTION);
+                            
+                 
+                   
+                    
+                    if (confirmResult != JOptionPane.YES_OPTION) {
+                        displayy.setText("Reactivation cancelled.");
+                        rs.close();
+                        pstmt.close();
+                                  
+        transactionlogs trans = new transactionlogs();
+        trans.setVisible(true);
+        this.dispose();
+
+        return;
                     }
-
-                    String message = "<html><b>Membership Active!</b><br><br>"
-                            + "Start Date & Time: " + startDateTime.format(formatter) + "<br>"
-                            + "End Date & Time: " + endDateTime.format(formatter) + "</html>";
-                    displayy.setText(message);
-
-                    stopCountdown(); // Stop any existing timer
-                    startMembershipCountdown(endDateTime); // Start fresh one
-
-                } else {
-                    displayy.setText("No recent membership found for this user.");
                 }
 
-                rs.close();
-                pstmt.close();
+                // If cancelled or missing dates, re-activate with new dates
+                if ("Cancelled".equalsIgnoreCase(activationStatus) || startStr == null || endStr == null) {
+                    startDateTime = LocalDateTime.now();
+                    endDateTime = startDateTime.plusDays(totalDays);
+
+                    String update = "UPDATE tbl_transaction SET start_datetime = ?, end_datetime = ?, activation_status = 'Activated', cancel_reason = NULL WHERE t_id = ?";
+                    PreparedStatement updateStmt = con.prepareStatement(update);
+                    updateStmt.setString(1, startDateTime.format(formatter));
+                    updateStmt.setString(2, endDateTime.format(formatter));
+                    updateStmt.setInt(3, t_id);
+                    updateStmt.executeUpdate();
+                    updateStmt.close();
+                } else {
+                    startDateTime = LocalDateTime.parse(startStr, formatter);
+                    endDateTime = LocalDateTime.parse(endStr, formatter);
+                }
+
+                String message = "<html><b>Membership Active!</b><br><br>"
+                        + "Start Date & Time: " + startDateTime.format(formatter) + "<br>"
+                        + "End Date & Time: " + endDateTime.format(formatter) + "</html>";
+                displayy.setText(message);
+
+                stopCountdown(); // Stop existing timer
+                startMembershipCountdown(endDateTime); // Start new timer
             } else {
-                displayy.setText("Database connection failed.");
+                displayy.setText("No recent membership found for this user.");
             }
-        } catch (SQLException | DateTimeParseException ex) {
-            ex.printStackTrace();
-            displayy.setText("Error: " + ex.getMessage());
-        } finally {
-            dbc.closeConnection();
-            confirm.setEnabled(false);
+
+            rs.close();
+            pstmt.close();
+        } else {
+            displayy.setText("Database connection failed.");
+        }
+    } catch (SQLException | DateTimeParseException ex) {
+        ex.printStackTrace();
+        displayy.setText("Error: " + ex.getMessage());
+    } finally {
+        dbc.closeConnection();
+        confirm.setEnabled(false);
         }
     
 
@@ -500,6 +596,79 @@ private LocalDateTime endTime;
     private void membershipssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membershipssActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_membershipssActionPerformed
+
+    private void cancellMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancellMouseClicked
+     
+   String reason = JOptionPane.showInputDialog(this, "Enter cancellation reason:");
+
+if (reason == null) {
+    // User clicked Cancel — do nothing
+    return;
+}
+
+if (reason.trim().isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Cancellation reason is required.", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
+    dbConnect dbc = new dbConnect();
+    try (Connection con = dbc.getConnection()) {
+        if (con != null && !con.isClosed()) {
+            String username = user.getText();
+
+           
+            String query = "SELECT t.t_id FROM tbl_transaction t " +
+                           "JOIN tbl_user u ON t.c_id = u.c_id " +
+                           "WHERE u.username = ? AND t.activation_status = 'Activated' " +
+                           "ORDER BY t.t_id DESC LIMIT 1";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                int t_id = rs.getInt("t_id");
+
+                // Update transaction to cancel it
+                String update = "UPDATE tbl_transaction SET activation_status = 'Cancelled', cancel_reason = ? WHERE t_id = ?";
+                PreparedStatement updateStmt = con.prepareStatement(update);
+                updateStmt.setString(1, reason);
+                updateStmt.setInt(2, t_id);
+                updateStmt.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Membership has been cancelled.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                displayy.setText("Membership cancelled.");
+                stopCountdown();
+
+                updateStmt.close();
+            } else {
+                JOptionPane.showMessageDialog(this, "No active membership to cancel.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            rs.close();
+            pstmt.close();
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    } finally {
+        dbc.closeConnection();
+    }
+
+    }//GEN-LAST:event_cancellMouseClicked
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+       
+  
+        
+        
+    }//GEN-LAST:event_cancelMouseClicked
+
+    private void cancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelMouseEntered
+
+    private void cancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelMouseExited
 
     /**
      * @param args the command line arguments
@@ -568,6 +737,8 @@ private LocalDateTime endTime;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel cancel;
+    private javax.swing.JLabel cancell;
     private javax.swing.JPanel confirm;
     private javax.swing.JLabel currentuser;
     private javax.swing.JLabel displayy;
