@@ -85,9 +85,6 @@ Color hover = new Color (102,102,102);
         jLabel32 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
-        cashinn = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
@@ -240,41 +237,13 @@ Color hover = new Color (102,102,102);
         });
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 180, 30));
 
-        cashinn.setBackground(new java.awt.Color(0, 0, 0));
-        cashinn.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
-        cashinn.setText("CASH IN");
-        cashinn.setEnabled(false);
-        cashinn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cashinnMouseClicked(evt);
-            }
-        });
-        cashinn.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                cashinnComponentShown(evt);
-            }
-        });
-        jPanel2.add(cashinn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, 170, 30));
-
-        jSeparator3.setForeground(new java.awt.Color(203, 14, 14));
-        jSeparator3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 200, 10));
-
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/cash_icon-icons.com_51028.png"))); // NOI18N
-        jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel33MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 190, 140));
-
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/invitation (1).png"))); // NOI18N
         jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel34MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 160, 140));
+        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 160, 140));
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
@@ -285,11 +254,11 @@ Color hover = new Color (102,102,102);
                 jLabel13MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 180, 30));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 180, 30));
 
         jSeparator4.setForeground(new java.awt.Color(203, 14, 14));
         jSeparator4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 200, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 200, 10));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 430));
 
@@ -395,22 +364,6 @@ Color hover = new Color (102,102,102);
 
     }//GEN-LAST:event_jLabel32MouseClicked
 
-    private void cashinnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cashinnMouseClicked
-       cashinmoney cash = new cashinmoney();
-       cash.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_cashinnMouseClicked
-
-    private void cashinnComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_cashinnComponentShown
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cashinnComponentShown
-
-    private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
-        cashinmoney cash = new cashinmoney();
-       cash.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel33MouseClicked
-
     private void jLabel34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseClicked
         subscription sub = new  subscription();
         sub.setVisible(true);
@@ -461,7 +414,6 @@ Color hover = new Color (102,102,102);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accname;
     private javax.swing.JLabel accname1;
-    private javax.swing.JLabel cashinn;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -472,7 +424,6 @@ Color hover = new Color (102,102,102);
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
@@ -487,7 +438,6 @@ Color hover = new Color (102,102,102);
     private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton users;
     // End of variables declaration//GEN-END:variables

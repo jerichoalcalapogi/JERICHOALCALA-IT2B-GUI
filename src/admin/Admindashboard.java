@@ -78,6 +78,9 @@ public class Admindashboard extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel33 = new javax.swing.JLabel();
+        cashinn = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
@@ -137,12 +140,40 @@ public class Admindashboard extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jSeparator6.setForeground(new java.awt.Color(200, 32, 32));
+        jSeparator6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 170, 10));
+
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/cash_icon-icons.com_51028.png"))); // NOI18N
+        jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel33MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 190, 130));
+
+        cashinn.setBackground(new java.awt.Color(0, 0, 0));
+        cashinn.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        cashinn.setText("deposit ");
+        cashinn.setEnabled(false);
+        cashinn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cashinnMouseClicked(evt);
+            }
+        });
+        cashinn.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                cashinnComponentShown(evt);
+            }
+        });
+        jPanel2.add(cashinn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 170, 30));
+
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/image-removebg-preview (1).png"))); // NOI18N
-        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 160, 130));
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 160, 130));
 
         jSeparator4.setForeground(new java.awt.Color(200, 32, 32));
         jSeparator4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 170, 20));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 170, 20));
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
@@ -153,7 +184,7 @@ public class Admindashboard extends javax.swing.JFrame {
                 jLabel13MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 160, 50));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 160, 50));
 
         logo.setFont(new java.awt.Font("Castellar", 3, 36)); // NOI18N
         logo.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,11 +194,11 @@ public class Admindashboard extends javax.swing.JFrame {
                 logoMouseClicked(evt);
             }
         });
-        jPanel2.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 150, 180));
+        jPanel2.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 150, 180));
 
         jSeparator3.setForeground(new java.awt.Color(200, 32, 32));
         jSeparator3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 170, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 170, 20));
 
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/profile_6914786.png"))); // NOI18N
         jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -175,11 +206,11 @@ public class Admindashboard extends javax.swing.JFrame {
                 jLabel34MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 210, 140));
+        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 210, 140));
 
         jSeparator1.setForeground(new java.awt.Color(200, 32, 32));
         jSeparator1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 170, 30));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 170, 30));
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
@@ -190,7 +221,7 @@ public class Admindashboard extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 120, 50));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 120, 50));
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
@@ -201,7 +232,7 @@ public class Admindashboard extends javax.swing.JFrame {
                 jLabel9MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 120, 50));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, 120, 50));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/modern-monitor-elegant-tableee.png"))); // NOI18N
         jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 820, 400));
@@ -310,6 +341,23 @@ public class Admindashboard extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
+        depositmoney cash = new depositmoney();
+    cash .setVisible(true);
+      this.dispose();
+        
+    }//GEN-LAST:event_jLabel33MouseClicked
+
+    private void cashinnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cashinnMouseClicked
+ depositmoney cash = new depositmoney();
+    cash .setVisible(true);
+      this.dispose();
+    }//GEN-LAST:event_cashinnMouseClicked
+
+    private void cashinnComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_cashinnComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cashinnComponentShown
     
     
   
@@ -352,6 +400,7 @@ public class Admindashboard extends javax.swing.JFrame {
     private javax.swing.JLabel accname;
     private javax.swing.JLabel accname1;
     private java.awt.Canvas canvas1;
+    private javax.swing.JLabel cashinn;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -360,6 +409,7 @@ public class Admindashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel9;
@@ -369,6 +419,7 @@ public class Admindashboard extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logout;
     // End of variables declaration//GEN-END:variables

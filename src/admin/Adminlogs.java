@@ -320,7 +320,7 @@ Color hover = new Color (203,14,14);
     }//GEN-LAST:event_refreshMouseClicked
 
     private void refresh2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh2MouseClicked
-       cashinapproval app = new cashinapproval();
+       cashinlogs app = new cashinlogs();
     app.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_refresh2MouseClicked

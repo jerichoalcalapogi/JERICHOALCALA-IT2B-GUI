@@ -1,6 +1,7 @@
 
-package user;
+package admin;
 
+import user.*;
 import config.Session;
 import config.dbConnect;
 import config.passwordHasher;
@@ -15,10 +16,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
-public class cashinmoney extends javax.swing.JFrame {
+public class depositmoney extends javax.swing.JFrame {
 
     
-    public cashinmoney() {
+    public depositmoney() {
         initComponents();
          setResizable(false);
         setLocationRelativeTo(null);
@@ -62,6 +63,8 @@ public class cashinmoney extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         cashin = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        usernaame = new javax.swing.JTextField();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -184,17 +187,28 @@ public class cashinmoney extends javax.swing.JFrame {
         });
         confirm.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 140, 20));
 
-        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 290, 40));
+        jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 290, 40));
 
         jLabel19.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
-        jLabel19.setText("AMOUNT TO CASH IN:");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 270, 30));
+        jLabel19.setText("Enter username:");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 270, 30));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/stylized_gaming_logo_480x480.png"))); // NOI18N
         jPanel2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -30, 450, 540));
 
+        cashin.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
+        cashin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         cashin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
-        jPanel2.add(cashin, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 290, 40));
+        jPanel2.add(cashin, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 290, 40));
+
+        jLabel20.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
+        jLabel20.setText("AMOUNT TO CASH IN:");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 270, 30));
+
+        usernaame.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        usernaame.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        usernaame.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 32, 32), 5, true));
+        jPanel2.add(usernaame, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 290, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 840, 470));
 
@@ -225,82 +239,103 @@ public class cashinmoney extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
-         userdashboard userr = new userdashboard();
-   userr.setVisible(true);
+         Admindashboard admin = new   Admindashboard();
+   admin.setVisible(true);
       this.dispose();
     }//GEN-LAST:event_jLabel29MouseClicked
 
     private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked
  
-Session sess = Session.getInstance();
-int userId = sess.getUid(); // Get user ID from session
-
-if (userId <= 0) {
-    JOptionPane.showMessageDialog(this, "User not logged in!", "Error", JOptionPane.ERROR_MESSAGE);
-    return;
-}
 
 
+String usernameInput = usernaame.getText().trim();
 String cashInAmountText = cashin.getText().trim();
 
-// Ensure fields are filled
-if ( cashInAmountText.isEmpty()) {
+
+if (usernameInput.isEmpty() || cashInAmountText.isEmpty()) {
     JOptionPane.showMessageDialog(this, "All fields are required!", "Error", JOptionPane.ERROR_MESSAGE);
+    
+    usernaame.setText("");
+     cashin.setText("");
     return;
+    
 }
 
 try {
-    // Parse the cash-in amount from input
     double cashInAmount = Double.parseDouble(cashInAmountText);
 
-    // Custom validation for cash-in amount
+ 
     if (cashInAmount <= 0) {
         JOptionPane.showMessageDialog(this, "Cash-in amount must be greater than 0.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+       
+     cashin.setText("");
         return;
     }
 
-    // Max cash-in amount validation
     if (cashInAmount > 5000) {
         JOptionPane.showMessageDialog(this, "Cash-in amount exceeds the maximum allowed (₱5,000).", "Validation Error", JOptionPane.WARNING_MESSAGE);
+        
+     cashin.setText("");
         return;
     }
 
-   
-   dbConnect dbc = new dbConnect();
- 
-String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?, ?, ?, NOW())";
-    try (Connection conn = dbc.getConnection();
-         PreparedStatement pst = conn.prepareStatement(sql)) {
+    dbConnect dbc = new dbConnect();
 
-        pst.setInt(1, userId);
-        pst.setDouble(2, cashInAmount); 
-        pst.setString(3, "PENDING");
+    String getCidSql = "SELECT c_id FROM tbl_user WHERE username = ?";
+    String updateBalanceSql = "UPDATE tbl_user SET u_balance = u_balance + ? WHERE c_id = ?";
+    String insertLogSql = "INSERT INTO tbl_member (c_id, balance,  c_date) VALUES (?, ?, NOW())";
 
-        int result = pst.executeUpdate();
+    try (Connection conn = dbc.getConnection()) {
+        conn.setAutoCommit(false); 
 
-        if (result > 0) {
-           
-            JOptionPane.showMessageDialog(this, "Cash-in request submitted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        int c_id = -1;
+
+        try (PreparedStatement getCid = conn.prepareStatement(getCidSql)) {
+            getCid.setString(1, usernameInput);
+            ResultSet rs = getCid.executeQuery();
+
+            if (rs.next()) {
+                c_id = rs.getInt("c_id");
+            } else {
+                JOptionPane.showMessageDialog(this, "Username not found.", "Error", JOptionPane.ERROR_MESSAGE);
+                usernaame.setText("");
+                cashin.setText("");
+                return;
+            }
+        }
+
+      
+        try (PreparedStatement updateBal = conn.prepareStatement(updateBalanceSql);
+             PreparedStatement insertLog = conn.prepareStatement(insertLogSql)) {
+
+            updateBal.setDouble(1, cashInAmount);
+            updateBal.setInt(2, c_id);
+            int updated = updateBal.executeUpdate();
 
           
-            cashin.setText("");
-             userdashboard das= new userdashboard();
-    das.setVisible(true);
-    this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Cash-in request submission failed.", "Error", JOptionPane.ERROR_MESSAGE);
+            insertLog.setInt(1, c_id);
+            insertLog.setDouble(2, cashInAmount);
+            insertLog.executeUpdate();
+
+            if (updated > 0) {
+                conn.commit(); 
+                JOptionPane.showMessageDialog(this, "Cash-in successful and balance updated!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                cashin.setText("");
+                usernaame.setText("");
+            } else {
+                conn.rollback();
+                JOptionPane.showMessageDialog(this, "Balance update failed.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
+
     } catch (SQLException e) {
-        System.err.println("Error recording cash-in request: " + e.getMessage());
         JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 
 } catch (NumberFormatException e) {
     JOptionPane.showMessageDialog(this, "Please enter a valid amount.", "Error", JOptionPane.ERROR_MESSAGE);
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 }
-    
+
             
     }//GEN-LAST:event_loggin1MouseClicked
 
@@ -333,14 +368,38 @@ String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(cashinmoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(depositmoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(cashinmoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(depositmoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(cashinmoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(depositmoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(cashinmoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(depositmoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -353,7 +412,7 @@ String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cashinmoney().setVisible(true);
+                new depositmoney().setVisible(true);
             }
         });
     }
@@ -367,6 +426,7 @@ String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel36;
@@ -380,6 +440,7 @@ String sql = "INSERT INTO tbl_member (c_id, balance, c_status, c_date) VALUES (?
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel loggin1;
+    private javax.swing.JTextField usernaame;
     private javax.swing.JButton users;
     // End of variables declaration//GEN-END:variables
 }
