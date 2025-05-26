@@ -710,6 +710,14 @@ Session sess = Session.getInstance();
         }
         rsCheck.close();
         checkStmt.close();
+PreparedStatement deleteCancelledStmt = con.prepareStatement(
+    "DELETE FROM tbl_transaction " +
+    "WHERE c_id = ? AND activation_status = 'Cancelled' " +
+    "ORDER BY t_id DESC LIMIT 1"
+);
+deleteCancelledStmt.setString(1, String.valueOf(sess.getUid()));
+deleteCancelledStmt.executeUpdate();
+deleteCancelledStmt.close();
 
         // Proceed to insert transaction
         String transactionStatus = "Success";

@@ -104,20 +104,23 @@ private LocalDateTime endTime;
         String activationStatus = rs.getString("activation_status");
         String startStr = rs.getString("start_datetime");
         String endStr = rs.getString("end_datetime");
-
+        
+        
+ String displayedMembershipType = membershipss.getText(); 
         if ("Cancelled".equalsIgnoreCase(activationStatus)) {
             String reason = rs.getString("cancel_reason");
             if (reason == null || reason.trim().isEmpty()) {
                 reason = "No reason provided";
             }
             
-            // Enhanced cancellation message design
-            String message = "<html><div style='text-align:center; color:#d32f2f;'>" +
-                            "<h3 style='margin-bottom:5px;'>MEMBERSHIP CANCELLED</h3>" +
-                            "<div style='font-size:14px; margin-bottom:10px;'>VIP3 Status Revoked</div>" +
-                            "<div style='background-color:#ffebee; padding:10px; border-radius:5px;'>" +
-                            "<b>Reason:</b> " + reason + "</div></div></html>";
-            
+          
+         String message = "<html><div style='text-align:center; color:#d32f2f;'>" +
+                             "<h3 style='margin-bottom:5px;'>MEMBERSHIP CANCELLED</h3>" +
+                             "<div style='font-size:14px; margin-bottom:10px;'>" + displayedMembershipType + " Status Revoked</div>" + // <--- THIS LINE IS FIXED
+                             "<div style='background-color:#ffebee; padding:10px; border-radius:5px;'>" +
+                             "<b>Reason:</b> " + reason + "</div></div></html>";
+          
+
             displayy.setText(message);
             stopCountdown();
             
@@ -475,7 +478,7 @@ private LocalDateTime endTime;
 
     private void confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseClicked
       
-    if (!confirm.isEnabled()) return;
+ if (!confirm.isEnabled()) return;
     confirm.setEnabled(false);
 
     dbConnect dbc = new dbConnect();
@@ -498,7 +501,7 @@ private LocalDateTime endTime;
             if (rs.next()) {
                 int t_id = rs.getInt("t_id");
                 int durationInMonths = rs.getInt("duration");
-                int totalDays = durationInMonths * 30;
+             int totalDays = durationInMonths * 30;
 
                 String startStr = rs.getString("start_datetime");
                 String endStr = rs.getString("end_datetime");
@@ -532,9 +535,8 @@ private LocalDateTime endTime;
 
                 // If cancelled or missing dates, re-activate with new dates
                 if ("Cancelled".equalsIgnoreCase(activationStatus) || startStr == null || endStr == null) {
-                    startDateTime = LocalDateTime.now();
+                 startDateTime = LocalDateTime.now();
                     endDateTime = startDateTime.plusDays(totalDays);
-
                     String update = "UPDATE tbl_transaction SET start_datetime = ?, end_datetime = ?, activation_status = 'Activated', cancel_reason = NULL WHERE t_id = ?";
                     PreparedStatement updateStmt = con.prepareStatement(update);
                     updateStmt.setString(1, startDateTime.format(formatter));
@@ -570,7 +572,6 @@ private LocalDateTime endTime;
         dbc.closeConnection();
         confirm.setEnabled(false);
         }
-    
 
 
 

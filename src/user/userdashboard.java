@@ -88,6 +88,9 @@ Color hover = new Color (102,102,102);
         jLabel34 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        jLabel35 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel14 = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -243,7 +246,7 @@ Color hover = new Color (102,102,102);
                 jLabel34MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 160, 140));
+        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 160, 140));
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
@@ -254,11 +257,35 @@ Color hover = new Color (102,102,102);
                 jLabel13MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 180, 30));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 180, 30));
 
         jSeparator4.setForeground(new java.awt.Color(203, 14, 14));
         jSeparator4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 200, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 220, 10));
+
+        jLabel35.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/envelop.png"))); // NOI18N
+        jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel35MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 140, 150));
+
+        jSeparator5.setForeground(new java.awt.Color(203, 14, 14));
+        jSeparator5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 200, -1));
+
+        jLabel14.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel14.setFont(new java.awt.Font("Castellar", 1, 17)); // NOI18N
+        jLabel14.setText("PURCHASE HISTORY");
+        jLabel14.setEnabled(false);
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, -1, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 430));
 
@@ -376,6 +403,18 @@ Color hover = new Color (102,102,102);
         this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
 
+    private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseClicked
+purchasehistory pur = new  purchasehistory();
+        pur.setVisible(true);
+        this.dispose();        
+    }//GEN-LAST:event_jLabel35MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+purchasehistory pur = new  purchasehistory();
+        pur.setVisible(true);
+        this.dispose();                
+    }//GEN-LAST:event_jLabel14MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -419,12 +458,14 @@ Color hover = new Color (102,102,102);
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -439,6 +480,7 @@ Color hover = new Color (102,102,102);
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JButton users;
     // End of variables declaration//GEN-END:variables
 }
