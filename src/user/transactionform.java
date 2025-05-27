@@ -572,7 +572,7 @@ Color hover = new Color (102,102,102);
                 buyMouseClicked(evt);
             }
         });
-        add1.add(buy, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 70, 20));
+        add1.add(buy, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 40, 20));
 
         jPanel2.add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 130, 40));
 

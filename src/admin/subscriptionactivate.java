@@ -173,19 +173,19 @@ private LocalDateTime endTime;
         return String.format("%d days, %02d:%02d:%02d", days, hours, minutes, seconds);
     }
 
-    private void startMembershipCountdown(LocalDateTime endDateTime) {
-        endTime = endDateTime;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String endDateString = endTime.format(formatter);
+  private void startMembershipCountdown(LocalDateTime endDateTime) {
+    endTime = endDateTime;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    String endDateString = endTime.format(formatter);
 
-        countdownTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                LocalDateTime now = LocalDateTime.now();
-                Duration remaining = Duration.between(now, endTime);
-                String startDateString = now.format(formatter);
+    countdownTimer = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            LocalDateTime now = LocalDateTime.now();
+            Duration remaining = Duration.between(now, endTime);
+            String startDateString = now.format(formatter);
 
-                if (!remaining.isNegative()) {
+            if (!remaining.isNegative()) {
                 String msg = String.format(
                     "<html><b>Membership Active!</b><br><br>" +
                     "Start Date & Time: %s<br><br>" +
@@ -194,19 +194,34 @@ private LocalDateTime endTime;
                     "<span style='color:red'><i>We're open 24/7</i></span></html>",
                     startDateString, endDateString, formatDuration(remaining)
                 );
-                    displayy.setText(msg);
-                } else {
-                    displayy.setText("<html><b>Membership expired.</b></html>");
-                    countdownTimer.stop();
+                displayy.setText(msg);
+            } else {
+                displayy.setText("<html><b>Membership expired.</b></html>");
+                countdownTimer.stop();
+
+                // Update activation status to "Expired" in the database
+                dbConnect dbc = new dbConnect();
+                try (Connection con = dbc.getConnection()) {
+                    String updateStatus = "UPDATE tbl_transaction SET activation_status = 'Expired' " +
+                                          "WHERE t_id = (SELECT t.t_id FROM tbl_transaction t " +
+                                          "JOIN tbl_user u ON t.c_id = u.c_id " +
+                                          "WHERE u.username = ? ORDER BY t.t_id DESC LIMIT 1)";
+                    PreparedStatement updateStmt = con.prepareStatement(updateStatus);
+                    updateStmt.setString(1, user.getText());
+                    updateStmt.executeUpdate();
+                    updateStmt.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    System.out.println("Failed to update status to Expired.");
+                } finally {
+                    dbc.closeConnection();
                 }
             }
-        });
+        }
+    });
 
-        countdownTimer.start();
-    }
-
-
-
+    countdownTimer.start();
+}
 
   Color hover = new Color (203,14,14);
     Color defaultcolor = new Color (255,255,255);
@@ -533,10 +548,10 @@ private LocalDateTime endTime;
                     }
                 }
 
-                // If cancelled or missing dates, re-activate with new dates
+               
                 if ("Cancelled".equalsIgnoreCase(activationStatus) || startStr == null || endStr == null) {
                  startDateTime = LocalDateTime.now();
-                    endDateTime = startDateTime.plusDays(totalDays);
+                   endDateTime = startDateTime.plusDays(totalDays);
                     String update = "UPDATE tbl_transaction SET start_datetime = ?, end_datetime = ?, activation_status = 'Activated', cancel_reason = NULL WHERE t_id = ?";
                     PreparedStatement updateStmt = con.prepareStatement(update);
                     updateStmt.setString(1, startDateTime.format(formatter));
@@ -696,6 +711,38 @@ if (reason.trim().isEmpty()) {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(subscriptionactivate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

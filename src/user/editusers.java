@@ -289,7 +289,7 @@ public class editusers extends javax.swing.JFrame {
                 loggin3MouseClicked(evt);
             }
         });
-        select.add(loggin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 100, 30));
+        select.add(loggin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 80, 30));
 
         jPanel1.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 110, 30));
 
@@ -315,7 +315,7 @@ public class editusers extends javax.swing.JFrame {
                 loggin1MouseClicked(evt);
             }
         });
-        updateee.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 20));
+        updateee.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 20));
 
         jPanel1.add(updateee, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, 130, 40));
 
@@ -487,7 +487,7 @@ public class editusers extends javax.swing.JFrame {
                 loggin2MouseClicked(evt);
             }
         });
-        delete.add(loggin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 20));
+        delete.add(loggin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 70, 20));
 
         jPanel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 130, 40));
 

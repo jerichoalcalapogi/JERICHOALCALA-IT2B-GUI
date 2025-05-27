@@ -233,7 +233,7 @@ private static void logLogin(int userId, dbConnect connector) {
                 logginMouseClicked(evt);
             }
         });
-        login.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 70, 20));
+        login.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 60, 20));
 
         jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 330, 200, 40));
 

@@ -94,8 +94,9 @@ public class Adminlogs extends javax.swing.JFrame {
     
 
     
-Color hover = new Color (203,14,14);
-    Color defaultcolor = new Color (204,204,204);
+ Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (200,32,32);
+    
 
    
     @SuppressWarnings("unchecked")
@@ -113,16 +114,19 @@ Color hover = new Color (203,14,14);
         jLabel14 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        refresh = new javax.swing.JPanel();
-        jLabel96 = new javax.swing.JLabel();
         currentuser = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        refresh2 = new javax.swing.JPanel();
-        cashinlog = new javax.swing.JLabel();
-        refresh1 = new javax.swing.JPanel();
-        cashinlog1 = new javax.swing.JLabel();
-        cashinlog2 = new javax.swing.JLabel();
+        refresh3 = new javax.swing.JPanel();
+        loggin = new javax.swing.JLabel();
+        refresh4 = new javax.swing.JPanel();
+        loggin1 = new javax.swing.JLabel();
+        loggin5 = new javax.swing.JLabel();
+        refresh5 = new javax.swing.JPanel();
+        loggin2 = new javax.swing.JLabel();
+        refresh6 = new javax.swing.JPanel();
+        loggin3 = new javax.swing.JLabel();
+        loggin4 = new javax.swing.JLabel();
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
 
@@ -187,28 +191,6 @@ Color hover = new Color (203,14,14);
         jLabel11.setText("REGISTER FORM");
         jPanel8.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, -10, 310, 60));
 
-        refresh.setBackground(new java.awt.Color(204, 204, 204));
-        refresh.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refreshMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                refreshMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                refreshMouseExited(evt);
-            }
-        });
-        refresh.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel96.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        jLabel96.setText("refresh");
-        refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
-
-        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 100, 40));
-
         currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         currentuser.setForeground(new java.awt.Color(203, 14, 14));
         jPanel8.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 60, 60));
@@ -221,54 +203,129 @@ Color hover = new Color (203,14,14);
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
         jPanel8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 240, 220));
 
-        refresh2.setBackground(new java.awt.Color(204, 204, 204));
-        refresh2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        refresh2.addMouseListener(new java.awt.event.MouseAdapter() {
+        refresh3.setBackground(new java.awt.Color(200, 32, 32));
+        refresh3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refresh2MouseClicked(evt);
+                refresh3MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                refresh2MouseEntered(evt);
+                refresh3MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                refresh2MouseExited(evt);
+                refresh3MouseExited(evt);
             }
         });
-        refresh2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        refresh3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cashinlog.setBackground(new java.awt.Color(0, 0, 0));
-        cashinlog.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        cashinlog.setText("CASH IN LOGS");
-        refresh2.add(cashinlog, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 160, -1));
-
-        jPanel8.add(refresh2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 170, 60));
-
-        refresh1.setBackground(new java.awt.Color(204, 204, 204));
-        refresh1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        refresh1.addMouseListener(new java.awt.event.MouseAdapter() {
+        loggin.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin.setText("REFRESH");
+        loggin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refresh1MouseClicked(evt);
+                logginMouseClicked(evt);
+            }
+        });
+        refresh3.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 20));
+
+        jPanel8.add(refresh3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 120, 40));
+
+        refresh4.setBackground(new java.awt.Color(200, 32, 32));
+        refresh4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refresh4MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                refresh1MouseEntered(evt);
+                refresh4MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                refresh1MouseExited(evt);
+                refresh4MouseExited(evt);
             }
         });
-        refresh1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        refresh4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cashinlog1.setBackground(new java.awt.Color(0, 0, 0));
-        cashinlog1.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        cashinlog1.setText("log");
-        refresh1.add(cashinlog1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 160, -1));
+        loggin1.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin1.setText("LOGS");
+        loggin1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin1MouseClicked(evt);
+            }
+        });
+        refresh4.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 50, 20));
 
-        cashinlog2.setBackground(new java.awt.Color(0, 0, 0));
-        cashinlog2.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        cashinlog2.setText("TRANSACTION");
-        refresh1.add(cashinlog2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, -1));
+        loggin5.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin5.setText("DEPOSIT ");
+        loggin5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                loggin5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                loggin5MouseExited(evt);
+            }
+        });
+        refresh4.add(loggin5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 90, 20));
 
-        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 170, 60));
+        jPanel8.add(refresh4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 160, 60));
+
+        refresh5.setBackground(new java.awt.Color(200, 32, 32));
+        refresh5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refresh5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refresh5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refresh5MouseExited(evt);
+            }
+        });
+        refresh5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin2.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin2.setText("LOGS");
+        loggin2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin2MouseClicked(evt);
+            }
+        });
+        refresh5.add(loggin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 50, 20));
+
+        refresh6.setBackground(new java.awt.Color(200, 32, 32));
+        refresh6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refresh6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refresh6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refresh6MouseExited(evt);
+            }
+        });
+        refresh6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin3.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin3.setText("REFRESH");
+        loggin3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin3MouseClicked(evt);
+            }
+        });
+        refresh6.add(loggin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 20));
+
+        refresh5.add(refresh6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 120, 40));
+
+        loggin4.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin4.setText("TRANSACTION");
+        loggin4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggin4MouseClicked(evt);
+            }
+        });
+        refresh5.add(loggin4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 20));
+
+        jPanel8.add(refresh5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 160, 60));
 
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -276,14 +333,6 @@ Color hover = new Color (203,14,14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
-       refresh.setBackground(defaultcolor);
-    }//GEN-LAST:event_refreshMouseExited
-
-    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
-       refresh.setBackground(hover);
-    }//GEN-LAST:event_refreshMouseEntered
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
             Admindashboard add = new Admindashboard();            
@@ -312,40 +361,94 @@ Color hover = new Color (203,14,14);
         
     }//GEN-LAST:event_formWindowActivated
     
-    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
-      
-        refreshTablee();
-        
-        
-    }//GEN-LAST:event_refreshMouseClicked
+    private void logginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseClicked
 
-    private void refresh2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh2MouseClicked
+    }//GEN-LAST:event_logginMouseClicked
+
+    private void refresh3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh3MouseClicked
+          refreshTablee();
+        
+    }//GEN-LAST:event_refresh3MouseClicked
+
+    private void refresh3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh3MouseEntered
+        refresh3.setBackground(hover);
+    }//GEN-LAST:event_refresh3MouseEntered
+
+    private void refresh3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh3MouseExited
+        refresh3.setBackground(defaultcolor);
+    }//GEN-LAST:event_refresh3MouseExited
+
+    private void loggin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseClicked
+ cashinlogs app = new cashinlogs();
+    app.setVisible(true);
+    this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_loggin1MouseClicked
+
+    private void refresh4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh4MouseClicked
        cashinlogs app = new cashinlogs();
     app.setVisible(true);
     this.dispose();
-    }//GEN-LAST:event_refresh2MouseClicked
+    }//GEN-LAST:event_refresh4MouseClicked
 
-    private void refresh2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh2MouseEntered
-         refresh2.setBackground(hover);
-    }//GEN-LAST:event_refresh2MouseEntered
+    private void refresh4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh4MouseEntered
+        refresh4.setBackground(hover);
+    }//GEN-LAST:event_refresh4MouseEntered
 
-    private void refresh2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh2MouseExited
-       refresh2.setBackground(defaultcolor);
-    }//GEN-LAST:event_refresh2MouseExited
+    private void refresh4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh4MouseExited
+        refresh4.setBackground(defaultcolor);
+    }//GEN-LAST:event_refresh4MouseExited
 
-    private void refresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseClicked
-      transactionlogs ts= new transactionlogs();
+    private void loggin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loggin2MouseClicked
+
+    private void loggin3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loggin3MouseClicked
+
+    private void refresh6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh6MouseClicked
+
+    private void refresh6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh6MouseEntered
+
+    private void refresh6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh6MouseExited
+
+    private void refresh5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh5MouseClicked
+ transactionlogs ts= new transactionlogs();
+    ts.setVisible(true);
+    this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_refresh5MouseClicked
+
+    private void refresh5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh5MouseEntered
+       refresh5.setBackground(hover);
+    }//GEN-LAST:event_refresh5MouseEntered
+
+    private void refresh5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh5MouseExited
+         refresh5.setBackground(defaultcolor);
+    }//GEN-LAST:event_refresh5MouseExited
+
+    private void loggin4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin4MouseClicked
+        transactionlogs ts= new transactionlogs();
     ts.setVisible(true);
     this.dispose();
-    }//GEN-LAST:event_refresh1MouseClicked
+    }//GEN-LAST:event_loggin4MouseClicked
 
-    private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
-         refresh1.setBackground(hover);
-    }//GEN-LAST:event_refresh1MouseEntered
+    private void loggin5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loggin5MouseClicked
 
-    private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
-       refresh1.setBackground(defaultcolor);
-    }//GEN-LAST:event_refresh1MouseExited
+    private void loggin5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin5MouseEntered
+    
+    }//GEN-LAST:event_loggin5MouseEntered
+
+    private void loggin5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin5MouseExited
+      
+    }//GEN-LAST:event_loggin5MouseExited
     
 
     public static void main(String args[]) {
@@ -358,9 +461,6 @@ Color hover = new Color (203,14,14);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cashinlog;
-    private javax.swing.JLabel cashinlog1;
-    private javax.swing.JLabel cashinlog2;
     private javax.swing.JLabel currentuser;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
@@ -370,14 +470,20 @@ Color hover = new Color (203,14,14);
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel96;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel refresh;
-    private javax.swing.JPanel refresh1;
-    private javax.swing.JPanel refresh2;
+    private javax.swing.JLabel loggin;
+    private javax.swing.JLabel loggin1;
+    private javax.swing.JLabel loggin2;
+    private javax.swing.JLabel loggin3;
+    private javax.swing.JLabel loggin4;
+    private javax.swing.JLabel loggin5;
+    private javax.swing.JPanel refresh3;
+    private javax.swing.JPanel refresh4;
+    private javax.swing.JPanel refresh5;
+    private javax.swing.JPanel refresh6;
     private javax.swing.JTable tablelogs;
     // End of variables declaration//GEN-END:variables
 }

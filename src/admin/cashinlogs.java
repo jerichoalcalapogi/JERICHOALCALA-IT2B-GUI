@@ -122,7 +122,7 @@ public void displayData() {
 
     
 Color hover = new Color (203,14,14);
-    Color defaultcolor = new Color (204,204,204);
+    Color defaultcolor = new Color (200,32,32);
 
    
     @SuppressWarnings("unchecked")
@@ -140,11 +140,11 @@ Color hover = new Color (203,14,14);
         jLabel14 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        refresh = new javax.swing.JPanel();
-        jLabel96 = new javax.swing.JLabel();
         currentuser = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        refresh3 = new javax.swing.JPanel();
+        loggin = new javax.swing.JLabel();
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
 
@@ -209,28 +209,6 @@ Color hover = new Color (203,14,14);
         jLabel11.setText("REGISTER FORM");
         jPanel8.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, -10, 310, 60));
 
-        refresh.setBackground(new java.awt.Color(204, 204, 204));
-        refresh.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refreshMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                refreshMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                refreshMouseExited(evt);
-            }
-        });
-        refresh.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel96.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        jLabel96.setText("refresh");
-        refresh.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, -1));
-
-        jPanel8.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 120, 40));
-
         currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
         currentuser.setForeground(new java.awt.Color(203, 14, 14));
         jPanel8.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 60, 60));
@@ -243,6 +221,31 @@ Color hover = new Color (203,14,14);
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
         jPanel8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 240, 220));
 
+        refresh3.setBackground(new java.awt.Color(200, 32, 32));
+        refresh3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refresh3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refresh3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refresh3MouseExited(evt);
+            }
+        });
+        refresh3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        loggin.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin.setText("REFRESH");
+        loggin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logginMouseClicked(evt);
+            }
+        });
+        refresh3.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 20));
+
+        jPanel8.add(refresh3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 120, 40));
+
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 560));
@@ -250,17 +253,9 @@ Color hover = new Color (203,14,14);
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
-       refresh.setBackground(defaultcolor);
-    }//GEN-LAST:event_refreshMouseExited
-
-    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
-       refresh.setBackground(hover);
-    }//GEN-LAST:event_refreshMouseEntered
-
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
-            Admindashboard add = new Admindashboard();            
-            add.setVisible(true);
+             Adminlogs addss = new  Adminlogs();            
+            addss.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jLabel29MouseClicked
 
@@ -282,12 +277,22 @@ Color hover = new Color (203,14,14);
         
     }//GEN-LAST:event_formWindowActivated
     
-    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
-      
+    private void logginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseClicked
+
+    }//GEN-LAST:event_logginMouseClicked
+
+    private void refresh3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh3MouseClicked
         refreshTablee();
-        
-        
-    }//GEN-LAST:event_refreshMouseClicked
+
+    }//GEN-LAST:event_refresh3MouseClicked
+
+    private void refresh3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh3MouseEntered
+        refresh3.setBackground(hover);
+    }//GEN-LAST:event_refresh3MouseEntered
+
+    private void refresh3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh3MouseExited
+        refresh3.setBackground(defaultcolor);
+    }//GEN-LAST:event_refresh3MouseExited
     
 
     public static void main(String args[]) {
@@ -310,11 +315,11 @@ Color hover = new Color (203,14,14);
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel96;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel refresh;
+    private javax.swing.JLabel loggin;
+    private javax.swing.JPanel refresh3;
     // End of variables declaration//GEN-END:variables
 }

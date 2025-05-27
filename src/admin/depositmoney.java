@@ -33,8 +33,8 @@ public class depositmoney extends javax.swing.JFrame {
 
     
      
-  Color hover = new Color (203,14,14);
-    Color defaultcolor = new Color (255,255,255);
+ Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (200,32,32);
 
 
     @SuppressWarnings("unchecked")
@@ -184,8 +184,14 @@ public class depositmoney extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 loggin1MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                loggin1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                loggin1MouseExited(evt);
+            }
         });
-        confirm.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 140, 20));
+        confirm.add(loggin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 70, 20));
 
         jPanel2.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 290, 40));
 
@@ -344,12 +350,20 @@ try {
     }//GEN-LAST:event_confirmMouseClicked
 
     private void confirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseEntered
-        // TODO add your handling code here:
+         confirm.setBackground(hover);
     }//GEN-LAST:event_confirmMouseEntered
 
     private void confirmMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmMouseExited
-        // TODO add your handling code here:
+         confirm.setBackground(defaultcolor);
     }//GEN-LAST:event_confirmMouseExited
+
+    private void loggin1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseEntered
+       loggin1.setBackground(hover);
+    }//GEN-LAST:event_loggin1MouseEntered
+
+    private void loggin1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggin1MouseExited
+        loggin1.setBackground(defaultcolor);
+    }//GEN-LAST:event_loggin1MouseExited
 
     /**
      * @param args the command line arguments

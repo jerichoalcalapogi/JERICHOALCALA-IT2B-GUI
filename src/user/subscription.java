@@ -94,7 +94,7 @@ public class subscription extends javax.swing.JFrame {
 
     try {
         String query = "SELECT start_datetime, end_datetime, activation_status, cancel_reason " +
-                      "FROM tbl_transaction WHERE c_id = ? ORDER BY t_id DESC LIMIT 1";
+                       "FROM tbl_transaction WHERE c_id = ? ORDER BY t_id DESC LIMIT 1";
         pstmt = con.prepareStatement(query);
         pstmt.setInt(1, sess.getUid());
         rs = pstmt.executeQuery();
@@ -114,12 +114,12 @@ public class subscription extends javax.swing.JFrame {
             if (cancelReason == null || cancelReason.trim().isEmpty()) {
                 cancelReason = "No reason provided";
             }
-            
+
             String message = "<html><div style='text-align:center; color:#d32f2f;'>" +
-                            "<h3 style='margin-bottom:5px;'>MEMBERSHIP CANCELLED</h3>" +
-                            "<div style='background-color:#ffebee; padding:10px; border-radius:5px;'>" +
-                            "<b>Reason:</b> " + cancelReason + "</div></div></html>";
-            
+                             "<h3 style='margin-bottom:5px;'>MEMBERSHIP CANCELLED</h3>" +
+                             "<div style='background-color:#ffebee; padding:10px; border-radius:5px;'>" +
+                             "<b>Reason:</b> " + cancelReason + "</div></div></html>";
+
             displayy.setText(message);
             stopTimer();
             return;
@@ -140,17 +140,20 @@ public class subscription extends javax.swing.JFrame {
                 case "Activated":
                     startMembershipCountdown(end, start, end);
                     break;
-                case "Paused":
-                    displayy.setText("<html><div style='text-align:center; color:#ff8f00;'>" +
-                                    "<h3>MEMBERSHIP PAUSED</h3></div></html>");
-                    stopTimer();
-                    isPaused = true;
-                    break;
+
                 case "Expired":
-                    displayy.setText("<html><div style='text-align:center; color:#d32f2f;'>" +
-                                    "<h3>MEMBERSHIP EXPIRED</h3></div></html>");
-                    stopTimer();
-                    break;
+    String expiredMsg = "<html><div style='text-align:center; color:#d32f2f; font-weight:bold; font-size:16px;'>" +
+                        "MEMBERSHIP EXPIRED</div><br>" +
+                        "<div style='text-align:center; font-size:14px; color:#d32f2f;'>" +
+                        "Your membership expired on:<br>" +
+                        "<b>" + end.format(formatter) + "</b><br><br>" +
+                        "Please buy again to continue enjoying our services.<br>" +
+                        "<i>Contact support or visit the membership page to renew.</i>" +
+                        "</div></html>";
+    displayy.setText(expiredMsg);
+    stopTimer();
+    break;
+
                 default:
                     displayy.setText("<html><div style='text-align:center; color:#757575;'>Unknown membership status.</div></html>");
                     stopTimer();
@@ -173,6 +176,7 @@ public class subscription extends javax.swing.JFrame {
         }
     }
 }
+
 
 private void stopTimer() {
     if (countdownTimer != null) {
@@ -370,7 +374,8 @@ private void stopTimer() {
         jPanel2.add(memberships, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 150, 60));
 
         displayy.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        jPanel2.add(displayy, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 310, 270));
+        displayy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(displayy, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 310, 270));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 840, 470));
 

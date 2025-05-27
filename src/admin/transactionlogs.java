@@ -80,7 +80,7 @@ public class transactionlogs extends javax.swing.JFrame {
         model.addColumn("Full Name");
         model.addColumn("Membership");
         model.addColumn("Duration");
-        model.addColumn("Activation Status");  // Updated column header
+        model.addColumn("Activation Status"); 
 
         while (rs.next()) {
             model.addRow(new Object[]{
@@ -90,7 +90,7 @@ public class transactionlogs extends javax.swing.JFrame {
                 rs.getString("full_name"),
                 rs.getString("m_type"),
                 rs.getString("duration"),
-                rs.getString("activation_status")  // Updated data column
+                rs.getString("activation_status")  
             });
         }
 
@@ -107,9 +107,9 @@ public class transactionlogs extends javax.swing.JFrame {
     
 
     
-Color hover = new Color (203,14,14);
-    Color defaultcolor = new Color (204,204,204);
-
+ Color hover = new Color (203,14,14);
+    Color defaultcolor = new Color (200,32,32);
+    
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -126,11 +126,11 @@ Color hover = new Color (203,14,14);
         jLabel14 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        refresh1 = new javax.swing.JPanel();
-        jLabel96 = new javax.swing.JLabel();
         currentuser = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        refresh1 = new javax.swing.JPanel();
+        loggin = new javax.swing.JLabel();
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/icons8-administrator-male-100 (1).png"))); // NOI18N
 
@@ -195,8 +195,19 @@ Color hover = new Color (203,14,14);
         jLabel11.setText("REGISTER FORM");
         jPanel8.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, -10, 310, 60));
 
-        refresh1.setBackground(new java.awt.Color(204, 204, 204));
-        refresh1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
+        currentuser.setForeground(new java.awt.Color(203, 14, 14));
+        jPanel8.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 60, 60));
+
+        jLabel15.setBackground(new java.awt.Color(255, 51, 0));
+        jLabel15.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
+        jLabel15.setText("Current user:");
+        jPanel8.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 130, 40));
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
+        jPanel8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 240, 220));
+
+        refresh1.setBackground(new java.awt.Color(200, 32, 32));
         refresh1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 refresh1MouseClicked(evt);
@@ -210,24 +221,16 @@ Color hover = new Color (203,14,14);
         });
         refresh1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel96.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel96.setFont(new java.awt.Font("Castellar", 1, 15)); // NOI18N
-        jLabel96.setText("ACTIVATION");
-        refresh1.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, -1));
+        loggin.setFont(new java.awt.Font("Centaur", 1, 18)); // NOI18N
+        loggin.setText("ACTIVATION");
+        loggin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logginMouseClicked(evt);
+            }
+        });
+        refresh1.add(loggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 130, 20));
 
-        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 140, 40));
-
-        currentuser.setFont(new java.awt.Font("Bell MT", 1, 24)); // NOI18N
-        currentuser.setForeground(new java.awt.Color(203, 14, 14));
-        jPanel8.add(currentuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, 60, 60));
-
-        jLabel15.setBackground(new java.awt.Color(255, 51, 0));
-        jLabel15.setFont(new java.awt.Font("Castellar", 1, 12)); // NOI18N
-        jLabel15.setText("Current user:");
-        jPanel8.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 130, 40));
-
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/haha-removebg-preview (1).png"))); // NOI18N
-        jPanel8.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 60, 240, 220));
+        jPanel8.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 170, 40));
 
         jPanel1.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -236,17 +239,9 @@ Color hover = new Color (203,14,14);
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
-       refresh1.setBackground(defaultcolor);
-    }//GEN-LAST:event_refresh1MouseExited
-
-    private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
-       refresh1.setBackground(hover);
-    }//GEN-LAST:event_refresh1MouseEntered
-
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
-            Admindashboard add = new Admindashboard();            
-            add.setVisible(true);
+          Adminlogs adds = new  Adminlogs();            
+            adds.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jLabel29MouseClicked
 
@@ -271,26 +266,46 @@ Color hover = new Color (203,14,14);
         
     }//GEN-LAST:event_formWindowActivated
     
+    private void logginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logginMouseClicked
+     
+
+    }//GEN-LAST:event_logginMouseClicked
+
     private void refresh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseClicked
-      
-    int selectedRow = tablelogs.getSelectedRow();
+                              
+   int selectedRow = tablelogs.getSelectedRow();
 
     if (selectedRow != -1) {
-        String username = tablelogs.getValueAt(selectedRow, 2).toString();        // Username
-        String membershipType = tablelogs.getValueAt(selectedRow, 4).toString();  // Membership Type
+        String status = tablelogs.getValueAt(selectedRow, 6).toString().toLowerCase();
 
-        // Check if the membership is already activated and paused
+        if ("expired".equals(status)) {
+            JOptionPane.showMessageDialog(this, "The membership status is expired.");
+            return; 
+        }
+
+        String username = tablelogs.getValueAt(selectedRow, 2).toString();        
+        String membershipType = tablelogs.getValueAt(selectedRow, 4).toString(); 
+
         subscriptionactivate activateForm = new subscriptionactivate();
         activateForm.setUserFullName(username);    
         activateForm.setMembershipType(membershipType); 
         activateForm.setVisible(true);
-        this.dispose();
-       activateForm.enableConfirmButton();
+        this.dispose(); 
+        activateForm.enableConfirmButton();
     } else {
         JOptionPane.showMessageDialog(this, "Please select a user to activate.");
     }
-        
+
+
     }//GEN-LAST:event_refresh1MouseClicked
+
+    private void refresh1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseEntered
+        refresh1.setBackground(hover);
+    }//GEN-LAST:event_refresh1MouseEntered
+
+    private void refresh1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refresh1MouseExited
+        refresh1.setBackground(defaultcolor);
+    }//GEN-LAST:event_refresh1MouseExited
     
 
     public static void main(String args[]) {
@@ -312,11 +327,11 @@ Color hover = new Color (203,14,14);
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel96;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel loggin;
     private javax.swing.JPanel refresh1;
     private javax.swing.JTable tablelogs;
     // End of variables declaration//GEN-END:variables

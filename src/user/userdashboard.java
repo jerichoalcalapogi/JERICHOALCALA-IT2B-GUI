@@ -91,6 +91,7 @@ Color hover = new Color (102,102,102);
         jLabel35 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
 
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -246,7 +247,7 @@ Color hover = new Color (102,102,102);
                 jLabel34MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 160, 140));
+        jPanel2.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 160, 140));
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Castellar", 1, 18)); // NOI18N
@@ -257,7 +258,7 @@ Color hover = new Color (102,102,102);
                 jLabel13MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 180, 30));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 180, 30));
 
         jSeparator4.setForeground(new java.awt.Color(203, 14, 14));
         jSeparator4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -270,7 +271,7 @@ Color hover = new Color (102,102,102);
                 jLabel35MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 140, 150));
+        jPanel2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 140, 150));
 
         jSeparator5.setForeground(new java.awt.Color(203, 14, 14));
         jSeparator5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -286,6 +287,15 @@ Color hover = new Color (102,102,102);
             }
         });
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, -1, 30));
+
+        jLabel36.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginRegisterImages/modern-monitor-elegant-tableee.png"))); // NOI18N
+        jLabel36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel36MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 840, 430));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 810, 430));
 
@@ -403,17 +413,21 @@ Color hover = new Color (102,102,102);
         this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
 
-    private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseClicked
-purchasehistory pur = new  purchasehistory();
-        pur.setVisible(true);
-        this.dispose();        
-    }//GEN-LAST:event_jLabel35MouseClicked
-
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
 purchasehistory pur = new  purchasehistory();
         pur.setVisible(true);
         this.dispose();                
     }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseClicked
+        purchasehistory pur = new  purchasehistory();
+        pur.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel35MouseClicked
+
+    private void jLabel36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel36MouseClicked
 
     /**
      * @param args the command line arguments
@@ -466,6 +480,7 @@ purchasehistory pur = new  purchasehistory();
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
